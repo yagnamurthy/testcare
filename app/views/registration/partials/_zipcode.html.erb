@@ -1,0 +1,36 @@
+<div class="user-register-page container-large">
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "basic"} %>
+
+            <div class="reg-slider">
+                <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+
+                    <div class="form-items">
+                        <div class="form-item zipcode" data-tab="basic">
+                            <%= f.label :zipcode, 'What is the zip code in the city where you live?', :class => 'title' %>
+                            <div class="form-elements">
+
+                                <%= f.text_field :zipcode, maxlength:'5', :style => "	width: 95px; margin: 0 auto 30px;", :placeholder => 'zip code', pattern:"[0-9]*", step: "0.01" %>
+                                <p class="error-msg" style="display:none;">A valid zip code is required</p>
+
+                                <!--<p class="tip">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat.</p>-->
+                            </div>
+                            <%= hidden_field_tag 'route', phone_path %>
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                        <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                        <%= f.submit 'Save', class: 'btn' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="user-register-page container-large">
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "basic"} %>
+
+            <div class="reg-slider">
+            <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+
+                <div class="form-item allergies" data-tab="basic">
+                    <label class="title">Do you have any allergies?</label>
+
+                    <div class="form-elements one-col">
+                      <%= hidden_field_tag "caregiver[allergy_ids][]", '', class: 'hidden' %>
+
+                        <% Allergy.all.each do |allergy| %>
+                            <div class="custom-checkbox">
+                                <%= check_box_tag "caregiver[allergy_ids][]", allergy.id, current_user.allergies.include?(allergy), id: "caregiver_#{allergy.id}", class: 'styled' %>
+                                <%= label_tag "caregiver[allergy_ids][]", allergy.name, for: "caregiver_#{allergy.id}"  %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <%= hidden_field_tag 'route', pets_path %>
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                    <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                    <%= f.submit 'Save', class: 'btn' %>
+                </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

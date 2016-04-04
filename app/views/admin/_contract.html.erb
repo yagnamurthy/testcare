@@ -1,0 +1,17 @@
+<tr>
+	<td><%= contract.owner.full_name %></td>
+	<td><%= contract.headline %></td>
+	<td><%= contract.required_rate %></td>
+	<td><%= contract.description %></td>
+	<td><%= contract.patient_name %></td>
+	<td><%= contract.phone %></td>
+	<td>
+		<% if contract.indexable %>
+			<%= button_to 'Disable', disable_contract_path(id: contract.id), class: 'btn main', id: 'disable' %>
+		<% else %>
+			<%= button_to 'Enable', enable_contract_path(id: contract.id), class: 'btn main', id: 'enable' %>
+		<% end %>
+	</td>
+    <td><%= link_to "Edit Contract", edit_admin_contract_path(contract) %>
+	<td><%= link_to 'Delete', contract, confirm: "Are you sure you want to delete this contract?", method: :delete %></td>
+</tr>

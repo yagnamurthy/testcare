@@ -1,0 +1,43 @@
+<% if notice %>
+	<div data-alert class="alert-box success radius">
+		<%= notice %>
+	</div>
+<% end %>
+
+<table>
+	<thead>
+		<tr>
+			<td>Contacted?</td>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Profile Link</th>
+			<th>Testimonial Count</th>
+			<th>Years Exp</th>
+			<th>Hourly Rate</th>
+			<th>Uploaded Avatar</th>
+			<th>FB ID</th>
+			<th>FB Profile</th>
+			<th>Completed Profile</th>
+			<th>Enable Control</th>
+			<th>Created</th>
+			<td>Edit Profile</td>
+		</tr>
+	</thead>
+
+	<tbody>
+		<%= render partial: 'admin/caregiver', collection: @caregivers %>
+	</tbody>
+</table>
+
+<% if params[:f] %>
+	<%= paginate @caregivers, params: { f: params[:f] } %>
+<% else %>
+	<%= paginate @caregivers %>
+<% end %>
+
+<p>
+  Download:
+  <%= link_to "CSV", caregivers_path(format: "csv") %>
+</p>

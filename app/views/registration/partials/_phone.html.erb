@@ -1,0 +1,37 @@
+<div class="user-register-page container-large">
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "basic"} %>
+
+            <div class="reg-slider">
+                <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+
+                    <div class="form-item phone required" data-tab="basic">
+                        <%= f.label :phone, 'What is the best phone number to reach you at?', :class => 'title' %>
+                        <div class="form-elements">
+                            <%= f.phone_field :phone, :class => 'middleWidth', :placeholder => '(555) 555-5555' %>
+                            <!--<p class="tip">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat.</p>-->
+                        </div>
+                        <p class="error-msg" style="display:none;">A valid phone number is required</p>
+                        <%= hidden_field_tag 'route', language_path %>
+                    </div>
+
+                    <div class="buttons">
+                        <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                        <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                        <%= f.submit 'Save', class: 'btn' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#caregiver_phone").mask("(999) 999-9999");
+    });
+</script>

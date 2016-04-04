@@ -1,0 +1,11 @@
+ <div class="item">
+	<% if current_user %>
+		<h4 class="workedu">
+			<%= link_to_modal '', edit_caregiver_school_path(current_user, school), class: 'edit-btn' %>
+			<span class="bold"><%= school.name %></span>
+      <span class="little">(<%= school.start_date_year %> - <%= school.finish_date_year%>)</span>
+      <br/>
+      <%= school.degree_in_words %>
+		</h4>
+	<% end %>
+</div>

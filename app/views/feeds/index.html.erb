@@ -1,0 +1,29 @@
+<div class="dashboard-page container-large">
+    <div class="row">
+
+        <div class="content main-cnt">
+            <div class="row">
+
+                <header>
+                    <h2>Updates</h2>
+                </header>
+
+                <%= render partial: 'dashboard/profile_column' %>
+
+                <div class="content-column">
+
+                    <%= paginate @feed_items %>
+
+                    <div class="super-box journal">
+                        <div class="section-msg">
+
+                            <%= render partial: 'dashboard/update_list_item', collection: @feed_items %>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

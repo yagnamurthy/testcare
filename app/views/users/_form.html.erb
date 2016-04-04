@@ -1,0 +1,64 @@
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="columns twelve alpha omega">
+        <p>About you</p>
+
+        <div class="columns four alpha omega">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name %>
+        </div>
+
+      <div class="columns four alpha omega">
+        <%=  f.label :last_name %>
+        <%= f.text_field :last_name %>
+      </div>
+
+      <div class="columns four alpha omega">
+        <%=  f.label :age %>
+        <%= f.text_field :age %>
+      </div>
+
+    </div>
+
+    <div class="columns twelve alpha omega">
+      <p>About your skills</p>
+
+      <div class="columns four alpha omega">
+        <%=  f.label :zipcode %>
+        <%= f.text_field :zipcode %>
+      </div>
+
+    </div>
+
+    <div class="columns twelve alpha omega">
+      <p>Write a little about yourself</p>
+
+      <div class="columns four alpha omega">
+        <%= f.label :headline, required: true %>
+        <%= f.text_field :headline, class: 'columns six alpha omega'%>
+      </div>
+
+      <div class="columns six alpha omega">
+        <%= f.label :bio %>
+        <%= f.text_area :bio, class: 'columns size alpha omega' %>
+      </div>
+
+    </div>
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

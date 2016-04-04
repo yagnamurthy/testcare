@@ -1,0 +1,22 @@
+# == Schema Information
+#
+# Table name: requested_references
+#
+#  id           :integer          not null, primary key
+#  name         :text(65535)
+#  phone        :text(65535)
+#  email        :text(65535)
+#  caregiver_id :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+#  column: value

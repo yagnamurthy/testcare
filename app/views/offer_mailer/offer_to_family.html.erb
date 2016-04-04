@@ -1,0 +1,14 @@
+<p>Dear <%= @family.first_name %>,</p>
+ 
+<p><%= @caregiver.first_name %> has applied to your care job: <%= @contract.headline %>.</p>
+ 
+<strong>Message from <%= @caregiver.first_name %>:</strong>
+<p><%= @message.body %></p>
+ 
+<p><%= @caregiver.first_name %>'s estimated fee for this care job is: <%= number_to_currency @offer.rate %>/hr</p>
+ 
+<p>To view <%= @caregiver.first_name %>'s profile go here: <%= link_to 'View Profile', caregiver_url(@caregiver), target: '_blank' %></p>
+ 
+<p>Sincerely,</p>
+ 
+<p>The CareSpotter Team</p>

@@ -1,0 +1,51 @@
+<div class="dashboard-page container-large">
+    <div class="row">
+
+        <div class="content main-cnt">
+            <div class="row">
+
+                <header>
+                    <h2>Journal</h2>
+                </header>
+
+                <%= render partial: 'dashboard/profile_column' %>
+
+                <div class="content-column">
+
+                	<%= render partial: 'dashboard/alerts' %>
+
+                    <div class="super-box journal">
+                        <header>
+                            <%= avatar_tag @contract.owner, :thumb, class: 'small-avatar' %>
+                            <%= @contract.owner.full_name %>
+                        </header>
+
+                        <div class="section-form">
+                            <h6>Write your observations about <a href="#"><%= @contract.patient_name %></a>: </h6>
+                            <div class="msg">
+                                <%= form_for @journal, url: contract_journals_path(params[:contract_id]) do |f| %>
+                                    <div class="desc">
+                                        <%= f.text_area :body %>
+                                        <%= avatar_tag current_user, :thumb, class: 'small-avatar' %>
+                                    </div>
+                                    <div class="bar">
+                                        <i class="actions date"></i>
+                                        <%= f.date_field :entry_date, :id => 'datepicker' %>
+                                        <%= f.submit value: 'Add Entry', class: 'btn main small' %>
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
+
+                        <div class="section-msg">
+
+                            <%= render partial: 'journals/journal', collection: @journals %>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

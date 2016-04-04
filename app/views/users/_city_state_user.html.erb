@@ -1,0 +1,46 @@
+<div class="user user-<%= controller.action_name %>">
+    <div class="main-info">
+        <div class="thumbnail">
+            <%= link_to caregiver_path(user.id) do %>
+                <%= avatar_tag user, :large %>
+            <% end %>
+        </div>
+        <div class="info">
+            <div class="headline clear">
+                <h3><%=  link_to "#{user.first_name}", caregiver_path(user) %>&nbsp;<span class="distance">(<%= user.city %>, <%= user.zipcode %>)</span></h3>
+            </div> 
+
+            <h5 class="user-headline mobile-hide">
+                "<%= truncate(user.headline, length: 45) %>
+            </h5>
+
+            <div class="user-content mobile-hide">
+                <p class="user-short-bio">
+                    <%= truncate(user.bio, length: 180) %>
+                    <%= link_to ' More', caregiver_path(user.id) %>
+                </p>
+            </div>
+        </div>
+        <div class="options">
+            <h5 class="hourly-rate"><%= number_to_currency(user.hourly_rate, precision: 0) %><span class="hour">/hr</span></h5>
+            <ul class="stats">
+                <li>
+                    <%= user.age %> years old
+                </li>
+                <li>
+                    <strong>
+                        <%= user.total_experience %> years experience
+                    </strong>
+                </li>
+                <li>
+                    <%= user.city %>, <%= user.state %>
+                </li>
+            </ul>
+
+            <div class="search-results-buttons">
+                <%=  link_to 'View Profile', caregiver_path(user), class: 'btn main view-profile' %>
+            </div>
+        </div>
+    </div>
+</div>
+

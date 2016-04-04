@@ -1,0 +1,15 @@
+<p>Hello <%= @participant.first_name %>!</p>
+
+<p>
+  <b>
+    You have a new message from <%= @from.first_name %>: <%= @message %>
+  </b>
+</p>
+
+<p>Please do not reply to this email.</p>
+
+<p><%= link_to 'Click here', mailbox_index_url, target: '_blank' %> to log into CareSpotter and reply to this message.</p>
+
+<p>All the best,</p>
+
+<p>Team CareSpotter</p>

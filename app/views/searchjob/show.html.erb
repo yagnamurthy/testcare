@@ -1,0 +1,98 @@
+<div class="dashboard-page container-large">
+    <div class="row">
+
+        <div class="content main-cnt">
+            <div class="row">
+
+                <header>
+                    <h2>Dashboard</h2>
+                </header>
+
+                <%= render partial: 'dashboard/profile_column' %>
+
+                <div class="content-column">
+
+                	<%= render partial: 'dashboard/alerts' %>
+
+                    <div class="super-box search-job with-search-header">
+
+                        <header class="with-bg">
+                            54 Orlando Care Jobs near 32708
+                            <form action="#" method="post">
+                                <button class="btn main">
+                                    <span class="icon-search"></span>
+                                </button>
+                                <input type="text" name="query" placeholder="zip code or city">
+                            </form>
+                        </header>
+
+                        <section class="super-main">
+                            <a href="#" class="back-to-prev"><span></span>Return to Search Page</a>
+
+                            <h4>
+                                Daughter needs part-time help caring for mother
+                                <span class="applied-job">Applied<i></i></span>
+                            </h4>
+
+                            <div class="location">
+                                <strong>Location:</strong>Orlando, Florida, 32801
+                            </div>
+
+                            <table class="details">
+                                <tr>
+                                    <td class="first-col" colspan="2">
+                                        <strong>Job posted on:</strong> September 10. 2013
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="first-col">
+                                        <strong>Schedule:</strong> Hourly Only
+                                    </td>
+                                    <td class="second-col">
+                                        <strong>Hourly rate:</strong><span class="blue strong">from $10</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="first-col" colspan="2">
+                                        <strong>Requirements:</strong>
+                                        <ul>
+                                            <li>Transfer Assistance</li>
+                                            <li>Toileting and Incontinence</li>
+                                            <li>Tracheotomy Care</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td class="first-col" colspan="2">
+                                        <strong>Need help with:</strong>
+                                        <ul>
+                                            <li>Transfer Assistance</li>
+                                            <li>Toileting and Incontinence</li>
+                                            <li>Tracheotomy Care</li>
+                                            <li>Transfer Assistance</li>
+                                            <li>Transfer Assistance</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div class="information">
+                                <h6>Additional Information</h6>
+                                <p>I am 37 years old with 10 years of caregiving experience i am planning on getting my CNA sometime soon. I am very dedicated to my clients and their well-being. I am dependable if you needed me for something last minute more than likely be able to help. I am very respectful of people and their emotions. I have a habit of putting others first, which I find to be good. I have a lot of patience for people, everything takes time. I love to reorganize and to keep things in a simple and easy way to find. Cooking is always fun especially finding new ways to keep it healthy. I believe communication is key, wether it's just listening to a story or instructions they are just as important. Making sure every situation is a safe environment safety is number one.
+                                </p>
+                            </div>
+
+                        </section>
+
+                        <div class="foot">
+                            <%= link_to_modal 'Apply now', apply_care_job_modal_path, class: 'btn main' %>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

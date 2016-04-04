@@ -1,0 +1,23 @@
+<div class="item">
+    <% if current_user %>
+      <h4 class="workedu">
+        <%= link_to_modal '', edit_caregiver_experience_path(current_user, experience), class: 'edit-btn' %>
+        <span class="bold"> <%= experience.employer %></span>
+        <span class="little">
+          (
+          <%= experience.start_date.strftime("%b") %>
+          &nbsp;
+          <%= experience.start_date.year %> -
+          <% if experience.finish_date.nil? %>
+              Current
+          <% else %>
+            <%= experience.finish_date.strftime("%b")  %>
+            <%= experience.finish_date.year %>
+          <% end %>
+          )
+        </span>
+         <br/>
+        <%= experience.position %>
+      </h4>
+    <% end %>
+</div>

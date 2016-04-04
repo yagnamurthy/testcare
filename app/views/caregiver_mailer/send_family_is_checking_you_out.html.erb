@@ -1,0 +1,19 @@
+<p>Hi <%= @caregiver.first_name %>,</p>
+
+<p>Your profile was recently viewed by a family looking for a caregiver for this care job: <%= link_to @contract.headline, contract_url(@contract) %>.</p>
+
+<p>Give yourself the best chance of being contacted by a potential client by updating your profile and availability schedule, and making sure your profile is well written and includes a smiling, professional profile photo.</p>
+
+<p>
+  <%= link_to 'Click here to Update Your Profile', basics_url %>
+</p>
+
+<p>
+  <%= link_to 'Click here to Apply to this Care Job', contract_url(@contract) %></p>
+
+<p>If we can help, give us a call at <a href="tel:407-792-4697" value="+14077924697" target="_blank">407-792-4697</a> or email us at <a href='mailto:team@carespotter.com'>team@carespotter.com</a>. Good luck!</p>
+
+<p>Thanks,</p>
+
+<p>The CareSpotter Team<br>
+Helping families find the perfect caregiver</p>

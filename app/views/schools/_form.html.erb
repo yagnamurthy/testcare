@@ -1,0 +1,28 @@
+<div class="row">
+  <%= simple_form_for [current_user, @school], html: { class: 'school-form' } do |f| %>
+    <div class="large-12 columns">
+      <%= f.input :name, as: :string, label: 'University or Training Institution', required: true %>
+    </div>
+
+    <div class="large-12 columns">
+      <label>When you attended:</label>
+      <div class="row">
+        <div class="large-6 columns">
+          <%= f.input :start_date_year, as: :select, collection: 2015.downto(1940), label: 'Year Enrolled', required: true %>
+        </div>
+        <div class="large-6 columns">
+          <%= f.input :finish_date_year, as: :select, collection: 2015.downto(1940), label: 'Year Graduated', required: true %>
+        </div>
+      </div>
+    </div>
+
+    <div class="large-12 columns">
+      <%= f.input :degree, as: :select, collection: School.degree_options, label: 'Degree or Certification Attained', required: true  %>
+
+      <div class="action">
+        <%= f.submit 'Submit', class: 'btn main' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+

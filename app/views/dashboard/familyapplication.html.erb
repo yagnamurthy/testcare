@@ -1,0 +1,178 @@
+<div class="dashboard-page container-large">
+    <div class="row">
+
+        <div class="content main-cnt">
+            <div class="row">
+
+                <header>
+                    <h2>Dashboard</h2>
+                </header>
+
+                <%= render partial: 'dashboard/profile_column' %>
+
+                <div class="content-column">
+
+                	<%= render partial: 'dashboard/alerts' %>
+
+                    <div class="super-box family-applications with-search-header">
+
+                        <header class="with-bg">
+                            Daughter needs part-time help caring...
+                            <form action="#" method="post">
+                                <button class="btn main">
+                                    <span class="icon-search"></span>
+                                </button>
+                                <input type="text" name="query" placeholder="zip code or city">
+                            </form>
+                        </header>
+
+                        <div class="filter-bar">
+                            <span class="count">6 applications</span>
+
+                            <form maethod="post" action="#">
+                                <label>Sort by</label>
+                                <div class="select-box">
+                                    <select>
+                                        <option>Newest applications</option>
+                                    </select>
+                                </div>
+                            </form>
+
+                            <span class="applied-job"><i></i> 3 shortlisted</span>
+                        </div>
+
+                        <section class="list">
+
+                            <div class="item">
+                                <a href="#"><img src="/assets/clients/middle2-example.jpg" alt="" class="middle2-avatar"></a>
+
+                                <div class="info">
+                                    <div class="headline">
+                                        <div class="actions">
+                                            <a href="#" class="base-action accept"></a>
+                                            <a href="#" class="base-action delete"></a>
+                                        </div>
+                                        <a href="#" class="username">Penelope V</a>
+                                        <p class="promo">“Organized, Holistic CareGiver”</p>
+                                        <table>
+                                            <tr>
+                                                <td><strong>Rate:</strong>  from <span class="blue">$10</span>/hr to <span class="blue">$13</span>/hr</td>
+                                                <td><span class="blue">6</span> testamonials</td>
+                                                <td><i class="small-heart"></i>200 + carespotter hours</td>
+                                            </tr>
+                                        </table>
+                                        <div class="desc simple">
+                                            <p>I am 37 years old with 10 years of caregiving experience i am planning on getting my CNA sometime soon. I am very dedicated to my clients and their... </p>
+                                            <a href="#" class="extended-view">Read more</a>
+                                        </div>
+                                        <div class="desc extended">
+                                            <p>Hello,</p>
+                                            <p>I am 37 years old with 10 years of caregiving experience i am planning on getting my CNA sometime soon. I am very dedicated to my clients and their well-being.</p>
+                                            <p>I’d like to personally invite you to apply to my care job. Please review the job post and apply if you’re available.</p>
+                                            <p>Thank you,<br/>
+                                            Richard</p>
+
+                                            <div class="control-panel">
+                                                <a href="#" class="action-link"><i class="updates-icons small profile"></i>View Profile</a>
+                                                <a href="<%= url_for application_msg_modal_path %>" class="action-link" rel="modal:open"><i class="updates-icons small msg"></i>Send Message</a>
+                                                <a href="<%= url_for application_hire_modal_path %>" class="action-link nb" rel="modal:open"><i class="updates-icons small hire"></i>Hire</a>
+                                            </div>
+
+                                            <a href="#" class="extended-view">Less</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <a href="#"><img src="/assets/clients/middle2-example.jpg" alt="" class="middle2-avatar"></a>
+
+                                <div class="info">
+                                    <div class="headline">
+                                        <div class="actions">
+                                            <i class="shortlisted"></i>
+                                            <a href="#" class="base-action delete"></a>
+                                        </div>
+                                        <a href="#" class="username">Penelope V</a>
+                                        <p class="promo">“Organized, Holistic CareGiver”</p>
+                                        <table>
+                                            <tr>
+                                                <td><strong>Rate:</strong>  from <span class="blue">$10</span>/hr to <span class="blue">$13</span>/hr</td>
+                                                <td><span class="blue">6</span> testamonials</td>
+                                                <td><i class="small-heart"></i>200 + carespotter hours</td>
+                                            </tr>
+                                        </table>
+                                        <div class="desc simple">
+                                            <p>I am 37 years old with 10 years of caregiving experience i am planning on getting my CNA sometime soon. I am very dedicated to my clients and their... </p>
+                                            <a href="#" class="extended-view">Read more</a>
+                                        </div>
+                                        <div class="desc extended">
+                                            <p>Hello,</p>
+                                            <p>I am 37 years old with 10 years of caregiving experience i am planning on getting my CNA sometime soon. I am very dedicated to my clients and their well-being.</p>
+                                            <p>I’d like to personally invite you to apply to my care job. Please review the job post and apply if you’re available.</p>
+                                            <p>Thank you,<br/>
+                                            Richard</p>
+
+                                            <div class="control-panel">
+                                                <a href="#" class="action-link"><i class="updates-icons small profile"></i>View Profile</a>
+                                                <a href="<%= url_for application_msg_modal_path %>" class="action-link" rel="modal:open"><i class="updates-icons small msg"></i>Send Message</a>
+                                                <a href="<%= url_for application_hire_modal_path %>" class="action-link nb" rel="modal:open"><i class="updates-icons small hire"></i>Hire</a>
+                                            </div>
+
+                                            <a href="#" class="extended-view">Less</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <a href="#"><img src="/assets/clients/middle2-example.jpg" alt="" class="middle2-avatar"></a>
+
+                                <div class="info">
+                                    <div class="headline">
+                                        <div class="actions">
+                                            <a href="#" class="base-action accept"></a>
+                                            <a href="#" class="base-action delete"></a>
+                                        </div>
+                                        <a href="#" class="username">Penelope V</a>
+                                        <p class="promo">“Organized, Holistic CareGiver”</p>
+                                        <table>
+                                            <tr>
+                                                <td><strong>Rate:</strong>  from <span class="blue">$10</span>/hr to <span class="blue">$13</span>/hr</td>
+                                                <td><span class="blue">6</span> testamonials</td>
+                                                <td><i class="small-heart"></i>200 + carespotter hours</td>
+                                            </tr>
+                                        </table>
+                                        <div class="desc simple">
+                                            <p>I am 37 years old with 10 years of caregiving experience i am planning on getting my CNA sometime soon. I am very dedicated to my clients and their... </p>
+                                            <a href="#" class="extended-view">Read more</a>
+                                        </div>
+                                        <div class="desc extended">
+                                            <p>Hello,</p>
+                                            <p>I am 37 years old with 10 years of caregiving experience i am planning on getting my CNA sometime soon. I am very dedicated to my clients and their well-being.</p>
+                                            <p>I’d like to personally invite you to apply to my care job. Please review the job post and apply if you’re available.</p>
+                                            <p>Thank you,<br/>
+                                            Richard</p>
+
+                                            <div class="control-panel">
+                                                <a href="#" class="action-link"><i class="updates-icons small profile"></i>View Profile</a>
+                                                <a href="<%= url_for application_msg_modal_path %>" class="action-link" rel="modal:open"><i class="updates-icons small msg"></i>Send Message</a>
+                                                <a href="<%= url_for application_hire_modal_path %>" class="action-link nb" rel="modal:open"><i class="updates-icons small hire"></i>Hire</a>
+                                            </div>
+
+                                            <a href="#" class="extended-view">Less</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

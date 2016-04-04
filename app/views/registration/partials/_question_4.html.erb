@@ -1,0 +1,32 @@
+<div class="user-register-page container-large">
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "about"} %>
+
+            <div class="reg-slider">
+            <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+
+                <div class="form-item profession single-question" data-tab="about">
+
+                    <label class="title">What has been your proudest moment or experience as a caregiver?</label>
+
+                    <div class="form-elements">
+                        <%= f.text_area :question_4 %>
+                        <p class="tip">
+                            CareSpotter Tip<br/>
+                            This is a great question to give families good insights into your personality and better connect you with the right families.
+                        </p>
+                    </div>
+
+                    <%= hidden_field_tag 'route', photo_path %>
+                </div>
+
+                <div class="buttons">
+                    <%= f.submit 'Save', class: 'btn' %>
+                </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

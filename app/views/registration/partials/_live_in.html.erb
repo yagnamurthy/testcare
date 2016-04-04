@@ -1,0 +1,42 @@
+<div class="user-register-page container-large">
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "skills"} %>
+
+            <div class="reg-slider">
+            <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+
+                <div class="form-item live_in" data-tab="skills">
+                    <%= f.label :live_in, 'Are you available for live-in caregiving jobs?', :class=>"title" %>
+
+                    <div class="form-elements">
+                        <div class="custom-checkbox">
+                            <%= f.radio_button :live_in, User::LiveIn::NO[:value], checked: current_user.live_in == false, id: "#{User::LiveIn::NO[:label].parameterize}-live_in",class: 'styled' %><%= f.label "#{User::LiveIn::NO[:label]}", for: "#{User::LiveIn::NO[:label].parameterize}-live_in" %>
+                        </div>
+                        <div class="form-element">
+                            <div class="custom-checkbox">
+                                <%= f.radio_button :live_in, User::LiveIn::YES[:value], checked: current_user.live_in == true, id: "#{User::LiveIn::YES[:label].parameterize}-live_in", class: 'styled' %><%= f.label "#{User::LiveIn::YES[:label]}", for: "#{User::LiveIn::YES[:label].parameterize}-live_in" %>
+                            </div>
+                            <div class="rate">
+                                <span>$</span>
+                                <%= f.number_field :live_in_rate %>
+                                per day
+                            </div>
+                        </div>
+                    </div>
+                    <p class="error-msg" style="display:none;">Hourly rate for services is required</p>
+                    <p class="tip">A live-in caregiver would take residence in the patient's home and may live and work with the patient 24/7. Families provide room and board and a daily salary for services.</p>
+                    <%= hidden_field_tag 'route', schedule_path %>
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                    <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                    <%= f.submit 'Save', class: 'btn' %>
+                </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

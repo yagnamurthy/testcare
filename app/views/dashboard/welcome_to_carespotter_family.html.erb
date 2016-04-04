@@ -1,0 +1,13 @@
+<div class='welcome-family'>
+ 
+    <%= image_tag 'advisor.png' %>
+      <h4>Thank you for creating a job, <%= current_user.first_name %></h4>
+    <p>
+      Now caregivers will be able to see your care job and apply to you directly
+      through Carespotter. You can also contact caregivers directly to invite them
+      to apply to your job by clicking Contact Caregiver on their profile.
+    </p>
+  <div class="buttons">
+    <%= link_to 'Start Searching Caregivers', near_path(zipcode: current_user.zipcode), class: 'btn btn-main' %>
+  </div>
+</div>

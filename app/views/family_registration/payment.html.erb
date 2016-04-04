@@ -1,0 +1,16 @@
+<%= form_tag family_process_payment_path, id: 'checkout', method: 'POST' do %>
+  <div id='dropin'></div>
+  <%= submit_tag 'Submit & Pay', class: 'btn main' %>
+<% end %>
+
+<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+<script>
+
+braintree.setup(
+  '<%= "#{@client_token}" %>',
+  'dropin', {
+    container: 'dropin'
+  });
+
+
+</script>

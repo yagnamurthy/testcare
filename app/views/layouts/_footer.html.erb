@@ -1,0 +1,46 @@
+<% cache 'footer' do %>
+    <footer class="main">
+        <div class="row">
+            <div class="columns large-2 large-push-6 small-12 pict">
+                <img src="<%= asset_path('v2/res/footer-pict.png') %>">
+            </div>
+            <div class="columns large-4 large-push-6 small-12 why">
+                <h6>Why I started CareSpotter</h6>
+                <p>
+                    In 2012, I needed to find a caregiver for my dear mother who was battling
+                    cancer, and I faced the same struggle many of you face today. Our
+                    mission is to help families find the perfect caregiver and find
+                    peace of mind knowing your loved one is being cared for properly.
+                </p>
+            </div>
+            <div class="columns mobile links">
+                <a href="#">Carespotter</a>
+                <a href="#">Legal</a>
+                <%= link_to 'About Us', web_about_us_path %>
+            </div>
+            <div class="columns small-pull-12 large-pull-6 large-2 small-12 links">
+                <a href="#">Carespotter</a>
+                <%= link_to 'How it Works', web_how_it_works_path %>
+                <%= link_to 'Why Carespotter',  web_about_us_path + "#why-carespotter" %>
+                <%= link_to 'Find Care Jobs', web_become_a_caregiver_path %>
+                <%= link_to 'F.A.Q.', web_faq_path %>
+            </div>
+            <div class="columns small-pull-12 large-pull-6 large-2 small-12 links">
+                <%= link_to 'About Us', web_about_us_path %>
+                <%= link_to 'Our Mission', web_about_us_path + "#our-mission" %>
+                <%= link_to 'Our Team', web_team_path %>
+                <%= link_to 'Contact Us', web_contact_path %>
+            </div>
+            <div class="columns small-pull-12 large-pull-6 large-2 small-12 links">
+<!--                 <a href="#">Legal</a> Pending info
+ -->                <%= link_to 'Privacy Policy', web_privacy_path %>
+                <%= link_to 'Terms of Use', web_terms_of_service_path %>
+            </div>
+
+        </div>
+        <div class="row copy">
+            <div class="location">Made in Sunny Orlando, Florida</div>
+            <div class="copyrights">&copy; Copyrights 2013-<%= DateTime.now.year %> <a href="https://carespotter.com">CareSpotter.com</a> All Rights Reserved</div>
+        </div>
+    </footer>
+<% end %>

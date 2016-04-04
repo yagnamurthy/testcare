@@ -1,0 +1,30 @@
+<div class="job-invite">
+	<header>
+		<%= @user.first_name %>
+	</header>
+
+	<div class="body">
+
+		<div class="user">
+			<%= avatar_tag @user, :medium, class: 'message-avatar' %>
+			<div class="info">
+				<h2><%= @user.first_and_last_initial %></h2>
+				<p class="caregiver-hours"><%= image_tag 'v2/icon-heart-small.png' %>&nbsp;<%= @user.hours %> + carespotter hours   </p>
+			</div>
+		</div>
+
+		<%= form_for @message, url: user_messages_path(@user.id), method: 'post', html: { id: 'message-request', class: 'myform' } do |f| %>
+			<div class="field">
+				<label>Job posting:</label>
+					<%= select_tag :contract_id, options_from_collection_for_select(current_user.contracts, 'id', 'headline') %>
+			</div>
+			<div class="field">
+				<label>Message:</label>
+					<%= f.text_area :body, value: "Hello, I’d like to personally invite you to apply to my care job. Please review the job post and apply if you’re available. \n\nThank you, \n\n#{current_user.first_name}" %>
+			</div>
+			<div class="action">
+				<%= f.submit class: 'btn main', value: 'Send' %>
+			</div>
+		<% end %>
+	</div>
+

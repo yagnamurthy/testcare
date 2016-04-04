@@ -1,0 +1,79 @@
+a.button.default, .button.default {
+  display: inline-block;
+  width: auto;
+  padding: 0 12.5px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  color: #333333;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin: 0 1em 1em 0;
+  border:  1px solid #CFCFCF;
+  -webkit-border-radius: 7.5px;
+  -moz-border-radius: 7.5px;
+  -ms-border-radius: 7.5px;
+  -o-border-radius: 7.5px;
+  border-radius: 7.5px;
+  background-image: -webkit-gradient(radial, 5% 5%, 0, 5% 5%, 50, color-stop(0%, #f5f5f5), color-stop(100%, #cfcfcf));
+  background-image: -webkit-radial-gradient(5% 5%, #f5f5f5 0%, #cfcfcf 50px);
+  background-image: -moz-radial-gradient(5% 5%, #f5f5f5 0%, #cfcfcf 50px);
+  background-image: -o-radial-gradient(5% 5%, #f5f5f5 0%, #cfcfcf 50px);
+  background-image: radial-gradient(5% 5%, #f5f5f5 0%, #cfcfcf 50px);
+}
+
+a.button.special, .button.special {
+  display: inline-block;
+  width: auto;
+  padding: 0 12.5px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin: 0 1em 1em 0;
+  border:  1px solid #555555;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background-image: -webkit-gradient(radial, 5% 5%, 0, 5% 5%, 50, color-stop(0%, #838383), color-stop(100%, #555555));
+  background-image: -webkit-radial-gradient(5% 5%, #838383 0%, #555555 50px);
+  background-image: -moz-radial-gradient(5% 5%, #838383 0%, #555555 50px);
+  background-image: -o-radial-gradient(5% 5%, #838383 0%, #555555 50px);
+  background-image: radial-gradient(5% 5%, #838383 0%, #555555 50px);
+}
+
+a.button.error, .button.error,
+a.button.alert, .button.alert {
+  display: inline-block;
+  width: auto;
+  padding: 0 12.5px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  color: white;
+  text-shadow: rgba(238, 95, 91, 0.3) 0 1px 1px;
+  -webkit-font-smoothing: antialiased;
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin: 0 1em 1em 0;
+  border: 0;
+  -webkit-border-radius: 7.5px;
+  -moz-border-radius: 7.5px;
+  -ms-border-radius: 7.5px;
+  -o-border-radius: 7.5px;
+  border-radius: 7.5px;
+  background-image: -webkit-gradient(radial, 5% 5%, 0, 5% 5%, 50, color-stop(0%, #ee5f5b), color-stop(100%, #e51d18));
+  background-image: -webkit-radial-gradient(5% 5%, #ee5f5b 0%, #e51d18 50px);
+  background-image: -moz-radial-gradient(5% 5%, #ee5f5b 0%, #e51d18 50px);
+  background-image: -o-radial-gradient(5% 5%, #ee5f5b 0%, #e51d18 50px);
+  background-image: radial-gradient(5% 5%, #ee5f5b 0%, #e51d18 50px);
+}

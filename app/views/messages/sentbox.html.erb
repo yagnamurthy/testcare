@@ -1,0 +1,13 @@
+<div class="dashboard-page container-large">
+    <div class="row">
+
+        <div class="content main-cnt">
+            <div class="row">
+
+                <%= render partial: 'messages/sidebar', locals: { selected: 'sentbox' } %>
+                <%= render partial: 'messages/mailbox', locals: { type: 'to', collection: current_user.mailbox.sentbox.page(params[:page] || 1).per(5) }  %>
+
+            </div>
+        </div>
+    </div>
+</div>

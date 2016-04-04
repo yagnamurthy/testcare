@@ -1,0 +1,37 @@
+<div class="page-wrapper displayCare">
+  <div class="body no-padding sign-up">
+    <div class='sign-up-banner'>
+      <div class="overlay"></div>
+      <div class="row">
+        <div class="family-sign-up-box">
+          <h4>Review Details</h4>
+
+          <p>Here is a summary of your care needs. Feel free to edit and once you are finished, a Care Advisor will reach out to help you with your search.</p>
+
+          <%= form_tag(find_caretaker_step_index_path(id: @contract.id, next_step: :reg), method: :put) do %>
+
+              <div class="field full-width">
+                <%= label_tag 'Title' %>
+                <%= text_field_tag 'headline', "Seeking A Dedicated Caregiver for #{@contract.patient_name.capitalize} in #{@contract.city.capitalize}" %>
+
+                <%= @contract.city.capitalize %>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <%= @contract.hours_needed %> hrs/week
+              </div>
+
+              <div class="field full-width">
+                <%= label_tag 'Job Description' %>
+                <%= text_area_tag 'description',
+                                   "In search of a loyal and dependable caregiver to take care of #{@contract.patient_name.capitalize}, located near #{@contract.city.capitalize}. assistance is needed #{@contract.time_of_cares}. I would like the care to begin #{@contract.expected_date} and estimate #{@contract.hours_needed} hours per week. The primary duties of this caregiver will include: #{@contract.care_type}. Requires the caregiver to live-in. Only serious applicants will be considered. Apply now and be one of the first to be considered for this great opportunity!" %>
+              </div>
+
+              <div class="action">
+                <%= submit_tag 'Next', class: 'btn blue absolute' %>
+              </div>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

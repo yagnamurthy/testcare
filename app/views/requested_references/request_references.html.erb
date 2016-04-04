@@ -1,0 +1,25 @@
+<div class="request-testimonial">
+	<header>
+		Request a Testimonial from a Family
+	</header>
+
+	<div class="body reference-request">
+
+		<div class="form">
+			<%= form_for @reference, url: request_references_path, method: 'post', class: 'myform' do |f|%>
+        <%= f.text_field :name, placeholder: 'Name' %>
+        <%= f.text_field :phone, placeholder: 'Phone' %>
+        <%= f.email_field :email, placeholder: 'Email' %>
+        <%= f.hidden_field :caregiver_id, value: :caregiver_id %>
+				<br/>
+				<div class="action">
+					<%= f.submit 'Send Request', class: 'btn main' %>
+				</div>
+			<% end %>
+		</div>
+		<div class="about">
+			<h3>About References</h3>
+			<p>Place holder text of why refernces are so important.  Let the family know you understand they're in a tough situation, or if you've been through it as well. It shows you care, and will help you make an immediate connection.<br/><br/>Let the family know why you're the perfect caregiver for this care job. Talk about how past clients loved you, and your skills, techniques and experience with their specific care needs.</p>
+		</div>
+	</div>
+</div>

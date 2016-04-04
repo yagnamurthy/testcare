@@ -1,0 +1,516 @@
+#caregivers-near header.main {
+	box-shadow: none;
+}
+.top-nav {
+	background: $color-gray-light;
+	width: 100%;
+	position: relative;
+	box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+	@include respond-to('mobile') { 
+		top: 50px;
+	}
+}
+
+#search-topbar {
+	width: 960px;
+	max-width: 100%;
+	margin: 0 auto;
+	.col-4 {
+		width: 30%;
+		float: left;
+		margin-top: 20px;
+		@include respond-to('mobile') {
+			width: 100%;
+ 			margin-top: 0px;
+  		clear: both;
+		}
+	}
+	.col-4:first-child {
+		.select-box {
+			width: calc(100% - 90px);
+		}
+		.input-group label {
+			text-align: left;
+		}
+	}
+	.col-4:nth-child(2) {
+		margin-left: 7%;
+		margin-right: 8%;
+		@include respond-to('mobile') {
+			margin-left: 0%;
+		}
+	}
+	> form > .row .col-4:last-child {
+		width: 25%;
+	
+	}
+	.col-3 {
+		width: 25%;
+		float: left;
+		@include respond-to('mobile') { 
+			margin:5px;
+			width: 100%;
+			h5 {
+			  font-size: 1em;
+			  margin-top: 10px;
+			}
+		}
+	}
+	.col-4 .custom-checkbox {
+		margin: 11px 0 10px 17px;
+		@include respond-to('mobile') { 
+			margin: 0px 0px 20px 10px;
+			font-size: 1.2em;
+			label {
+				padding-top: 10px;
+			}
+		}
+	}
+	.btn.small {
+		margin-left: 20px;
+		padding: 8px 50px 7px;
+		border-radius: 5px;
+	}
+	.advanced-toggle {
+		display: inline-block;
+		position: relative;
+		float: left;
+		margin: -30px 0 0px;
+		font-size: 12px;
+		@include respond-to('mobile') {
+			margin: 0px;
+			display:none;
+		}
+
+	}
+	@include respond-to('mobile') {
+		width: 360px;
+		margin-left: 10px;
+		top: 50px;
+	}
+}
+
+#advanced-filter > .row {
+	border-bottom: 1px solid #e6e7e8;
+	margin-bottom: 20px;
+	@include respond-to('mobile') {
+		margin: 0px;
+		clear: both;
+		label#experience {
+  		 margin: 0px;
+  		 width: 100px;
+  	}
+	}
+}
+
+#advanced-filter > .btn {
+	float: right;
+	margin-top: 120px;
+	margin-right: 0px;
+	@include respond-to('mobile') {
+		clear: both;
+		margin: 10px 0px;
+	}
+}
+
+.toggle-container {
+	overflow: hidden;
+	border-top: 1px solid #E6E7E8;
+	padding: 0 0 20px;
+	display: none;
+	.custom-checkbox {
+		margin-top: 12px;
+		label:before,
+		label:after {
+			top: 8px;
+			left: 1px;
+		}
+	}
+	@include respond-to('mobile') {
+		padding: 10px;
+		clear: both;
+	}
+}
+
+.range-input {
+	.margin {
+		margin: 0px 5px 0 1px;
+	}
+	#price-slider {
+		margin-top: 14px;
+		margin-left: 2px;
+		margin-right: 10px;
+		border: none;
+		height: 5px;
+		border-radius: 5px;
+		background: darken($color-gray-light, 20%);
+	}
+	.ui-widget-header {
+		background: $color-blue-light;
+		border-radius: 5px;
+		height: 5px;
+	}
+	.ui-slider-handle {
+		background: $color-white;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		border: 2px solid #E6E7E8;
+		display: inline-block;
+		top: -0.4em;
+		cursor: pointer;
+		&:after {
+			content: '';
+			position: absolute;
+			top: 4px;
+			left: 4px;
+			width: 8px;
+			height: 8px;
+			background: $color-blue-light;
+			border-radius: 50%;
+		}
+	}
+	.amount {
+		margin-top: 5px;
+		color: $color-black;
+		font-size: 12px;
+	}
+}
+
+.caregivers-list {
+	padding: 40px 0px 20px;
+	clear: both;
+	.results-bar {
+		padding-bottom: 20px;
+		@include respond-to('mobile') { 
+			.inline {
+				display:inline-flex;
+				margin-left: 20px;
+			}
+		}
+	}
+	.results-bar h3 {
+		font-size: 28px;
+		font-family: museo-slab;
+		color: $color-gray-strong;
+		padding: 0px;
+		float: left;
+		width: 660px;
+		@include respond-to('mobile') {
+			width: 360px;
+			font-size: 22px;
+			margin-top: 50px;
+			margin-left:20px
+		}
+		@include respond-to('small-mobile') { 
+			width: 300px;
+			font-size: 20px;
+		}
+	}
+	.results-bar form {
+		float: right;
+		width: 300px;
+		margin-top: 5px;
+		.select-box a {
+			border-radius: 5px;
+		}
+		@include respond-to('mobile') { 
+		  width: 360px;
+			margin-top: -100px;
+			float: left;
+		}
+		@include respond-to('small-mobile') { 
+			width: 300px;
+		}
+	}
+	.user {
+		height: 193px;
+		border: 1px solid $color-gray-strong;
+		border-radius: 7px;
+		margin-bottom: 15px;
+		@include respond-to('mobile') {
+			height: 100px;
+			border-radius: 0px;
+			border-top: 1px solid $color-gray-strong;
+			border-bottom: 1px solid $color-gray-strong;
+			border-left: none;
+  		border-right: none;
+			margin: 0px;
+			&:first-child {
+				border-top: 3px solid $color-gray-strong;
+			}
+			&:last-child {
+				border-bottom: 3px solid $color-gray-strong;
+				margin-bottom:10px;
+			}
+		}
+	}
+	.thumbnail {
+		float: left;
+		width: 20%;
+		padding: 10px;
+		overflow: hidden;
+		img {
+			max-width: 100%;
+			border-radius: 5px;
+			@include respond-to('mobile') { 
+				margin-left: 5px;
+			}
+		}
+		@include respond-to('mobile') { 
+			padding:0px;
+			margin-top: 10px;
+		}
+	}
+	.info {
+		width: 58%;
+		float: left;
+		padding: 10px 0 10px 10px;
+		@include respond-to('mobile') {  
+			width:100%;
+			float:none;
+		}
+	}
+	.headline {
+		display: block;
+		padding-right: 10px;
+		padding-bottom: 5px;
+		margin-bottom: 5px;
+		h3 {
+			float: left;
+			color: $color-blue-strong;
+			@include respond-to('mobile') {
+				font-size: 18px;
+				margin-left: 10px;
+			}
+		}
+		h3 a {
+			text-decoration: none;
+			span {
+				color: $color-gray-strong;
+				font-size: 12px;
+			}
+		}
+		.distance {
+			font-size: 16px;
+			color: $color-gray-strong;
+			@include respond-to('mobile') {
+				float:right;
+			}
+		}
+		.testimonials {
+			color: $color-blue-light;
+		    display: inline-block;
+		    float: right;
+		    font-size: 14px;
+		    margin: 6px 0 0;
+		    text-decoration: none;
+		    @include transition(color 0.2s);
+		    &:hover {
+		    	color: darken($color-blue-light, 10%);
+		    }
+			span {
+				background: url("/assets/v2/tip.png") no-repeat;
+			    color: $color-white;
+			    display: inline-block;
+			    font-size: 10px;
+			    height: 17px;
+			    line-height: 19px;
+			    padding: 0 0 0 7px;
+			    position: relative;
+			    top: -5px;
+			    width: 19px;
+			}
+		}
+		@include respond-to('small-mobile') { 
+			padding-right: 0px;
+		}
+	}
+	h5 {
+		font-size: 18px;
+		color: $color-gray-strong;
+		@include fontRegular();
+		font-weight: 600;
+		clear:both;
+		@include respond-to('mobile') { 
+			margin-left:30px;
+		}
+	}
+	.options {
+		padding: 10px 26px;
+		width: 22%;
+		height: 192px;
+		float: left;
+		border-left: 1px solid $color-gray-strong;
+		.hourly-rate {
+			font-size: 32px;
+			padding-bottom: 3px;
+			color: $color-black;
+			position: relative;
+			.help-bubble {
+				right: 5px;
+				top: 5px;
+    		}
+    	@include respond-to('mobile') { 
+    		font-size: 22px;
+    		float: right;
+    		margin-top: -35px;
+				padding-top: 0px;
+			}
+		}
+		.stats {
+			@include respond-to('mobile') { 
+				margin: -65px 0px 0px 5px;
+			}
+			@include respond-to('small-mobile') { 
+				margin: -55px 0px;
+			}
+			li {
+				list-style: none;
+				font-size: 16px;
+				line-height: 1.5;
+				@include respond-to('mobile') { 
+					margin-left: 45px;
+					display: block;
+					font-size: 14px;
+				}
+				@include respond-to('small-mobile') { 
+					margin-left: 40px;
+				}
+			}
+		}
+		.btn {
+			border-radius: 6px;
+	    display: block;
+	    margin: 9px 0;
+	    padding: 7px 0;
+	    text-align: center;
+	    @include respond-to('mobile') { 
+	    	display: none;
+	    }
+		}
+		@include respond-to('mobile') { 
+    	border-left: none;
+    	width: 100%;
+    	height: 100px;
+    	float: none;
+    	clear:both;
+    }
+	}
+	.user-content {
+		margin: 4px 10px 10px 0;
+		font-size: 14px;
+		color: $color-black;
+		img {
+			float: right;
+			max-width: 20%;
+			margin-right: 10px;
+			position: relative;
+			margin-top: -27px;
+		}
+		p {
+			float: left;
+			width: 80%;
+			font-size: 14px;
+			color: $color-black;
+			a {
+				text-transform: uppercase;
+				font-weight: 500;
+				font-size: 15px;
+				font-weight: bold;
+			}
+		}
+	}
+	.skills li {
+		float: left;
+		list-style: none;
+		width: 34px;
+		height: 34px;
+		margin-right: 10px;
+		background-size: contain;
+		&.time {
+			background-image: image-url("v2/icon-time.png");
+		}
+		&.phone {
+			background-image: image-url("v2/icon-phone.png");
+		}
+		&.ok {
+			background-image: image-url("v2/icon-ok.png");
+		}
+		&.doc {
+			background-image: image-url("v2/icon-doc.png");
+		}
+		&.health {
+			background-image: image-url("v2/icon-health.png");
+		}
+	}
+	@include respond-to('mobile') {
+		padding: 50px 0px;
+	}
+}
+
+.change-location-modal {
+	padding: 20px;
+	width: 490px;
+	p {
+		padding: 10px 0;
+	}
+	form {
+		overflow: hidden;
+		input[type=text] {
+			width: 80%;
+			float: left;
+			height: 45px;
+		}
+		.postfix {
+			border-radius: 0 5px 5px 0;
+		    height: 45px;
+		    line-height: 2.125rem;
+		    padding: 0;
+		    position: absolute;
+		    right: 24px;
+		    text-align: center;
+		    width: 20%;
+		}
+	}
+	@include respond-to('mobile') {
+		width: 95%;
+	}
+}
+
+ /* Advanced Search Styles Begin */
+label#experience {
+	margin-left: -40px;
+  white-space: nowrap;
+  @include respond-to('mobile') {
+  	white-space: inherit;
+  	padding-right: 15px;
+	}
+}
+li.snippet-creds {
+	list-style-type:none;
+	display: inline;
+	padding-left:10px;
+	
+}
+#credential-section, #general-section {
+	text-transform:capitalize;
+}
+
+.filter-button {
+	  background-color: $color-red-light;
+	  border-bottom: 2px solid $color-red-strong;
+ }
+ .btn.filter-button:hover {
+	  	background-color: $color-red-strong;
+	  }
+label#keyword {
+		@include respond-to('mobile') {
+		margin-left: -10px;
+	}
+}
+ /* Advanced Search Styles End */
+#search-button {
+	margin-top:10px;
+}
+

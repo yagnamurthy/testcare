@@ -1,0 +1,169 @@
+
+<div class="mailbox-page">
+  <header>
+    <div class="sort-by">
+      Sort by:
+      <div class="custom-select">
+        <a href="#">Most Recent</a>
+        <div class="select">
+          <a href="#">Most Recent</a>
+          <ul>
+            <li><a class="interview" href="#">Schedule an Interview</a></li>
+            <li><a class="choice" href="#">Choice</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="messages-list">
+      <% Mailboxer::Conversation.find(params[:id]).messages.each do |message| %>
+        <a>
+          <%= avatar_tag(message.sender, :thumb, class: 'small-avatar') %>
+          <h5><%= message.sender.first_and_last_initial %> (<%= Mailboxer::Conversation.find(params[:id]).count_messages %>)</h5>
+          <h4><%= truncate(Mailboxer::Conversation.find(params[:id]).subject, length: 40) %></h4>
+          <div class="trash">Trash</div>
+          <span><%= message.created_at.to_time.strftime('%B %e, %Y') %></span>
+        </a>
+      <% end %>
+      <a href="#" class="new">
+        <%= image_tag('v2/avatar.png') %>
+        <h5>FirstName (6)</h5>
+        <h4>Title of Unread Message</h4>
+        <div class="trash">Trash</div>
+        <span>Sept 5</span>
+      </a>
+      <a href="#">
+        <%= image_tag('v2/avatar.png') %>
+        <h5>FirstName (6)</h5>
+        <h4>Title of Unread Message</h4>
+        <div class="trash">Trash</div>
+        <span>Sept 5</span>
+      </a>
+      <a href="#" class="interview">
+        <%= image_tag('v2/avatar.png') %>
+        <h5>FirstName (6)</h5>
+        <h4>Title of Unread Message</h4>
+        <div class="trash">Trash</div>
+        <span>Sept 5</span>
+      </a>
+    </div>
+
+    <div class="thread-messages">
+      <h3>Title of message thread</h3>
+      <ul>
+        <li class="previous"><a href="#">View Previous Messages (22)</a></li>
+        <li>
+          <a href="#">
+            <%= image_tag('v2/avatar.png') %>
+            <h5>Firstname</h5>
+            <h4>Title of message</h4>
+            <span>Sept 5</span>
+          </a>
+        </li>
+        <li>
+          <div class="message-box">
+            <div class="header">
+              <%= image_tag('v2/avatar.png') %>
+              <div class="col first">
+                <a href="#">Precilla P.</a><br/>
+                10 miles from you<br/>
+                Age: 34
+              </div>
+              <div class="col second">
+                Phone: (555) 666-7777<br/>
+                Experience: 8 Years
+              </div>
+              <div class="col last">
+                <p>Proposed Rate:</p>
+                <p class="price">$15/hr</p>
+              </div>
+            </div>
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <div class="actions">
+                Laura Smith<br/>
+                Registered Nurse<br/>
+                <a href="#">View Profile in New Window</a><br/>
+                <a href="#">Request a Background Check</a>
+              </div>
+              <a href="#" class="btn"><%= image_tag('v2/icon-reply.png') %>Reply</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="message-box reply">
+      <div class="header">To: Firstname</div>
+      <div class="content">
+        <textarea></textarea>
+        <a href="#" class="btn">Send</a>
+      </div>
+    </div>
+
+  </header>
+</div>
+
+
+<!--
+
+<div class="dashboard-page container-large">
+  <div class="row">
+    <div class="content main-cnt">
+      <div class="row">
+
+        <header>
+          <h2><%= @message.subject %></h2>
+        </header>
+
+        <div class="content-column">
+          <div class="super-box updates">
+            <div class="section-container auto" data-section="" data-options="one_up: false" style="">
+              <section>
+                <div class="content">
+
+                  <div class="message-thread">
+                    <div class="back-row">
+                      <%= link_to inbox_mailbox_index_path, class: 'back-to-prev' do %>
+                        <span></span>Return to messages
+                      <% end %>
+                    </div>
+
+                    <h4 class="title"><%= @message.subject %></h4>
+
+                    <div class="history">
+
+                     <%= render partial: 'messages/mailbox_message', collection: Mailboxer::Notification.where(conversation_id: @message.id), locals: {total_message_count: Mailboxer::Notification.where(conversation_id: @message.id).length } %>
+
+                    </div>
+
+                    <div class="reply">
+                     <h4>Reply</h4>
+                     <%= form_for(@new_message, url: '' ) do |f| %>
+                      <%= f.text_area :body, placeholder: '' %>
+
+                      <%= f.hidden_field :conversation, value: params[:id] %>
+
+                      <%= f.submit 'Send', class: 'btn main' %>
+                     <% end %>
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ -->

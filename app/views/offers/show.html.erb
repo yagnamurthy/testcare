@@ -1,0 +1,63 @@
+<div id="<%= params[:t] ? 'registration-complete' : '' %>" class="dashboard-page container-large">
+    <div class="row">
+
+        <%= notice %>
+
+        <div class="content main-cnt">
+            <div class="row">
+
+                <header>
+                    <h2>Job Posting: <%= @offer.contract.headline %></h2>
+                </header>
+
+                <% if current_user.caregiver? %>
+                    <%= render partial: 'offers/accept', locals: { offer: @offer } %>
+                <% else %>
+                    <%= render partial: 'dashboard/profile_column' %>
+                <% end %>
+
+                <div class="content-column">
+                    <header>
+                        Contract Information
+                    </header>
+                    <div class="super-box updates">
+                        <p>Description: <%= @offer.contract.description %></p>
+                        <p>Schedule: <%= @offer.contract.schedule_to_label %></p>
+                        <p>Rate: <%= @offer.contract.required_rate %></p>
+                        <p>Hours Needed <%= @offer.contract.hours_needed %></p>
+                        <p>Posted <%= time_ago_in_words @offer.contract.created_at %> ago</p>
+
+                        <strong>Requirements:</strong>
+                        <ul>
+                            <% if @offer.contract.has_services? %>
+                                <% @offer.contract.services.each do |service| %>
+                                    <li><%= service.name %></li>
+                                <% end %>
+                            <% else %>
+                                <li>None</li>
+                            <% end %>
+                        </ul>
+
+                        <strong>Need help with:</strong>
+                        <ul>
+                            <li>Transfer Assistance</li>
+                            <li>Toileting and Incontinence</li>
+                            <li>Tracheotomy Care</li>
+                            <li>Transfer Assistance</li>
+                            <li>Transfer Assistance</li>
+                        </ul>
+
+                    </div>
+
+                    <header>
+                        Offer Information
+                    </header>
+                    <div class="super-box updates">
+                        <p>Rate: <%= @offer.rate %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,41 @@
+<% notice %>
+
+<div class="profile-column">
+    <div class="super-box user-photo">
+        <%= avatar_tag current_user, :large %>
+        <% if current_user.family? && current_user.job %>
+            <header class="tc"><%= current_user.job.patient_name %></header>
+        <% else %>
+            <header class="tc"><%= current_user.first_name %></header>
+        <% end %>
+
+        <div class="buttons">
+            <%= link_to "Edit Photo", my_account_path %>
+        </div>
+    </div>
+
+    <div class="super-box quick-links">
+        <header class="tc">Quick links</header>
+        <div>
+            <% if current_user.caregiver? %>
+                <%= link_to 'View Profile', caregiver_path(current_user.id) %>
+                <%= link_to 'Search Care Jobs', contracts_path %>
+                <%= link_to_modal 'Get Recommendations', request_references_path %>
+            <% else %>
+                <%= link_to 'Search Caregivers', near_path(current_user.zipcode) %>
+                <%= link_to 'Edit Job Posting', family_job_path %>
+                <%= link_to_modal 'Give Recommendation', give_references_path %>
+            <% end %>
+        </div>
+    </div>
+
+    <% if current_user.family? && current_user.has_job? %>
+        <div class="super-box quick-links">
+            <header class="tc">Job Offers</header>
+            <div>
+                <%= link_to 'Manage Job', contract_path(current_user.job.id) %>
+                <%= link_to pluralize(current_user.new_offers, "Sent Offer", "Sent Offers"), '#' %>
+            </div>
+        </div>
+    <% end %>
+</div>

@@ -1,0 +1,63 @@
+<div class="experience <%= experience_form.options[:child_index] != 0 && experience_form.object.employer.blank? ? 'hidden' : '' %> <%= cycle("odd","even") %>">
+
+    <div class="item">
+        <%= experience_form.label :employer, 'Employer:', :class => 'general' %>
+        <div class="form-elements">
+            <%= experience_form.text_field :employer %>
+        </div>
+    </div>
+
+    <div class="item">
+        <%= experience_form.label :position, 'Position/Title:', :class => 'general' %>
+        <div class="form-elements">
+            <%= experience_form.text_field :position %>
+        </div>
+    </div>
+
+
+    <div class="item">
+        <div class="row form-elements date">
+            <div class="columns large-6 small-6">
+                <%= experience_form.label :start_date, 'Start Date:', :class => 'general' %>
+
+                <div class="form-elements">
+                    <div class="select-box">
+                        <%= experience_form.select :start_date_month, options_for_select(Experience.months, experience_form.object.start_date_month), {:include_blank => true}, {class: 'start-date-month'} %>
+                    </div>
+                    <div class="select-box">
+                        <%= experience_form.select :start_date_year, options_for_select(Experience.years_since_1960,experience_form.object.start_date_year), {:include_blank => true}, {class: 'start-date-year'} %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns large-6 small-6">
+                <%= experience_form.label :finsih_date, 'Finish Date:', :class => 'general' %>
+
+                <div class="form-elements">
+                    <div class="select-box">
+                        <%= experience_form.select :finish_date_month, options_for_select(Experience.months, experience_form.object.finish_date_month), {:include_blank => true}, {class: 'finish-date-month'} %>
+                    </div>
+                    <div class="select-box">
+                        <%= experience_form.select :finish_date_year, options_for_select(Experience.years_since_1960,experience_form.object.finish_date_year), {:include_blank => true}, {class: 'finish-date-year'} %>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+
+    <div class="item">
+        <label class="general"></label>
+        <div class="form-elements checkbox-list one-col">
+        <%= experience_form.check_box :current, class: 'styled current-checkbox' %> 
+        <%= experience_form.label :current, 'I currently work here' %>
+        </div>
+    </div>
+
+    <div class="item">
+        <%= experience_form.label :description, 'Job Description:', :class => 'general' %>
+        <div class="form-elements">
+            <%= experience_form.text_area :description %>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,11 @@
+<div class="dashboard-page container-large">
+    <div class="row">
+
+        <div class="content">
+            <div class="row">
+                <%= render partial: 'messages/sidebar', locals: { selected: 'inbox' } %>
+                <%= render partial: 'messages/mailbox', locals: { type: 'to', collection: current_user.mailbox.inbox.page(params[:page] || 1).per(5) }  %>
+            </div>
+        </div>
+    </div>
+</div>

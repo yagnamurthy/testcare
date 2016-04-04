@@ -1,0 +1,93 @@
+<div data-distance="0" class="user user-near">
+    <div class="main-info">
+        <div class="thumbnail">
+            <%= link_to caregiver_path(caregiver) do %>
+                <%= image_tag(caregiver.avatar.url(:large)) %>
+            <% end %>
+        </div>
+
+        <div class="info">
+            <div class="headline clear">
+                <%= link_to caregiver_path(caregiver) do %>
+                  <h3 class="mobile-hide"><%= caregiver.first_and_last_initial  %>
+                  <span class="distance mobile-hide"><%= miles_away_label(caregiver, zipcode) %></span></h3>
+                  <h3 class="mobile-show"><%= caregiver.first_name%>&nbsp;
+                  <span class="distance mobile-show">(<%= miles_away_label_mobile(caregiver, zipcode) %>)</span>
+                  </h3>
+                <% end %>
+
+                <%= link_to_if_testimonial(caregiver.testimonial_count > 0) do %>
+                    <a class="testimonials" href="#">Testimonials <span><%= caregiver.testimonial_count %></span></a>
+                <% end %>
+                <div class="options mobile-show">
+                    <h5 class="hourly-rate"><%= number_to_currency(caregiver.hourly_rate, precision: 0) %><span class="hour">/hr</span></h5>
+                    <ul class="stats">
+                        <li>
+                            <%= caregiver.age %> years old
+                        </li>
+                        <li>
+                            <strong>
+                                <%= pluralize(caregiver.total_experience, 'year') %> experience
+                            </strong>
+                        </li>
+                        <li>
+                            <%= caregiver.city %>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <% if caregiver.headline? %>
+                <h5 class="user-headline mobile-hide">"<%= caregiver.headline %>"</h5>
+            <% end %>
+            <div class="user-content clear mobile-hide">
+                <!-- <%= image_tag('v2/icon-time-big.png') %> -->
+                <p class="user-short-bio">
+                    <%= truncate(caregiver.question_1, length: 110) { link_to 'More', '' } %>
+                </p>
+            </div>
+
+<!--             <ul class="skills">
+                <li class="phone"></li>
+                <li class="ok"></li>
+                <li class="doc"></li>
+                <li class="health"></li>
+            </ul> -->
+               <ul class="mobile-hide">
+                <% if caregiver.LVN? %>
+                    <li class="snippet-creds"><%= image_tag "v2/icon-lpn.png" %></li>
+                <% end %>
+                <% if caregiver.RN? %>
+                    <li class="snippet-creds"> <%= image_tag "v2/icon-rn.png" %></li>
+                <% end %>
+                <% if caregiver.CNA? %>
+                    <li class="snippet-creds"><%= image_tag "v2/icon-cna.png" %></li>
+                <% end %>
+                <% if caregiver.CPR? %>
+                    <li class="snippet-creds"><%= image_tag "v2/icon-cpr.png" %></li>
+                <% end %>
+            </ul>
+
+        </div>
+        <div class="options mobile-hide">
+            <h5 class="hourly-rate"><%= number_to_currency(caregiver.hourly_rate, precision: 0) %><span class="hour">/hr</span><div class="help-bubble">?<span>This is the caregiver's estimated hourly rate</span></div></h5>
+            <ul class="stats">
+                <li>
+                    <strong>
+                        <%= pluralize(caregiver.total_experience, 'year') %> experience
+                    </strong>
+                </li>
+                <li>
+                    <%= caregiver.age %> years old
+                </li>
+                <% if  caregiver.live_in_rate? %>
+                    <li>Live in Rate: $<%= caregiver.live_in_rate %>/day</li>
+                <% end %>
+            </ul>
+
+            <%= link_to 'View Profile', caregiver_path(caregiver), class: 'btn main' %>
+
+        </div>
+    </div>
+</div>
+

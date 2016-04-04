@@ -1,0 +1,35 @@
+<div class="page-wrapper">
+  <div class="body no-padding sign-up">
+    <div class='sign-up-banner'>
+      <div class="overlay"></div>
+      <div class="row">
+        <div class="family-sign-up-box">
+          <h4>Find the right caregiver</h4>
+          <div class="register-form">
+            <%= form_tag('/find_caretaker_step/get_started') do %>
+
+                <!-- new field! -->
+                <div class="field full-width">
+                  <%= label_tag 'Who needs care?' %>
+                  <%= select_tag :patient_name, options_for_select(who_needs_options), id: :select_val %>
+                </div>
+
+                <div class="field full-width">
+                  <%= label_tag 'Where does she need care?', nil, id: :select_label %>
+                  <%= text_field_tag :city, nil, id: 'search-city', placeholder: 'Enter her zip code or city'%>
+                </div>
+
+                <!--<span id="example-1"></span>-->
+
+                <div class="action">
+                  <%= submit_tag 'Get started', class: 'btn blue' %>
+                </div>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'web/references' %>
+</div>

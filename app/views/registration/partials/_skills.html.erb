@@ -1,0 +1,39 @@
+<div class="user-register-page container-large">
+
+    <div class="content">
+        <div class="row">
+
+        	<%= render partial: 'registration/tabs', locals: {active: "skills"} %>
+
+            <div class="reg-slider">
+            <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+
+            	<section class="form-item skills" data-tab="skills">
+            		<%= f.label 'Which medical conditions do you have experience caregiving for?' , :class=>"title" %>
+            		<span class="subtitle">(Click all boxes that apply)</span>
+
+                    <% Service.health.to_a.each_with_index do |health_service, index| %>
+                        <% if index % 5 == 0 %>
+                            <div class='column'>
+                        <% end %>
+                            <div class="custom-checkbox">
+                                <%= check_box_tag "caregiver[health_service_ids][]", health_service.id, f.object.plucked_health_service_ids.include?(health_service.id), id: "caregiver_health_service_#{health_service.id}", class: 'styled' %>
+                                <%= label_tag "caregiver[health_service_ids][]", health_service.name, for: "caregiver_health_service_#{health_service.id}" %>
+                            </div>
+                        <% if index % 5 == 4 %>
+                            </div>
+                        <% end %>
+                    <% end %>
+                    <%= hidden_field_tag 'route', services_path %>
+            	</section>
+
+                <div class="buttons">
+                    <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                    <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                    <%= f.submit 'Save', class: 'btn' %>
+                </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

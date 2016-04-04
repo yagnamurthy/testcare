@@ -1,0 +1,8 @@
+<script>
+  if(BrowserDetect.browser === "Explorer") {
+  	if(BrowserDetect.version <= 8 && window.location.pathname != '/unsupported-browser') {
+  		console.log(window.location.pathname)
+  		window.location = '/unsupported-browser'
+  	}
+  }
+</script>

@@ -1,0 +1,39 @@
+<% if update_list_item.trackable_type == 'Journal' %>
+    <%= link_to contract_journals_path(update_list_item.trackable.contract_id), class: 'main-updates' do %>
+        <%= avatar_tag update_list_item.trackable.user, :thumb, class: 'small-avatar' %>
+        <span class='info'>
+            <span class='item-row'>
+                <span class="name"><%= update_list_item.trackable.user.first_name %></span>
+                <span class="date"><%= update_list_item.created_at.strftime("%m/%d/%Y") %></span>
+            </span>
+
+            <span class='item-row'>
+                <!--  journal, msg, system, news -->
+                <i class='updates-icons journal small'></i>  
+                <p>
+                    <strong>Journal Entry: </strong>
+                    <%= update_list_item.trackable.body %>
+                </p>
+            </span>
+        </span>
+    <% end %>
+<% elsif update_list_item.trackable_type == 'Notification' %>
+    <%= link_to mailbox_path(update_list_item.trackable.conversation.id), class: 'main-updates' do %>
+        <%= avatar_tag update_list_item.trackable.sender, :thumb, class: 'small-avatar' %>
+        <span class='info'>
+            <span class='item-row'>
+                <span class="name"><%= update_list_item.trackable.sender.first_name %></span>
+                <span class="date"><%= update_list_item.created_at.strftime("%m/%d/%Y") %></span>
+            </span>
+
+            <span class='item-row'>
+                <i class='updates-icons msg small'></i>
+
+                <p>
+                    <strong><%= update_list_item.trackable.conversation.subject %></strong>
+                    <%= update_list_item.trackable.body %>
+                </p>
+            </span>
+        </span>
+    <% end %>
+<% end %>

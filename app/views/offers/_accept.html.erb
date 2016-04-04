@@ -1,0 +1,17 @@
+<div class="profile-column">
+    <div class="super-box user-photo">
+
+        <p>This is content</p>
+
+        <p>Are you interested in this job?</p>
+
+        <%= button_to 'Accept', offer_accept_path(@offer) %>
+        <%= button_to 'Decline', offer, method: 'delete' %>
+
+        <p>About the client</p>
+        <p>Family Member: <%= offer.contract.patient_name %> </p>
+        <p><%= offer.contract.city %>, <%= offer.contract.state %> <%= offer.contract.zipcode %></p>
+        <p>Member Since: <%= offer.contract.created_at.strftime("%m/%d/%Y") %></p>
+
+    </div>
+</div>

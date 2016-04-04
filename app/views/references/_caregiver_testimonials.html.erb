@@ -1,0 +1,79 @@
+ <section id="user-testimonials" class="content">
+    <div class="header clear">
+        <h3><%= pluralize @caregiver.testimonial_count, 'Testimonials', 'Testimonial' %></h3>
+        <div class="hearts large" data-score="<%= @caregiver.total_score %>">
+
+        </div>
+    </div>
+    <div class="summary">
+        <h5 class="col">Summary</h5>
+        <div class="col short">
+            <div class="feature">
+                <label>Dependability:</label>
+                <div class="hearts small" data-score="<%= @caregiver.individual_score(:dependability) %>">
+
+                </div>
+            </div>
+            <div class="feature">
+                <label>Technical Ability:</label>
+                <div class="hearts small" data-score="<%= @caregiver.individual_score(:technical_ability) %>">
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="feature">
+                <label>Compassion:</label>
+                <div class="hearts small" data-score="<%= @caregiver.individual_score(:compassion) %>">
+
+                </div>
+            </div>
+            <div class="feature">
+                <label>Communication Skills:</label>
+                <div class="hearts small" data-score="<%= @caregiver.individual_score(:communication_skills) %>">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+      $('.hearts.large').raty({
+        readOnly: true,
+        starOn: "<%= image_path 'icon-heart.png' %>",
+        starOff: "<%= image_path 'icon-empty-heart.png' %>",
+        path: '',
+        size: 20,
+        score: function() {
+          return $(this).attr('data-score');
+        }
+      });
+
+      $('.hearts.small').raty({
+        readOnly: true,
+        starOn: "<%= image_path 'icon-heart-small.png' %>",
+        starOff: "<%= image_path 'icon-empty-heart-small.png' %>",
+        path: '',
+        score: function() {
+          return $(this).attr('data-score');
+        }
+      });
+    </script>
+
+    <section id="reference-list">
+        <% @caregiver.testimonials_list.each do |reference| %>
+          <div class="item">
+              <div class="author">
+                  <span><%= reference.name %></span>
+              </div>
+              <div class="desc">
+                  <blockquote><%= reference.body %></blockquote>
+              </div>
+          </div>
+        <% end %>
+
+        <% if @caregiver.id == (current_user && current_user.id) %>
+          <%= link_to_modal '+ Request a Testimonial',  request_references_path, :class=>"btn" %>
+      <% end %>
+    </section>
+  </section>

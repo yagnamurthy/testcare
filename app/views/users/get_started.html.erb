@@ -1,0 +1,79 @@
+<header>
+    We found <span>65</span> Professional Caregivers near Orlando, FL (32801)
+</header>
+
+<div class="body no-padding register-modal">
+
+    <div class="left">
+        <%= image_tag('v2/res/register-family-modal.jpg') %>
+    </div>
+
+    <div class="right">
+
+        <h4>Create a FREE account, and start contacting caregivers today.</h4>
+
+        <div class="register-form">
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+                <%= devise_error_messages! %>
+
+                <%= f.hidden_field :type, :value => params[:type] %>
+
+                <!-- new field! -->
+                <div class="field">
+                  <%= f.text_field :first_name, :placeholder => 'First Name', :autofocus => true %>
+                </div>
+
+                <div class="field">
+                  <%= f.email_field :email, :placeholder => 'Email Address' %>
+                </div>
+
+                <div class="field">
+                  <%= f.password_field :password, :placeholder => 'Password' %>
+                </div>
+
+                <!-- new field! -->
+                <div class="field">
+                  <%= f.text_field :last_name, :placeholder => 'Phone number (optional)' %>
+                </div>
+
+                <div class="action">
+                  <%= f.submit "Let's Get Started!", class: 'btn gray' %>
+                </div>
+
+            <% end %>
+
+            <p class="info">By clicking "Apply" you confirm that you accept the  <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+
+            <div class="for-member">
+                Already a Member?
+                <%= link_to_modal "Login Here", new_user_session_path %>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+var isEmail = function(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+
+var checkFields = function() {
+  if($('#user_first_name').val().length > 1 &&
+    $('#user_last_name').val().length > 1 &&
+    isEmail($('#user_email').val()) &&
+    $('#user_password').val().length > 5) {
+        $('.register-form input[type=submit]').addClass('green');
+    } else {
+        $('.register-form input[type=submit]').removeClass('green');
+    }
+}
+
+$(document).ready(function(){
+    $('.register-form input').keyup(function(){
+        console.log(isEmail($('#user_email').val()));
+        checkFields();
+    });
+});
+</script>

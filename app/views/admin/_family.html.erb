@@ -1,0 +1,21 @@
+<tr>
+	<td><%= family.id %></td>
+	<td><%= family.full_name %></td>
+	<td><%= family.email %></td>
+	<td><%= number_to_phone family.phone, area_code: true %></td>
+	<td><%= family.has_avatar? %></td>
+	<td><%= family.facebook_id %></td>
+	<td>
+		<% if family.facebook_id %>
+			<%= content_tag(:a, href: "http://facebook.com/#{family.facebook_id}") do %>
+				Facebook Profile
+			<% end %>
+		<% end %>
+	</td>
+	<td><%= family.job ? family.job.zipcode : 'No Job Registered Yet' %></td>
+	<td><%= family.job ? family.job.description : 'No Job Registered Yet' %></td>
+	<td><%= family.job ? family.job.patient_name : 'No Job Registered Yet' %></td>
+	<td><%= family.created_at.strftime("%b. %d %Y") %></td>
+	<td><%= link_to 'Delete', family, confirm: "Are you sure you want to delete #{family.full_name}?", method: :delete %></td>
+</tr>
+

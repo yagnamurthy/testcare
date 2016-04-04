@@ -1,0 +1,45 @@
+<div class="user-register-page container-large">
+
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "basic"} %>
+
+            <div class="reg-slider">
+                <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+                    <div class="form-items">
+                        <div class="form-item birthdate" data-tab="basic">
+                            <%= f.label :date_of_birth, 'When were you born?', :class=>"title" %>
+                            <div class="form-elements birth">
+
+                                <div class="select-box">
+                                    <a id="month" href="#">Month</a>
+                                    <%= select_month f.object.date_of_birth_month.to_i, field_name: "date_of_birth_month", prefix: 'caregiver', prompt: 'Month' %>
+                                </div>
+
+                                <div class="select-box day">
+                                    <a id="day" href="#">Day</a>
+                                    <%= select_day f.object.date_of_birth_day.to_i, field_name: "date_of_birth_day", prefix: 'caregiver', prompt: 'Day' %>
+                                </div>
+
+                                <div class="select-box year">
+                                    <a id="year" href="#">Year</a>
+                                    <%= select_year f.object.date_of_birth_year.to_i, start_year: 1940, end_year: Date.current.year - 18, field_name: "date_of_birth_year", prefix: 'caregiver', prompt: 'Year' %>
+                                </div>
+                            </div>
+                            <p class="error-msg"></p>
+                            <%= hidden_field_tag 'route', zipcode_path %>
+                        </div>
+
+                    </div>
+
+                    <div class="buttons">
+                        <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                        <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                        <%= f.submit 'Save', class: 'btn' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

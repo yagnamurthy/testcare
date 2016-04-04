@@ -1,0 +1,276 @@
+<% notice %>
+
+<div class="user-page <%= current_user.should_show_congrats_modal? ? 'congrats-modal-flag' : '' %> <%= current_user.should_show_edit_profile_modal? ? 'edit-profile-modal-flag' : '' %>">
+    <div class="caregiver-topbar">
+        <div class="caregiver-show-header">
+            <div class="banner" style="background-image: url(<%= image_path(current_user.background_path) %>)">
+                <%= link_to_modal 'Edit background', background_path, class: 'edit-btn',  id: "background-button"  %>
+            </div>
+            <div class="container">
+                <div class="row user-header">
+                    <%= render :partial => 'dashboard/profile_header' %>
+                </div>
+            </div>
+        </div>
+
+        <div class="caregiver-tab-bar">
+            <div class="row">
+                <ul class="container">
+                    <li class="active">
+                        <a href="#user-bio">
+                            <span class="text">About Me</span><%= image_tag "v2/profile/icon-about.png" %>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#user-education">
+                            <span class="text">Education & Experience</span><%= image_tag "v2/profile/icon-edu.png" %>
+                        </a>
+                    </li>
+                    <li class="testimonials">
+                        <a href="#user-testimonials">
+                            <span class="text">Testimonials</span><span class="count">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#user-schedule">
+                            <span class="text">Availability</span><%= image_tag "v2/profile/icon-cal.png" %>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="columns large-8 small-8 main">
+              <div class="section-container auto" data-section="" data-options="one_up: false" style="">
+                    <!-- beginning of the work experience section -->
+                   <section id="user-bio" class="content <%= (params[:tab] == 'reference' || params[:reference]) ? '' : 'active' %>">
+                        <h3>Hi, I'm <%= current_user.first_name.strip %>!</h3>
+                         <div>
+                            <h4>Why are you a great caregiver?</h4>
+                            <div class="wrapper clear">
+                              <% if current_user.question_1.blank? %>
+                                <%= link_to_modal 'Add Answer', question_1_path, class: 'edit-btn long' %>
+                              <% else %>
+                                <%= link_to_modal '', question_1_path, class: 'edit-btn' %>
+                                <%= current_user.question_1 %>
+                              <% end %>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Why did you become a caregiver?</h4>
+                            <div class="wrapper clear">
+                                <% if current_user.question_2.blank? %>
+                                  <%= link_to_modal 'Add Answer', question_2_path, class: 'edit-btn long' %>
+                                <% else %>
+                                 <%= link_to_modal '', question_2_path, class: 'edit-btn' %>
+                                <% end %>
+                                <%= current_user.question_2 %>
+                            </div>
+                            <div>
+                            <h4>My top 3 skills as a caregiver are:</h4>
+                            <div class="list-item">
+                                <div class="wrapper clear">
+                                    <% if current_user.has_top_skills? %>
+                                      <%= link_to_modal '', about_skills_path, class: 'edit-btn' %>
+                                      <%= current_user.top_skills %>
+                                    <% else %>
+                                      <%= link_to_modal 'Add Answer', about_skills_path, class: 'edit-btn long' %>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>What are your hobbies and other interests outside of work?</h4>
+                            <div class="wrapper clear">
+                              <% if current_user.question_3.blank? %>
+                                <%= link_to_modal 'Add Answer', question_3_path, class: 'edit-btn long' %>
+                              <% else %>
+                                <%= link_to_modal '', question_3_path, class: 'edit-btn' %>
+                                <%= current_user.question_3 %>
+                              <% end %>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>What has been your proudest moment or experience as a caregiver?</h4>
+                            <div class="wrapper clear">
+                              <% if current_user.question_4.blank? %>
+                                <%= link_to_modal 'Add Answer', question_4_path, class: 'edit-btn long' %>
+                              <% else %>
+                                <%= link_to_modal '', question_4_path, class: 'edit-btn' %>
+                                <%= current_user.question_4 %>
+                              <% end %>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="content">
+                       <% if current_user.has_skills? or current_user.has_services? or current_user.has_experience_with? %>
+                          <div class="simple-list">
+                            <h3>Homecare Skills &amp; Services</h3>
+                            <h4>Services: </h4>
+                            <div class="list-item homecare">
+                                <div class="wrapper clear">
+                                    <%= link_to_modal '', services_path, class: 'edit-btn' %>
+                                    <% if current_user.has_services? %>
+                                      <%= current_user.services %>
+                                    <% end %>
+                                </div>
+                            </div>
+                            <h4>Experience with:</h4>
+                            <div class="list-item homecare">
+                                <div class="wrapper clear">
+                                    <%= link_to_modal '', skills_path, class: 'edit-btn' %>
+                                    <% if current_user.has_experience_with? %>
+                                      <%= current_user.experience_with %>
+                                    <% end %>
+                                </div>
+                            </div>
+                          </div>
+                       <% end %>
+                    </section>
+
+                    <section id="user-education" class="education-item content">
+                        <h3>Education</h3>
+                        <% if current_user.has_education? %>
+                            <%= current_user.education_list %>
+                        <% end %>
+                        <%= link_to_modal '+ Add Education', new_caregiver_school_path(current_user), :class=>'btn' %>
+                    </section>
+
+                    <section id="user-experience" class="experience-item content">
+                        <h3>Work Experience</h3>
+                        <% if current_user.has_experience? %>
+                            <%= current_user.experience_list %>
+                        <% end %>
+                        <%= link_to_modal '+ Add Experience', new_caregiver_experience_path(current_user), :class=>'btn' %>
+                    </section>
+
+                  <%= render 'references/caregiver_testimonials' %>
+
+                  <section id="user-schedule" class="content">
+                    <%= link_to_modal 'Edit Schedule', schedule_path, class: 'edit-btn' %>
+                    <div class="header clear">
+                        <h3>Availability</h3>
+                        <div class="help-info">
+                            <span class="available">Available</span>
+                            <span class="unavailable">Unavailable</span>
+                        </div>
+                    </div>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <% Schedule::DAY.each do |day_key, value| %>
+                            <th><%= value[0..2] %></th>
+                          <% end %>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <th>Morning</th>
+                            <%= build_row current_user.schedule, 'morning' %>
+                        </tr>
+                        <tr>
+                            <th>Afternoon</th>
+                            <%= build_row current_user.schedule, 'afternoon' %>
+                        </tr>
+                        <tr>
+                            <th>Mid Afternoon</th>
+                            <%= build_row current_user.schedule, 'mid_afternoon' %>
+                        </tr>
+                        <tr>
+                            <th>Evening</th>
+                            <%= build_row current_user.schedule, 'evening' %>
+                        </tr>
+                        <tr>
+                            <th>Overnight</th>
+                            <%= build_row current_user.schedule, 'overnight' %>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </section>
+            <% if !current_user %>
+                <%= link_to_modal 'Contact Me', new_user_registration_path, class: 'btn main' %>
+            <% else %>
+                <a href="#" class="btn medium edit-profile"><%= image_tag "v2/icon-edit.png" %><span class="preview">Preview Profile</span><span class="edit">Edit Profile</span></a>
+            <% end %>
+        </div>
+        </div>
+        <div class="columns large-4 small-4 content side">
+            <h3>Quick Facts</h3>
+            <div class="facts">
+                <div>
+                    <%= link_to_modal '', hometown_path, class: 'edit-btn' %>
+                    <strong>Hometown:</strong> <%= current_user.hometown %>
+                </div>
+                <div>
+                    <%= link_to_modal '', pets_path, class: 'edit-btn' %>
+                    <strong>Pets:</strong> <%= current_user.pets ? User::Pets.label(current_user.pets) : 'None' %>
+                </div>
+                <div>
+                    <%= link_to_modal '', allergies_path, class: 'edit-btn' %>
+                    <strong>Allergies:</strong>
+                    <%= current_user.allergies_names %>
+                </div>
+                <div>
+                    <%= link_to_modal '', smoking_path, class: 'edit-btn' %>
+                    <strong>Smokes:</strong> <%= current_user.smokes ? User::Smokes.label(current_user.smokes) : 'None' %>
+                </div>
+            </div>
+
+            <!--<ul class="checks">
+                <li class="time">Over 50 Care Hours</li>
+                <li class="phone">Phone Verified</li>
+                <li class="bg">Background Checked</li>
+                <li class="doc">Phone Screened</li>
+                <li class="lpn">LPN Certified</li>
+                <li class="rn">RN Certified</li>
+                <li class="cna">CNA Certified</li>
+                <li class="cpr">CPR Training</li>
+            </ul>-->
+        </div>
+      </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+var showRegistrationModal = function() {
+    var registrationModalDfd = $.ajax({
+        url: '/dashboard/welcome_to_carespotter'
+    });
+
+    registrationModalDfd.then(function(html) {
+        $(html).appendTo('body').modal();
+    });
+}
+
+var showEditProfileModal = function() {
+    var editProfile = $.ajax({
+        url: '/caregivers/edit-profile-modal'
+     });
+
+    editProfile.then(function(html) {
+        $(html).appendTo('body').modal();
+        $('.edit-profile-modal').removeClass('edit-profile-modal');
+    });
+}
+
+if($('.congrats-modal-flag').length > 0) {
+    showRegistrationModal();
+}
+
+$('.edit-profile').click(function() {
+    $('.user-page').toggleClass('edit-mode');
+
+    if($('.edit-profile-modal-flag').length > 0) {
+      showEditProfileModal();
+    }
+
+    return false;
+});
+
+</script>

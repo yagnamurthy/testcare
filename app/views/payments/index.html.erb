@@ -1,0 +1,161 @@
+<div id="payments-page">
+    <div class="row plans-info">
+        <h2>Upgrade Your Membership</h2>
+        <h3>Find local caregivers who meet your specific needs and budget</h3>
+        <div class="features">
+            <h4>Features</h4>
+            <ul>
+                <li>Search and View Caregivers</li>
+                <li>Post a job</li>
+                <li>View Applicants</li>
+                <li>Contact Caregivers</li>
+                <li>Assigned Dedicated Family Advisor
+                    <ul>
+                        <li>We find you qualified and affordable applicants</li>
+                        <li>We help schedule interviews</li>
+                        <li>We guide you through the hiring process</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="plan basic">
+            <h3>Basic</h3>
+            <ul>
+                <li><%= image_tag('v2/tick-green.png') %><span>Search and View Caregivers</span></li>
+                <li><%= image_tag('v2/tick-green.png') %><span>Post a Job</span></li>
+                <li><%= image_tag('v2/tick-green.png') %><span>View Applicants</span></li>
+                <li class="no"><%= image_tag('v2/tick-no.png') %></li>
+                <li class="no"><%= image_tag('v2/tick-no.png') %></li>
+            </ul>
+            <div class="info">
+                Free Membership<br/>(Current)
+            </div>
+        </div>
+        <div class="plan plus">
+            <h3>Plus</h3>
+            <ul>
+                <li><%= image_tag('v2/tick-green.png') %><span>Search and View Caregivers</span></li>
+                <li><%= image_tag('v2/tick-green.png') %><span>Post a Job</span></li>
+                <li><%= image_tag('v2/tick-green.png') %><span>View Applicants</span></li>
+                <li><%= image_tag('v2/tick-green.png') %><span>Contact Caregivers</span></li>
+                <li class="no"><%= image_tag('v2/tick-no.png') %></li>
+            </ul>
+            <div class="info">
+                <div class="custom-checkbox">
+                    <input type="checkbox" id="1month" />
+                    <label for="1month">$69 1 Month</label>
+                </div>
+                <div class="custom-checkbox">
+                    <input type="checkbox" id="3month" />
+                    <label for="3month">$149 3 Month</label>
+                </div>
+            </div>
+        </div>
+        <div class="plan premier">
+            <h3>Premier Advisor</h3>
+            <ul>
+                <li><%= image_tag('v2/tick-green.png') %><span>Search and View Caregivers</span></li>
+                <li><%= image_tag('v2/tick-green.png') %><span>Post a Job</span></li>
+                <li><%= image_tag('v2/tick-green.png') %><span>View Applicants</span></li>
+                <li><%= image_tag('v2/tick-green.png') %><span>Contact Caregivers</span></li>
+                <li class="mobile-show"><%= image_tag('v2/tick-green.png') %><span>Assigned Dedicated Family Advisor</span></li>
+                <li class="mobile-hide"><%= image_tag('v2/tick-green-big.png') %></li>
+            </ul>
+            <div class="info">
+                <div class="thumbnail"><%= image_tag('v2/advisor.png') %></div>
+                <p>Comes with a Family Advisor</p>
+                <div class="check">
+                    <div class="custom-checkbox">
+                        <input type="checkbox" id="12month" />
+                        <label for="12month">$349 for 12 Months</label>
+                    </div>
+                    <p>$100 OFF with promo code.<br/>Call your (XXX) XXX-XXX<br/>for more information</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>Payment Information</h3>
+    <h4><%= image_tag('v2/lock.png') %>This is a secure 128-bit SSL Encrypted payment. You're safe.</h4>
+    <div class="payment-form">
+        <div class="row">
+            <div class="col">
+                <h4>Contact Information</h4>
+                <div class="input-group">
+                    <input type="text" placeholder="Full Name" />
+                </div>
+                <div class="input-group contact">
+                    <input type="text" class="email" placeholder="Email Address" />
+                    <input type="text" class="phone" placeholder="Phone Number" />
+                </div>
+                <h4>Payment Details<%= image_tag('v2/cards.png') %></h4>
+                <div class="input-group">
+                    <input type="text" placeholder="Card Number" />
+                </div>
+                <div class="input-group security">
+                    <input type="text" placeholder="Security code" />
+                    <div class="select-box month">
+                        <a href="#">Exp Month</a>
+                        <select>
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                        </select>
+                    </div>
+                    <div class="select-box year">
+                        <a href="#">Exp Year</a>
+                        <select>
+                            <option>2014</option>
+                            <option>2015</option>
+                            <option>2016</option>
+                        </select>
+                    </div>
+                </div>
+                <h4>Billing Address</h4>
+                <div class="input-group">
+                    <input type="text" placeholder="Address" />
+                </div>
+                <div class="input-group address">
+                    <input type="text" class="city" placeholder="City" />
+                    <div class="select-box">
+                        <a href="#">State</a>
+                        <select>
+                            <option>Arizona</option>
+                            <option>Texas</option>
+                        </select>
+                    </div>
+                    <input type="text" class="zip" placeholder="Zip Code" />
+                </div>
+            </div>
+            <div class="col">
+                <h4>Order Summary</h4>
+                <div class="discount">
+                    <h5>Discount Code</h5>
+                    <div class="apply">
+                        <form>
+                            <input type="text" />
+                            <input type="submit" class="btn" value="Apply" />
+                        </form>
+                        <p>Click "Apply" to apply the<br/> discount code below</p>
+                    </div>
+                </div>
+                <div class="subscription">
+                    <h6>Plus Subscription - 3 Months</h6>
+                    <div class="cost">
+                        <h5>Cost</h5>
+                        <span class="price">$149</span>
+                    </div>
+                    <div class="summary">
+                        <h5>Total</h5>
+                        <span class="big-price">$149</span>     
+                    </div>
+                    <p class="info">Plus membership will auto renewautoatically until canceled<br/> by the user</p>
+                </div>
+                <input type="submit" class="btn" value="Subscribe" />
+                <div class="certificates">
+                    <a class="ssl" href="#">SSL Cert</a>
+                    <%= image_tag('v2/bbb.png') %>    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

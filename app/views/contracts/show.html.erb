@@ -1,0 +1,115 @@
+<div class="single-job job-item row">
+
+    <%= notice %>
+
+    <div class="details">
+        <div class="info">
+            <div class="header">
+                <h5 class="hourly-rate"><%= number_to_currency(@contract.required_rate, precision: 0) %>/<%= abbr_time(@contract.hourly_type) %><div class="help-bubble">?<span>This is the estimated hourly rate for services.</span></div></h5>
+                <h6><span class="distance"><%= miles_away_label_contract(@contract, current_user.zipcode)%></span></h6>
+            </div>
+            <ul class="stats">
+                <li>Schedule: <%=  @contract.hours_needed_schedule %></li>
+                <% if @contract.created_at >= 2.weeks.ago %>
+                    <li class="red">New Posting! <%= @contract.created_at.strftime("%m/%d/%Y") %></li>
+                <% else %>
+                    <li>Posted: <%= @contract.created_at.strftime("%m/%d/%Y") %></li>
+                <% end %>
+            </ul>
+        </div>
+        <% if current_user.indexable? %>
+            <% if current_user.applied_for_contract? @contract %>
+                <span class="applied-job">Applied<i></i></span>
+
+                <%= button_to 'Decline', caregiver_offer_path(current_user.id, current_user.offer_for_contract(@contract).id), method: :delete, class: 'btn' %>
+
+            <% else %>
+                <%= link_to'Apply to job', caregiver_offer_apply_to_job_path(current_user.id, @contract.id, contract_id: @contract.id), class: 'btn'%>
+            <% end %>
+        <% else %>
+            <%= link_to 'Apply to job', caregiver_offer_apply_to_job_path(current_user.id, @contract.id, contract_id: @contract.id), class: 'btn'%>
+        <% end %>
+    </div>
+
+    <div class="main-info">
+        <h2><%= @contract.headline %>.</h2>
+        <p><%= @contract.description %>.</p>
+        <div class="requirements">
+            <div class="special">
+                <label>Special Request:</label>
+                <ul>
+                    <li>Needs a Caregiver ASAP</li>
+                </ul>
+            </div>
+            <div>
+                <label>Needs help with:</label>
+                <ul>
+                    <% if @contract.has_services? %>
+                        <% @contract.services.each do |service| %>
+                            <li><%= service.name %></li>
+                        <% end %>
+                    <% else %>
+                        <li>None</li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+        <div class="buttons">
+            <%= link_to_modal '< Back to Search', contracts_path, class: 'btn flat' %>
+            <a href="#" class="btn flat">Next Job ></a>
+        </div>
+    </div>
+
+    <!-- HIDDEN OLD LAYOUT: SOME UNUSED DATA -->
+    <div class="content-column">
+        <div class="super-box updates">
+
+            <p>Hours Needed <%= @contract.hours_needed %></p>
+
+            <div>
+                <% if current_user.caregiver? %>
+                    <% if current_user.indexable? %>
+                        <% if current_user.applied_for_contract? @contract %>
+                            <span class="applied-job">Applied<i></i></span>
+
+                            <%= button_to 'Decline', caregiver_offer_path(current_user.id, current_user.offer_for_contract(@contract).id), method: :delete, class: 'link-action' %>
+
+                        <% else %>
+                            <%= link_to_modal 'Apply', caregiver_offer_apply_to_job_path(current_user.id, @contract.id, contract_id: @contract.id), class: 'btn main apply-to-job', style: 'text-align: center;display: block;width: 80px;margin: 0 auto;' %>
+                        <% end %>
+                    <% else %>
+                        <%= link_to_modal 'Apply', cannot_apply_modal_path, class: 'btn main', style: 'text-align: center;display: block;width: 80px;margin: 0 auto;' %>
+                    <% end %>
+                <% else %>
+                    <strong>Current Offers</strong>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Caregiver</th>
+                                <th>Offer Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @contract.offers.each do |offer| %>
+                                <% unless offer.declined? %>
+                                    <th><%= avatar_tag offer.caregiver, :thumb %><%= offer.caregiver.first_name %></th>
+                                    <th><%= offer.status_to_words %></th>
+                                    <th>
+                                        <% if offer.new? %>
+                                            <%= button_to 'Add to Job', caregiver_offer_add_to_job_path(offer.caregiver.id, current_user.current_offer(offer.caregiver.id).id), class: 'link-action'%>
+                                        <% elsif offer.accepted? %>
+                                            <%= button_to 'Remove', caregiver_offer_path(offer.caregiver.id, current_user.current_offer(offer.caregiver.id).id), method: :delete, class: 'link-action' %>
+                                        <% end %>
+                                    </th>
+                                <% end %>
+                            <% end %>
+                        </tbody>
+                    </table>
+                <% end %>
+            </div>
+
+        </div>
+    </div>
+
+</div>

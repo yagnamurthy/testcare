@@ -1,0 +1,483 @@
+.search-job {
+	padding: 30px 0;
+	header {
+		overflow: hidden;
+		h2 {
+			color: $color-gray-strong;
+			font-size: 28px;
+			float: left;
+			width: calc(100% - 380px);
+		}
+	}
+	.change-location {
+		width: 360px;
+		float: right;
+		position: relative;
+		label {
+			float: left;
+			font-size: 18px;
+			margin-right: 20px;
+			line-height: 30px;
+		}
+		input[type=text] {
+			width: 200px;
+			border-radius: 3px;
+			height: 30px;
+		}
+		button {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 30px;
+			height: 30px;
+			padding: 0;
+			border-bottom-left-radius: 0;
+			border-top-left-radius: 0;
+			border-bottom: 0;
+		}
+	}
+	@include respond-to('mobile') {
+		padding-bottom: 0;
+		padding-top: 50px;
+		header {
+			background: $color-gray-light;
+			padding: 20px 15px 15px;
+			text-align: center;
+			h2 {
+				font-size: 15px;
+				float: none;
+				width: 100%;
+			}
+		}
+		.jobs-list {
+			 margin: 0;
+		}
+	}
+}
+
+.job-item {
+	border: 1px solid $color-gray-strong;
+	overflow: hidden;
+	border-radius: 10px;
+	position: relative;
+	margin-bottom: 40px;
+	h3 a {
+		font-size: 24px;
+		color: $color-blue-strong;
+	}
+	li {
+		list-style: none;
+	}
+	.main-info {
+		padding: 20px;
+		float: left;
+		width: 78%;
+		min-height: 250px;
+		border-right: 1px solid $color-gray-strong;
+	}
+	.descr {
+		padding: 15px 0;
+		font-size: 14px;
+		color: $color-black;
+		.more {
+			font-weight: bold;
+			font-size: 15px;
+			text-transform: uppercase;
+		}
+	}
+	.requirements {
+		div {
+			overflow: hidden;
+			margin-bottom: 15px;
+		}
+		label {
+			width: 150px;
+			float: left;
+			font-size: 16px;
+		}
+		ul {
+			width: calc(100% - 150px);
+			float: left;
+		}
+		li {
+			padding-left: 20px;
+			position: relative;
+			float: left;
+			width: 50%;
+			&:before {
+				content: '';
+				width: 14px;
+				height: 12px;
+				position: absolute;
+				left: 0;
+				top: 5px;
+				background: image-url("v2/tick-red.png") no-repeat;
+			}
+		}
+		.special li {
+			color: $color-red-light;
+		}
+	}
+	.details {
+		padding: 15px 26px;
+		width: 22%;
+		float: left;
+		.hourly-rate {
+			font-size: 32px;
+			color: $color-black;
+			@include fontRegular();
+			font-weight: 600;
+		}
+		h6 {
+			font-size: 24px;
+			@include fontRegular();
+			padding-bottom: 5px;
+			color: $color-black;
+		}
+		.btn {
+			width: 16.5%;
+			padding: 10px;
+			text-align: center;
+			display: block;
+			position: absolute;
+			bottom: 20px;
+			right: 26px;
+		}
+		li {
+			font-size: 15px;
+		}
+	} 
+	
+	@include respond-to('mobile') {
+		border-left: 0;
+		border-right: 0;
+		border-bottom: 0;
+		border-radius: 0;
+		margin: 0;
+		.details .btn,
+		.descr,
+		.requirements {
+			display: none;
+		}
+		.details,
+		.main-info {
+			width: 100%;
+			border-right: 0;
+			min-height: 0;
+		}
+		.main-info {
+			padding-left: 15px;
+			padding-right: 15px;
+			padding-bottom: 0;
+		}
+		.stats {
+			float: left;
+			width: 62%;
+			font-size: 14px;
+		}
+		.header {
+			width: 38%;
+			float: right;
+			text-align: right;
+		}
+		.details {
+			padding-left: 15px;
+			padding-right: 15px;
+			.hourly-rate {
+				font-size: 18px;
+			}
+			h6 {
+				font-size: 14px;
+			}
+			li {
+				font-size: 14px;
+			}
+		}
+		h3 {
+			font-size: 16px;
+		}
+	}
+}
+
+.jobs-list {
+	margin: 30px 0;
+}
+
+.single-job {
+	border: 0;
+	padding-top: 80px;
+	h2 {
+		font-size: 24px;
+		color: $color-blue-light;
+	}
+	.content-column {
+		display: none;
+	}
+	.main-info {
+		padding: 0 40px 40px 0;
+		border-right: 0;
+		> p {
+			padding: 15px 0 25px;
+		}
+	}
+	.questions {
+		padding-bottom: 25px;
+		h4 {
+			font-size: 17px;
+			@include fontRegular;
+			font-weight: 600;
+			padding-bottom: 5px;
+		}
+		p {
+			padding: 5px 0;
+		}
+	}
+	.details {
+		padding: 0 16px;
+		float: right;
+		h6, h5 {
+			line-height: 1;
+			padding-bottom: 3px;
+		}
+		.btn {
+			position: static;
+			width: 100%;
+			margin-top: 20px;
+		}
+		.stats {
+			line-height: 1.3;
+		}
+		li {
+			font-size: 16px;
+			padding: 3px;
+		}
+	}
+	.buttons {
+		margin-top: 100px;
+		a {
+			margin-right: 20px;
+		}
+	}
+	@include respond-to('mobile') {
+		padding: 70px 15px 30px;
+		.details {
+			width: 100%;
+			margin-bottom: 20px;
+			padding: 0;
+			.btn {
+				display: block;
+				width: 50%;
+				float: right;
+				margin-top: 6px;
+			}
+			.info {
+				width: 50%;
+				float: left;
+				.stats,
+				.header {
+					width: 100%;
+					text-align: left;
+					.hourly-rate {
+						font-size: 23px;
+					}
+				}
+				.stats li {
+					font-size: 14px;
+				}
+				.btn {
+					margin-top: 5px;
+				}
+			}
+		}
+		.main-info {
+			width: 100%;
+			padding-right: 0;
+			h2 {
+				font-size: 18px;
+			}
+			p {
+				font-size: 14px;
+			}
+		}
+		.questions {
+			h4 {
+				font-size: 15px;
+			}
+			p {
+				font-size: 14px;
+			}
+		}
+		.requirements {
+			display: block;
+			label {
+				width: 100%;
+			}
+			ul {
+				width: 100%;
+				margin-left: 20px;
+				li {
+					width: 100%;
+				}
+			}
+		}
+		.mobile-show {
+			width: 100%;
+			padding: 7px;
+			margin-top: 20px;
+		}
+		.buttons {
+			margin-top: 15px;
+		}
+		.buttons .btn.flat {
+			width: 47.5%;
+			float: left;
+			margin-right: 0;
+			font-size: 13px;
+			padding: 5px 10px;
+			text-align: center;
+			&:first-child {
+				margin-right: 5%;
+			}
+		}
+	}
+}
+
+.apply-for-job {
+	height: 750px;
+	background: $color-white;
+	margin-top: 20px;
+	
+	input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+   margin: 0; 
+	}
+	h2, h3, h4 {
+		font-family: "proxima-nova";
+		color: $color-blue-strong;
+		font-weight: bold;
+		padding-top: 20px;
+	}
+	h3 {
+		padding:10px 0px;
+		}
+	h4 {
+		float:left;
+		padding:0px;
+		margin-right:40px;
+		}
+	.form {
+		width: 60%;
+		float: left;
+		> p {
+			font-size: 14px;
+			padding: 10px 3px 15px;
+		}
+		textarea {
+			border: 1px solid $color-blue-light; 
+			height: 350px;
+			resize: none;
+			padding: 15px 20px;
+			font-size: 16px;
+			border-radius: 8px;
+			color: $color-black;
+		}
+		.field {
+			position: relative;
+			margin-bottom: 20px;
+			a {
+				position: absolute;
+				bottom: 13px;
+				left: 22px;
+			}
+			input[type=text] {
+				float: left;
+				width: 150px;
+				margin-right: 10px;
+				padding-left: 25px;
+				color: $color-black;
+			}
+			span {
+				position: absolute;
+				top: 8px;
+				left: 11px;
+			}
+			p {
+				line-height: 41px;
+				color: $color-black;
+			}
+		}
+		.btn {
+			float: right;
+			border-radius: 3px;
+			width: 200px;
+			height: 50px;
+		}
+		#offer_rate {
+			width:20%;
+			border: 1px solid $color-blue-light;
+  		border-radius: 3px;
+  		float:left;
+  		margin-right: 10px;
+		}
+	}
+	.tips {
+		width: 33%;
+		float: right;
+		background: $color-gray-light;
+		padding: 15px;
+		border-radius: 4px;
+		h5 {
+			@include fontRegular;
+			font-weight: 600;
+			font-size: 28px;
+			padding-bottom: 10px;
+			margin-top: 10px;
+		}
+		.tip {
+			padding-bottom: 15px;
+			h6 {
+				@include fontRegular;
+				font-weight: 700;
+				color: $color-red-light;
+				font-size: 16px;
+				margin-top: 20px;
+				margin-bottom: 10px;
+			}
+			p {
+				font-size: 14px;
+			}
+		}
+	}
+	@include respond-to('mobile') {
+		width: 100%;
+		height: 1460px;
+  	padding: 15px;
+		padding-top: 50px;
+		header {
+			display: block;
+		}
+		h2 {
+			padding-top: 0px;
+		}
+		.form {
+			width: 100%;
+				#offer_rate {
+				width:50%;
+		}
+				.btn {
+				  width: 100%;
+	  			float: inherit;
+	  			margin-top: 10px;
+	  			margin-bottom: 20px;
+			}
+		}
+		.tips {
+			width: 100%;
+		}
+	}
+}
+.red {
+		color: $color-red-light;
+		font-weight: bold;
+}

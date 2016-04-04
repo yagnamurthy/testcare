@@ -1,0 +1,52 @@
+<div class="page-wrapper displayCare">
+  <div class="body no-padding sign-up">
+    <div class='sign-up-banner'>
+      <div class="overlay"></div>
+      <div class="row">
+        <div class="family-sign-up-box">
+          <h2>Almost Done!</h2>
+          <h4>Add your contact info so we can send you potential caregiver matches.</h4>
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), method: :post ) do |f| %>
+
+              <%= hidden_field_tag :contract_id, params[:id] %>
+
+              <!-- new field! -->
+              <div class="field">
+                <%= f.label :first_name %>
+                <%= f.text_field :first_name, placeholder: 'First Name', autofocus: true, required: true %>
+              </div>
+
+              <div class="field">
+                <%= f.label :last_name %>
+                <%= f.text_field :last_name, placeholder: 'Last Name', autofocus: true, required: true %>
+              </div>
+
+              <div class="field">
+                <%= f.label :'Email address' %>
+                <%= f.email_field :email, placeholder: 'Email', required: true %>
+              </div>
+
+              <div class="field">
+                <%= f.label :phone %>
+                <%= f.phone_field :phone, placeholder: 'Phone', required: true %>
+              </div>
+
+              <div class="field">
+                <%= f.label :'Create a Carespotter password' %>
+                <%= f.password_field :password, placeholder: 'Password', required: true %>
+              </div>
+
+              <p>By continuing, you agree to the Terms of Use andPrivacy Policy.</p>
+
+              <div class="action">
+                <%= f.submit 'Done', class: 'btn gray', disabled_with: 'Plz Wait ....' %>
+              </div>
+
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<%= link_to contract_journals_path(journal_list.contract.id) do %>
+    <%= avatar_tag(journal_list.user, :thumb, class: 'small-avatar') %>
+    <span class="heads">
+        <span class="user">
+            <%= journal_list.user.first_name %>
+        </span>
+
+        <span class="dates"><%= journal_list.created_at.to_time.strftime('%B %e, %Y') %></span>
+    </span>
+    <span class="cont">
+        <p><%= truncate(journal_list.body, length: 100) %></p>
+    </span>
+<% end %>

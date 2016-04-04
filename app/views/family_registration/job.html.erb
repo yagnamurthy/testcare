@@ -1,0 +1,52 @@
+<div class="user-edit-page family-job-register <%= @job.has_been_edited ? 'edit-job' : 'new-job' %>">
+
+    <div class="row">
+
+        <% if @job.errors.any? %>
+            <div id="error_explanation">
+                <div>
+                    <ul>
+                        <% @job.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        <% end %>
+
+        <header>
+            <h2>Hi <%= current_user.first_name %>,<br class="mobile-show" /> welcome to Carespotter</h2>
+            <p>Let's learn a little more about your caregiving needs to match you with the right caregivers. <span class="mobile-hide">This care evaluation only takes a few minutes and helps us best understand how to match you with the best caregiver who meets your family's requirements and availability.</span></p>
+        </header>
+
+        <%= form_for @job, url: update_family_registration_path, method: 'patch' do |f| %>
+
+            <%= render partial: 'jobs/form2', locals: {f: f} %>
+
+            <%= f.submit 'Submit Job', class: 'btn' %>
+            <a href="#">Save and finish later</a>
+        <% end %>
+
+    </div>
+</div>
+
+<!-- Google Code for Family Job Registration Conversion Page -->
+<script type=“text/javascript”>
+/* <![CDATA[ */
+var google_conversion_id = 1036789869;
+var google_conversion_language = “en”;
+var google_conversion_format = “2”;
+var google_conversion_color = “ffffff”;
+var google_conversion_label = “ekZTCK2eoVkQ7dCw7gM”;
+var google_remarketing_only = false;
+/* ]]> */
+</script>
+<script type=“text/javascript”
+src=“//www.googleadservices.com/pagead/conversion.js”>
+</script>
+<noscript>
+<div style=“display:inline;”>
+<img height=“1” width=“1” style=“border-style:none;” alt=“”
+src=“//www.googleadservices.com/pagead/conversion/1036789869/?label=ekZTCK2eoVkQ7dCw7gM&amp;guid=ON&amp;script=0”/>
+</div>
+</noscript>

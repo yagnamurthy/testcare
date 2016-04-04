@@ -1,0 +1,117 @@
+<div class="container">
+	<div class="page-type-one-board">
+
+		<%= render partial: 'searchjob/hireprogress' %>
+
+		<div class="page-content">
+			<h2>Offer details</h2>
+
+			<%= form_for @offer, url: caregiver_offer_path(@caregiver.id, @offer.id), html: { class: 'myform' } do |f| %>
+				<section>
+					<h3>Parties</h3>
+
+					<table>
+						<tr>
+							<th>Caregiver:</th>
+							<td>
+								<%= avatar_tag @caregiver, :medium, class: 'middle2-avatar' %>
+								<%= @caregiver.first_and_last_initial %>
+							</td>
+						</tr>
+						<tr>
+							<th>Client:</th>
+							<td><%= current_user.full_name %></td>
+						</tr>
+						<tr>
+							<th>Related Job:</th>
+							<td>
+								<strong><%= current_user.current_contract.headline %></strong> <span class="little nosize">(#<%= current_user.current_contract.id %>)</span>
+							</td>
+						</tr>
+					</table>
+				</section>
+			
+				<section>
+					<h3>Offer terms</h3>
+
+					<table>
+						<tr>
+							<th>Contract Title:</th>
+							<td>
+								<strong><%= current_user.current_contract.headline %></strong>
+							</td>
+						</tr>
+						<tr>
+							<th>Contract Type:</th>
+							<td>
+								<strong><%= @offer.contract_type %></strong>
+							</td>
+						</tr>
+						<tr>
+							<th>Budget:</th>
+							<td>
+								<strong><span class="blue"><%= formatted_hourly_rate(@offer.rate) %></span> ($9.00 paid to Caregiver)</strong>
+							</td>
+						</tr>
+						<tr>
+							<th>Upfront Payment</th>
+							<td>
+								<strong><span class="blue">$0.00</span> ($0.00 paid to Caregiver)</strong>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								Message to Caregiver:<br/>
+							</th>
+							<td>
+								<div class="small-box">
+									<p class="little"><%= @message.body %></p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>Agree to Terms</th>
+							<td class="terms">
+								<div class="small-box">
+									<p>I am 37 years old with 10 years of caregiving experience i am planning on getting my CNA sometime soon.</p>
+									<ol>
+										<li>I am very dedicated to my clients and their well-being. I am dependable if you needed me for something last minute more then.</li>
+										<li>Clients and their well-being. I am dependable if you needed me for something last minute more.</li>
+										<li>I am very dedicated to my clients and their well-being. I am dependable if you needed me for something last minute more then if you needed.</li>
+									</ol>
+								</div>
+
+								<div class="elm single-checkbox">
+									<%= f.check_box :terms_and_conditions, class: 'styled' %>
+									<%= f.label :terms_and_conditions, 'I understand and agree to the Carespotter user agreement and incorporated policies.', class: 'little' %>
+								</div>
+
+								<div class="msg-box red width-auto small with-exclamation">
+			                    You need to agree to the Carespotter user agreement</div> 
+
+							</td>
+						</tr>
+					</table>
+				</section>
+
+				<section class="action">
+
+					<div class="hidden">
+						<%= f.check_box :close_job %>
+						<%= f.radio_button :contract_type, 1, id: 'hourly-contract-type', class: 'styled' %>
+						<%= f.radio_button :contract_type, 2, id: 'livein-contract-type', class: 'styled' %>
+						<%= f.text_field :rate %>
+						<%= f.fields_for :message do |message_form| %>
+							<%= message_form.text_area :body %>
+						<% end %>
+					</div>
+
+					<span class="cancel"><a href="#">Back</a></span>
+					<%= f.submit class: 'btn main', value: 'Continue' %>
+					<span class="cancel">or <a href="#">Cancel</a></span>
+
+				</section>
+			<% end %>
+		</div>
+	</div>
+</div>

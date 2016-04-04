@@ -1,0 +1,15 @@
+<tr>
+    <td class="profile">
+        <%= avatar_tag invoice.sender, :thumb, class: 'small-avatar' %>
+        <%= invoice.sender.first_and_last_initial %>
+    </td>
+    <td>$ <%= invoice.amount %></td>
+    <td><%= invoice.hours %></td>
+    <td>From <strong><%= invoice.formatted_start_date %></strong> to <strong><%= invoice.formatted_finish_date %></strong></td>
+    <td class="status">
+        <%= invoice.status_label %>
+        <% if invoice.payable?(current_user) %>
+            <%= link_to 'Pay', pay_invoice_path(invoice.id), class: 'btn main' %>
+        <% end %>
+    </td>
+</tr>

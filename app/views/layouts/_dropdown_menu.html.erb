@@ -1,0 +1,52 @@
+<ul class="mobile-show">
+    <% if current_user.caregiver? %>
+      <li><%= link_to_modal image_tag("v2/speechbubble2.png") + 'Request Recommendation', request_references_path,  class: "mobile-nav " %></li>
+      <li><%= link_to image_tag("v2/lock.png") + 'Edit Account/Password', my_account_path, class: "mobile-nav"  %></li>
+      <li><%= link_to image_tag("v2/profile-male.png") +  'Edit My Profile', caregiver_path(current_user),  class: "mobile-nav"  %></li>
+    <% else %>
+
+    <% if current_user.completed_profile? %>
+        <li><%= link_to 'Dashboard', dashboard_path %></li>
+        <li><%= link_to 'My Account', my_account_path %></li>
+    <% end %>
+
+    <% if current_user && current_user.caregiver? %>
+        <li><%= link_to image_tag("v2/profile-male.png") + 'Edit My Profile', basics_path, class: "mobile-nav" %></li>
+    <% elsif current_user %>
+        <li><%= link_to image_tag("v2/profile-male.png") + 'Edit Job', family_job_path, class: "mobile-nav"  %></li>
+    <% end %>
+
+    <% if current_user && current_user.admin? %>
+        <li><%= link_to 'Admin Panel', admin_dashboard_path %></li>
+    <% end %>
+
+    <% end %>
+
+    <li class="last"><%= link_to "Log out", destroy_user_session_path %></li>
+</ul>
+<ul class="mobile-hide">
+    <% if current_user.caregiver? %>
+        <li><%= link_to_modal 'Request Recommendation', request_references_path %></li>
+        <li><%= link_to 'Edit Account/Password', my_account_path %></li>
+        <li><%= link_to 'Edit My Profile', caregiver_path(current_user) %></li>
+    <% else %>
+
+        <% if current_user.completed_profile? %>
+            <li><%= link_to 'Dashboard', dashboard_path %></li>
+            <li><%= link_to 'My Account', my_account_path %></li>
+        <% end %>
+
+        <% if current_user && current_user.caregiver? %>
+            <li><%= link_to 'Edit My Profile', basics_path %></li>
+        <% elsif current_user %>
+            <li><%= link_to 'Edit Job', family_job_path %></li>
+        <% end %>
+
+        <% if current_user && current_user.admin? %>
+            <li><%= link_to 'Admin Panel', admin_dashboard_path %></li>
+        <% end %>
+
+    <% end %>
+
+    <li class="last"><%= link_to "Log out", destroy_user_session_path %></li>
+</ul>

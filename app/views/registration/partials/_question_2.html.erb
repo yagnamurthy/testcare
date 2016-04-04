@@ -1,0 +1,35 @@
+<div class="user-register-page container-large">
+    <div class="content">
+      <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "about"} %>
+
+            <div class="reg-slider">
+            <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+
+                <div class="form-item why-caregiver single-question" data-tab="about">
+
+                    <label class="title">Why did you become a caregiver?</label>
+                    <span class="subtitle">(Your answer must be at least 50 characters)</span>
+
+                    <div class="form-elements">
+                        <div class="min-max-characters" data-min="50">
+                            <%= f.text_area :question_2 %>
+                            <div class="length"><span>0</span> characters</div>
+                        </div>
+                        <p class="tip">
+                            CareSpotter Tip<br/>
+                            This is often an important interview question for families. Talk about your motivation for caring for seniors and what you enjoy most about being a caregiver.
+                        </p>
+                    </div>
+                    <%= hidden_field_tag 'route', question_3_path %>
+                </div>
+
+                <div class="buttons">
+                    <%= f.submit 'Save', class: 'btn' %>
+                </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

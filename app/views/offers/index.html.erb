@@ -1,0 +1,31 @@
+<div class="dashboard-page container-large">
+    <div class="row">
+
+        <div class="content main-cnt">
+            <div class="row">
+
+                <header>
+                    <h2>Offers for <%= current_user.first_name %> (<%= @offers.count %>)</h2>
+                </header>
+
+                <%= render partial: 'dashboard/profile_column' %>
+
+                <div class="content-column">
+                    <div class="super-box family-applications with-search-header">
+
+                        <section class="list">
+                          <% if @offers.length > 0 %>
+                            <%= render partial: 'offers/offer_on_contract', collection: @offers %>
+                          <% else %>
+                            <div class="item">
+                              No Offers yet
+                            </div>
+                          <% end %>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

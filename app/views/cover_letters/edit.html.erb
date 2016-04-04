@@ -1,0 +1,24 @@
+<div class="dashboard-page container-large">
+   <div class="row">
+        <div class="content main-cnt">
+             <div class="row">
+                <%= render partial: 'messages/caregiver/sidebar', locals: { selected: 'cover-letter' } %>
+                <div class="mailbox-page cover-letter">
+                    <% if notice %>
+                      <div data-alert class="alert-box success radius">
+                        <%= notice %>
+                      </div>
+                    <% end %>
+                      <header>
+                         Create a Personal Cover Letter
+                         <p>(Remember that you can always customer your letter in the email to family)</p>
+                      </header>
+                      <%= simple_form_for @cover_letter do |f| %>
+                        <%= f.input :body, placeholder: 'Begin typing here to create your personal cover letter ...', label: false %>
+                        <%= f.submit 'Save Cover Letter', class: 'btn main' %>
+                      <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

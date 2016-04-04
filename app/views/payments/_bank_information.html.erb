@@ -1,0 +1,6 @@
+<div class='info'>
+    <h3>Verify bank account</h3>
+    <p><%= current_user.account.account_number %></p>
+    <p><%= current_user.account.bank_name %></p>
+    <p><%= current_user.account.created_at.strftime("%b %d %Y") %></p>
+</div>

@@ -1,0 +1,61 @@
+<section class="job-item">
+
+    <div class="main-info">
+        <h3>
+            <%= link_to contract_on_search.headline, contract_path(contract_on_search) %>
+        </h3>
+
+        <p class="descr">
+            <%= contract_on_search.description %>
+
+            <% if current_user.applied_for_contract? contract_on_search %>
+                <%= link_to 'More', contract_path(current_user.offer_for_contract(contract_on_search).contract_id), class: 'more' %>
+            <% end %>
+        </p>
+
+        <div class="requirements">
+            <div class="special">
+                <label>Special request:</label>
+                <ul>
+                    <li>Needed a caregiver ASAP</li>
+                </ul>
+            </div>
+            <div>
+                <label>Requirements:</label>
+                <ul>
+                    <% if contract_on_search.has_services? %>
+                        <% contract_on_search.services.each do |service| %>
+                            <li><%= service.name %></li>
+                        <% end %>
+                    <% else %>
+                        <li>None</li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="details">
+        <div class="header">
+            <h5 class="hourly-rate"><%= number_to_currency(contract_on_search.required_rate, precision: 0) %>/<%= abbr_time(contract_on_search.hourly_type) || 'hr' %></h5>
+            <h6><span class="distance"><%=
+            miles_away_label_contract(contract_on_search, current_user.zipcode)
+            %></span></h6>
+        </div>
+        <ul class="stats">
+            <li>Schedule: <%= contract_on_search.hours_needed_schedule %></li>
+            <% if contract_on_search.updated_at >= 2.weeks.ago %>
+                <li class="red">New Posting! <%= contract_on_search.updated_at.strftime("%m/%d/%Y") %></li>
+            <% else %>
+                <li>Posted: <%= contract_on_search.updated_at.strftime("%m/%d/%Y") %></li>
+            <% end %>
+        </ul>
+        <% if current_user.completed_profile? && current_user.indexable %>
+            <%= link_to 'Read More', contract_path(id: contract_on_search.id), class: 'btn btn-main' %>
+        <% else %>
+            <%= link_to 'Read More', cannot_apply_modal_path, class: 'btn btn main' %>
+        <% end %>
+    </div>
+
+</section>

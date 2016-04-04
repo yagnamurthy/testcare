@@ -1,0 +1,156 @@
+<%= form_for @caregiver do |f| %>
+
+    <div class="user-edit-page container-large">
+        <div class="row">
+
+            <%= render partial: 'users/edit/registration_sidebar', locals: { steps_left: 1, current_step: 'background_check', f: f } %>
+
+            <div class="content">
+                <div class="row">
+                    <% if @caregiver.errors.any? %>
+                        <%= render partial: 'users/edit/errors', locals: { caregiver: @caregiver } %>
+                    <% end %>
+
+                    <header>
+                        <h2>Background Check</h2>
+                        <p>
+                            <span class="stronger">Limited Time Offer: $20 Bacground Check  ( 50% Discount)</span><br/>
+                            To be hired, you must pas a background check. Proces it today and start intervieving for jobs in your area.
+                        </p>
+                        <p>
+                            We’ve partnered with Backgrounds Online to provide us with a secure and accurate report. It takes 3-4 bisiness days to process your order.
+                        </p>
+                        <p>
+                            Care Spotter cannot accept background checks done by other companies or agencies. Visit our <a href="#" class="red">Frequently Asked Questions</a> page for more information.
+                        </p>
+                    </header>
+
+                    <div class="two-col">
+                        <div class="form-item">
+                            <label class="general required">Legal first name:</label>
+                            <div class="form-elements">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="general required">Legal last name:</label>
+                            <div class="form-elements">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="general">Legal middle name:</label>
+                            <div class="form-elements">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="general">Maiden name (if any):</label>
+                            <div class="form-elements">
+                                <input type="text">
+                            </div>
+                        </div>
+                    </div> 
+
+                    <div class="form-item">
+                        <%= render partial: 'users/edit/tip', locals: {
+                            headline: 'Get Better Connected!', 
+                            body: 'Safety is the most important consideration for both families and caregivers, and this section helps build trust by showing families if you both attend the same community groups. The connection only shows up if you both belong to the same group. Don\'t see your organizations here? Click here to add it!' } %>
+                            
+
+                        <label class="general required">Date of birth</label>
+                        <div class="form-elements birth">
+                             <div class="elm">
+                                <input type="text">
+                                <p>MM</p>
+                            </div>
+                            <div class="elm">
+                                <input type="text">
+                                <p>DD</p>
+                            </div>
+                            <div class="elm">
+                                <input type="text">
+                                <p>YEAR</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="two-col">
+                        <div class="form-item">
+                            <label class="general required">Social Security Number:</label>
+                            <div class="form-elements">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="general required">Confirm Security Number:</label>
+                            <div class="form-elements">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="general required">Street address:</label>
+                            <div class="form-elements">
+                                <input type="text">
+                                <p class="desc">Example: 123 Elm St</p>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="general required">City:</label>
+                            <div class="form-elements">
+                                <input type="text">
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="general required">State:</label>
+                            <div class="form-elements">
+                                <div class="select-box small">
+                                    <select><option></option><option></option></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="general required">ZIP:</label>
+                            <div class="form-elements">
+                                <input type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>Driver License Information</h2>
+
+                    <div class="two-col">
+                        <div class="form-item">
+                            <label class="general">State:</label>
+                            <div class="form-elements">
+                                <div class="select-box small">
+                                    <select><option></option><option></option></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <label class="general">License Number:</label>
+                            <div class="form-elements">
+                                <input type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-item action">
+                        <div class="form-elements">
+                            <input type="submit" class="btn main" value="I Conset">
+                            <p class="desc">
+                                By clicing “I consent” you authorize Care Spotter to run a background check as described in opur <a href="#" class="red">Background Check Content.</a>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <input type='hidden' name='next_action' value="credentials_experience">
+                </div>
+            </div>
+        </div>
+    </div>
+
+<% end %>
+

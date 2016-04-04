@@ -1,0 +1,49 @@
+<div class='container'>
+<%= form_for @school, url: admin_school_path, method: 'PATCH' do |f| %>
+
+<h2>Education & Training</h2>
+    <div class="item">
+        <%= f.label :name, 'University or Training Institution:', :class => 'general' %>
+        <div class="form-elements">
+            <%= f.text_field :name, :class => 'middleWidth' %>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="row form-elements date">
+            <div class="columns large-6 small-6">
+                <label class="general">When did you attend:</label>
+                <div class="form-elements">
+                    <div class="select-box">
+                        <%= f.select :start_date_year, options_for_select(School.years_since_1960, f.object.start_date_year), {:include_blank => true}, {class: 'start-date-year'} %>
+                    </div>
+
+                    <div class="select-box">
+                        <%= f.select :finish_date_year, options_for_select(School.years_since_1960, f.object.finish_date_year), {:include_blank => true}, {class: 'finish-date-year'} %>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <div class="item">
+        <%= f.label :degree, 'Degree or Certificate Attained:', :class => 'general' %>
+        <div class="form-elements degree">
+            <div class="select-box">
+                <%= f.select :degree, options_for_select(School.degree_options, f.object.degree), :include_blank => true %>
+            </div>
+        </div>
+    </div> 
+
+    <div class="item">
+        <%= f.label :description, 'Description:', :class => 'general' %>
+        <div class="form-elements degree">
+            <%= f.text_area :description %>
+        </div>
+    </div> 
+
+
+  <%= f.submit %>
+
+<% end %>
+</div>

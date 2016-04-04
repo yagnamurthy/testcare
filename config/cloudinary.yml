@@ -1,0 +1,25 @@
+---
+development:
+  cloud_name: carespotter
+  api_key: '685381727265862'
+  api_secret: lQrTLhHFmxPjXzXdet13pa-iXck
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: carespotter
+  api_key: '685381727265862'
+  api_secret: lQrTLhHFmxPjXzXdet13pa-iXck
+  enhance_image_tag: true
+  static_image_support: true
+staging:
+  cloud_name: carespotter
+  api_key: '685381727265862'
+  api_secret: lQrTLhHFmxPjXzXdet13pa-iXck
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: carespotter
+  api_key: '685381727265862'
+  api_secret: lQrTLhHFmxPjXzXdet13pa-iXck
+  enhance_image_tag: true
+  static_image_support: false

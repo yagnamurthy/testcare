@@ -1,0 +1,52 @@
+<div class="search-job row">
+
+    <header>
+        <h2>
+            <%= @contracts.results.count %> <%= regional_information.city %> Care Jobs near <%= regional_information.address %>
+        </h2>
+        <a href="#" class="change-location-btn mobile-show">Change location</a>
+        <div class="change-location mobile-hide">
+            <label for="zipcode">Change Location:</label>
+            <%= form_tag(search_contracts_path, :method => 'post') do %>
+                <%= button_tag({id: 'search-button' }) do %>
+                    <span class="icon-search"></span>
+                <% end %>
+                <%= text_field_tag(:zipcode, params[:zipcode], {placeholder: "zip code or city", id: 'autocomplete'}) %>
+                <%= hidden_field_tag(:lat, {id: 'lat'}) %>
+                <%= hidden_field_tag(:lng, {id: 'lng'}) %>
+                <%= hidden_field_tag(:address, {id: 'address'}) %>
+            <% end %>
+        </div>
+    </header>
+
+    <div class="jobs-list">
+        <% @contracts.each_with_hit do |contract, hit| %>
+            <%= render :partial => 'searchjob/contract_on_search2', :locals => { contract_on_search: contract, hit: hit } %>
+        <% end %>
+    </div>
+</div>
+
+<script>
+  var autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),
+      {
+        types: ['geocode'],
+        componentRestrictions: { 'country': 'us' }
+      });
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+       fillInPlaceLatLng();
+    });
+
+    function fillInPlaceLatLng() {
+      var place = autocomplete.getPlace();
+      var lat = place.geometry.location.lat();
+      var lng = place.geometry.location.lng();
+      var address = place.formatted_address;
+
+      $('#lat').val(lat);
+      $('#lng').val(lng);
+      $('#address').val(address)
+    }
+
+</script>
+

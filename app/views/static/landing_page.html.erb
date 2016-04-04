@@ -1,0 +1,120 @@
+<h1>Carespotter helps you find the best, most affordable Orlando Homecare</h1>
+
+<% @caregivers.each do |user| %>
+<div class="main-info">
+            <div class="thumbnail">
+                <%= link_to caregiver_path(user.id) do %>
+                    <%= avatar_tag user, :large %>
+                <% end %>
+            </div>
+
+            <div class="info">
+                <div class="headline">
+                    <h3><%=  link_to "#{user.first_name}", caregiver_path(user) %>
+                        <span class="distance"></span>
+                    </h3>
+
+                    <% if user.references_count > 0 %>
+                        <h4>
+                            <%= link_to caregiver_path(user.id) do %>
+                                <%= "#{pluralize user.references_count, 'Testimonial', 'Testimonials'}" %>
+                            <% end %>
+                        </h4>
+                    <% end %>
+                </div>
+
+                <h5 class="user-headline">
+                    "<%= truncate(user.headline, length: 45) %>"
+                </h5>
+
+                <div class="user-content">
+                    <p class="user-short-bio">
+                        <%= truncate(user.bio, length: 180) %>
+                        <%= link_to ' More', caregiver_path(user.id) %>
+                    </p>
+                </div>
+
+                <% if user.should_show_badge? %>
+                    <div class="hours-on-carrespotter">
+                        <div class="graph">
+                            <span class="val">
+                                <%= round_hours user.hours %>
+                            </span>
+                            <span class="label-2">hrs</span>
+                        </div>
+                        <h6>on CareSpotter</h6>
+                    </div>
+                <% end %>
+
+                <% if user.has_saftey_verifications? %>
+
+                    <div class="safety-verification">
+                        <span>Satefy vertification:</span>
+
+                        <% if user.facebook_id %>
+                            <a href="#" class="ico facebook"></a>
+                        <% end %>
+
+                        <!-- if search confirmed -->
+                        <!-- <a href="#" class="ico search"></a> -->
+
+                        <!-- if phone confirmed -->
+                        <!-- <a href="#" class="ico phone"></a> -->
+
+                        <!-- if added to favorite -->
+                        <!-- <a href="#" class="main btn gray add-favorites"><i class="heart"></i>Add to favourites</a> -->
+                    </div>
+                <% end %>
+            </div>
+
+
+            <div class="options">
+                <h5 class="hourly-rate">
+                    <span class="from">from</span>
+                        <span class="value">
+                            <%= formatted_hourly_rate(user.hourly_rate) %>
+                        </span>
+                    <span class="hour">/hr</span>
+                </h5>
+
+                <ul class="stats">
+                    <li>
+                        <strong>
+                            <%= user.total_experience %> years experience
+                        </strong>
+                    </li>
+                    <li>
+                        <%= user.age %> years old
+                    </li>
+                </ul>
+
+                <div class="search-results-buttons">
+                    <% if current_user.nil? %>
+                        <%= link_to_modal 'Contact Me', new_user_registration_path, class: 'btn main' %>
+                    <% else %>
+                        <%=  link_to 'View Profile', caregiver_path(user), class: 'btn main view-profile' %>
+                    <% end %>
+                </div>
+
+                <div class="profile-results-buttons">
+                    <%=  link_to 'Hire', caregiver_path(user), class: 'btn main view-profile' %>
+                    <%=  link_to 'Contact', caregiver_path(user), class: 'btn main view-profile' %>
+                </div>
+            </div>
+
+            <div id="shared-connections-container-<%= user.id %>"></div>
+
+            <div id="facebook-attach-point-<%= user.facebook_id %>" class="facebook-friends"></div>
+        </div>
+<% end %>
+
+
+<% @yelp_data["businesses"].each do |yelp_data| %>
+	<img src="<%= yelp_data['rating_img_url'] %>">
+	<a href="<%= yelp_data['url'] %>"><p><%= yelp_data["name"] %></p></a>
+	<p><%= yelp_data["snippet_text"] %></p>
+	<p><%= yelp_data["display_phone"] %></p>
+	<p><%= yelp_data["location"]["city"] %></p>
+	<p><%= yelp_data["location"]["display_address"].join(' ') %></p>
+	<p><%= yelp_data["rating"] %></p>
+<% end %>

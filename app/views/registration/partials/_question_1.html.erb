@@ -1,0 +1,42 @@
+<div class="user-register-page container-large">
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "about"} %>
+
+            <div class="reg-slider">
+                <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+
+                    <div class="form-item great-caregiver single-question" data-tab="about">
+
+                        <label class="title">Why are you a great caregiver?</label>
+                        <span class="subtitle">(Your answer must be at least 100 words)</span>
+
+                        <div class="form-elements">
+                            <div class="min-max-characters" data-min="200">
+                                <%= f.text_area :question_1 %>
+                                <div id="greatLength" class="length"><span id="greatCount">0</span> characters</div>
+                            </div>
+                            <p class="error-msg" style="display:none;">A 100+ word response is required</p>
+                            <p class="tip">
+                                CareSpotter Tip<br/>
+                                This will be your introduction to families, tell us something about yourself and try and answer the following questions:<br/>
+                                •  What do you like about being a caregiver?<br/>
+                                •  What makes you a great caregiver?<br/>
+                                •  What types of patients have you worked with?<br/>
+                                IMPORTANT: Do not include any personal information such as your phone number or email. This part of your profile is public.
+                            </p>
+                        </div>
+                        <%= hidden_field_tag 'route', photo_path %>
+                    </div>
+
+                    <div class="buttons">
+                        <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                        <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                        <%= f.submit 'Save', class: 'btn' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

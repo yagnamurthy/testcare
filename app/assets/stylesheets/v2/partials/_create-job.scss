@@ -1,0 +1,493 @@
+#family_registration-update,
+#family_registration-job {
+	header.main {
+		background: $color-blue-strong;
+		box-shadow: none;
+		h1 a {
+			display: inline-block;
+			width: 234px;
+			height: 70px;
+			background: image-url('v2/logo-white.png') no-repeat;
+			img {
+				display: none;
+			}
+		}
+		nav {
+			display: none;
+		}
+	}
+	#error_explanation {
+		padding-top: 20px;
+		padding-left: 35px;
+		li {
+			color: red;
+		}
+	}
+}
+
+@include respond-to('mobile') {
+	#family_registration-job header.main > .row > a {
+		display: none;
+	}
+	#family_registration-job header.main h1 a {
+		background: image-url('mainLogo.png') no-repeat;
+		height: 46px;
+    	width: 202px;
+    	margin: 11px 0 0 10px;
+	}
+}
+
+.user-edit-page {
+	padding-bottom: 80px;
+	background: image-url('v2/bg-create-job.jpg');
+	@include respond-to('mobile') {
+		padding-top: 50px;
+		> .row {
+			max-width: 320px;
+			margin: 0 auto;
+		}
+	}
+	header {
+		text-align: center;
+		h2 {
+			color: $color-blue-strong;
+			font-size: 36px;
+			padding: 50px 0 20px;
+		}
+		p {
+			font-size: 21px;
+			color: $color-black;
+			line-height: 1.4;
+			padding-bottom: 50px;
+		}
+		@include respond-to('mobile') {
+			h2 {
+				font-size: 24px;
+				padding: 20px 10px 10px;
+			}
+			p {
+				font-size: 18px;
+				padding: 0 10px 20px;
+			}
+		}
+	}
+	section {
+		padding: 16px 24px 0;
+		margin-bottom: 40px;
+		background: $color-white;
+		border-radius: 10px;
+		box-shadow: 0 0 4px rgba(0,0,0,0.2);
+		overflow: hidden;
+		h1 {
+			font-size: 24px;
+			color: $color-blue-strong;
+			padding-bottom: 20px;
+		}
+		@include respond-to('mobile') {
+			margin: 0 10px 20px;
+			h1 {
+				padding-bottom: 10px;
+				font-size: 18px;
+			}
+		}
+	}
+	.form-item {
+		overflow: hidden;
+		padding-bottom: 30px;
+		h3 {
+			width: 160px;
+			margin-right: 75px;
+			color: $color-gray-strong;
+			font-size: 14px;
+			float: left;
+			font-weight: 300;
+		}
+		.content {
+			width: calc(100% - 235px);
+			float: left;
+		}
+		.custom-checkbox.icon {
+			float: left;
+			margin-right: 63px;
+		}
+		.custom-checkbox {
+			float: left;
+			margin-right: 30px;
+			label {
+				font-size: 18px;
+			}
+			label:before {
+				left: 2px;
+				top: 1px;
+			}
+			label:after {
+				border: 1px solid $color-blue-light;
+				border-radius: 3px;
+				top: 2px;
+			}
+			&.icon {
+		    	position: relative;
+		    }
+		    &.icon label {
+		    	padding-top: 70px;
+		    	background: image-url('v2/image-checkbox.png') center top no-repeat;
+		    	&:before,
+		    	&:after {
+		    		top: 73px;
+		    	}
+		    }
+		    &.icon span {
+				position: absolute;
+				bottom: -22px;
+				width: 260px;
+				left: 50%;
+				margin-left: -130px;
+				text-align: center;
+				font-size: 14px;
+			}
+			@include respond-to('mobile') {
+				&.icon {
+					margin-right: 0;
+					width: 43%;
+					margin-right: 5%;
+					label {
+						font-size: 13px;
+					}
+					&.icon span {
+						margin-left: -103px;
+						font-size: 13px;
+					}
+					label[for=schedule3] + span {
+						margin-left: -52px;
+					}
+				}
+			}
+		}
+		.select-box {
+			width: 200px;
+			& > a {
+				border: 1px solid $color-blue-light;
+				border-radius: 5px;
+				&:after {
+					background: image-url('v2/arr-select-white.png') no-repeat;
+					right: 9px;
+					width: 19px;
+					height: 11px;
+				}
+				&:before {
+					width: 40px;
+					height: 33px;
+					position: absolute;
+					right: 0;
+					top: 0;
+					background: $color-blue-light;
+					content: '';
+					border-radius: 0 3px 3px 0;
+				}
+			}
+		}
+		.col {
+			width: 250px;
+			.custom-checkbox {
+				margin-top: 20px;
+				&:first-child {
+					margin-top: 0;
+				}
+			}
+		}
+		.col-4 {
+			width: 34%;
+			float: left;
+			.custom-checkbox {
+				margin-bottom: 3px;
+			}
+		}
+		@include respond-to('mobile') {
+			h3 {
+				width: 100%;
+				font-size: 13px;
+				margin-right: 0;
+				float: none;
+				margin-bottom: 10px;
+			}
+			.content {
+				float: none;
+				width: 100%;
+			}
+			&.when-need {
+				padding-bottom: 50px;
+			}
+		}
+	}
+	.location input[type=text] {
+		width: 300px;
+		@include respond-to('mobile') {
+			width: 100%;
+		}
+	}
+	.phone input[type=text] {
+		width: 200px;
+		float: left;
+		@include respond-to('mobile') {
+			width: 100%;
+			float: none;
+		}
+	}
+	.phone .help-box {
+		width: 400px;
+		@include respond-to('mobile') {
+			display: none;
+		}
+	}
+	.gender {
+		@include respond-to('mobile') {
+			.custom-checkbox.icon {
+				width: 38%;
+				margin-right: 10%;
+				label {
+					font-size: 18px;
+				}
+			}
+		}
+	}
+	.help-box {
+		padding: 10px 20px;
+		border: 1px solid $color-gray-strong;
+		font-size: 14px;
+		color: $color-gray-strong;
+		float: left;
+		position: relative;
+		border-radius: 5px;
+		margin-left: 40px;
+		&:before {
+			content: '';
+			width: 10px;
+			height: 29px;
+			position: absolute;
+			top: 5px;
+			left: -10px;
+			background: image-url('v2/arr-help.png') no-repeat, $color-white;
+		}
+		ul {
+			list-style: none;
+			li {
+				position: relative;
+				padding-left: 20px;
+				&:before {
+					content: '';
+					width: 4px;
+					height: 4px;
+					border-radius: 50%;
+					background: $color-text-black;
+					left: 5px;
+				    position: absolute;
+				    top: 9px;
+				}
+				h4 {
+					@include fontRegular();
+					color: #DE6A6D;
+					font-size: 14px;
+				}
+			}
+		}
+	}
+	.char-number {
+		margin-top: 2px;
+		.num {
+			float: left;
+			margin-right: 30px;
+			padding-left: 20px;
+			color: red;
+			background: image-url('v2/char-err.png') left center no-repeat;
+		}
+		.instruction {
+			float: left;
+		}
+		&.correct .num {
+			color: #009144;
+			background: image-url('v2/char-ok.png') left 3px no-repeat;
+		}
+	}
+	input[type=text],
+	textarea {
+		border: 1px solid $color-blue-light;
+		border-radius: 5px;
+		color: $color-black;
+	}
+	textarea {
+		resize: vertical;
+		height: 170px;
+		padding: 10px 15px;
+	}
+	.responsibilities .col-4,
+	.requirements .col-4 {
+		width: 42%;
+		.custom-checkbox {
+			width: 100%;
+		}
+		@include respond-to('mobile') {
+			width: 50%;
+			&:last-child {
+				margin-top: 1px;
+			}
+			.custom-checkbox {
+				height: 34px;
+				label {
+					font-size: 12px;
+					line-height: 1.2;
+					height: 30px;
+					&:after,
+					&:before {
+						top: -2px;
+					}
+				}
+			}
+		}
+	}
+	@include respond-to('mobile') {
+		.responsibilities .col-4:last-child {
+			margin-top: 5px;
+		}
+	}
+	.type-of-care {
+		overflow: visible;
+
+    .radio-groups {
+      
+      display: inline-block;
+    }
+    .payment-section {
+      display: inline-block;
+      float: right;
+      position: relative;
+      top: -2px;
+      label,
+      span {
+        color: $color-black;
+        font-size: 18px;
+        line-height: 30px;
+      }
+      label {
+        float: left;
+        margin-right: 10px;
+        margin-top: 10px;
+      }
+      input[type=text] {
+        width: 110px;
+        float: left;
+      }
+      span {
+        float: left;
+        display: inline-block;
+       
+        clear:both;
+      }
+      .select-box {
+        float: right;
+        width: 110px;
+      }
+    }
+		.group {
+      height: 37px;
+
+			.custom-checkbox {
+				float: left;
+				position: relative;
+			}
+			.help-bubble {
+				top: 3px;
+				right: -6px;
+			}
+			&.checked .payment {
+				display: block;
+			}
+			@include respond-to('mobile') {
+				.payment {
+					width: 100%;
+					margin: 10px 0;
+					input[type=text] {
+						width: 70px;
+							}
+					label {
+						display: none;
+					}
+					.mobile {
+						display: inline-block;
+					}
+				}
+			}
+		}
+	}
+	.additional-questions {
+		overflow: hidden;
+		padding-bottom: 40px;
+		textarea {
+			display: none;
+			width: 460px;
+			max-width: 100%;
+			height: 170px;
+			margin-bottom: 10px;
+		}
+		.content {
+			float: left;
+		}
+		h1 {
+			padding-bottom: 0;
+		}
+		p {
+			width: 460px;
+			max-width: 100%;
+			padding-bottom: 30px;
+		}
+		.help-box {
+			width: 400px;
+			display: none;
+		}
+		&.show-form {
+			> a {
+				display: none;
+			}
+			textarea, .help-box {
+				display: block;
+			}
+		}
+		@include respond-to('mobile') {
+			p {
+				padding: 10px 0 12px;
+				line-height: 1.3;
+				font-size: 12px;
+			}
+			&.show-form {
+				.content {
+					width: 100%;
+				}
+				textarea {
+					width: 100%;
+				}
+				.help-box {
+					display: none;
+				}
+			}
+		}
+	}
+	form > input[type=submit] {
+		display: block;
+		width: 200px;
+		padding: 5px 0;
+	}
+	form > a {
+		font-size: 18px;
+		text-decoration: underline;
+		color: $color-blue-light;
+		font-weight: 600;
+	}
+	@include respond-to('mobile') {
+		form > input[type=submit] {
+			margin: 0px auto 10px;
+		}
+		form > a {
+			display: block;
+			text-align: center;
+		}
+	}
+}

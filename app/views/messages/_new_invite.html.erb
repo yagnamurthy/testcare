@@ -1,0 +1,33 @@
+<header>
+	<%= Caregiver.find(params[:caregiver_id]).first_name %>
+</header>
+
+<div class="body">
+
+	<div class="user">
+		<img src="/assets/clients/medium2-example.jpg" alt="" class="middle2-avatar">
+		<div class="info">
+			<h2><%= Caregiver.find(params[:caregiver_id]).first_name %></h2>
+			<p class="caregiver-hours"><i class="small-heart"></i><%= Caregiver.find(params[:caregiver_id]).hours %> + carespotter hours   </p>
+		</div>
+	</div>
+
+	<form method="post" action="#" class="myform" id="message-request">
+		<div class="field">
+			<label>Job posting:</label>
+			<div class="select-box">
+				<select>
+					<option>Caregiver need as back up for paralyzed woman with ms</option>
+				</select>
+			</div>
+		</div>
+		<div class="field">
+			<label>Message:</label>
+			<textarea>Enter email addresses (separate with comma).</textarea>
+		</div>
+		<div class="action">
+			<input type="submit" class="btn main" value="Send">
+		</div>
+	</form>
+
+</div>

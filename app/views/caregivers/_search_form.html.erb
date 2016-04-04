@@ -1,0 +1,17 @@
+
+<%= form_tag('/caregivers_search', :method => 'post', :"data-abide" => true) do %>
+    <%= text_field_tag(:zipcode, params[:zipcode], {placeholder: GeoData.new(request.remote_ip).to_s, id: 'autocomplete'}) %>
+      <%= button_tag('Search', {id: 'search-button', class: 'btn main' }) do %>
+       Search
+    <% end %>
+<% end %>
+
+
+<script>
+  new google.maps.places.Autocomplete((document.getElementById('autocomplete')),
+      {
+        types: ['geocode'],
+        componentRestrictions: { 'country': 'us' }
+      });
+</script>
+

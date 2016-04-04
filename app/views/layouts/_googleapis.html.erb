@@ -1,0 +1,47 @@
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+
+<% if Rails.env.production? %>
+
+    <script type=“text/javascript”>
+    (function(a,e,c,f,g,b,d){var
+    h={ak:”1036789869”,cl:”nVZnCJfJnlkQ7dCw7gM”};a[c]=a[c]||
+    function(){(a[c].q=a[c].q||[]).push(arguments)};a[f]||
+    (a[f]=h.ak);b=e.createElement(g);b.async=1;b.src=“//www.gstatic.com/wcm/loader.js”;d=e.getElementsByTagName(g)[0];d.parentNode.insertBefore(b,d);a._googWcmGet=function(b,d,e){a[c](2,b,h,d,null,new
+    Date,e)}})(window,document,”_googWcmImpl”,”_googWcmAk”,”script”);
+    </script>
+
+	<!-- Google Analytics -->
+
+	<% if @custom_google_api %>
+
+		<!-- Custom Google Api -->
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-45778200-2', {'cookieDomain': 'none'});
+		  ga('send', 'pageview');
+
+		</script>
+
+	<% else %>
+
+	<!-- Carespotter -->
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-45778200-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+
+	<% end %>
+
+<% end %>

@@ -1,0 +1,17 @@
+<header>
+	Request for new organization
+</header>
+
+<div class="body middle-width">
+
+	<%= form_for @affiliate, html: { class: 'myform', id: 'create-organization' } do |f| %>
+		<div class="field">
+			<%= f.label :name, 'Enter the name of the community group you would like to add.' %>
+			<%= f.text_field :name, placeholder: 'For example: Downtown YMCA, Orlando Rotary Club, etc' %>
+		</div>
+		<div class="action">
+			<%= f.submit class: 'btn main', value: 'Save' %>
+		</div>
+	<% end %>
+
+</div>

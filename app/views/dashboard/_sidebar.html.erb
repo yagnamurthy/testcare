@@ -1,0 +1,100 @@
+<nav class="dashboard-navigator">
+    <div class="sidebar-scrolling">
+        <ul>
+            <li>
+                <%= link_to dashboard_path,
+                    class: current == 'dashboard' ? 'act': '' do %>
+                        <i class="dashboard"></i><span>Dashboard</span>
+                        <% if current == 'dashboard' %>
+                            <%= content_tag(:i, '', class: 'act-arrow') %>
+                        <% end %>
+                    <% end %>
+            </li>
+
+            <% if dashboard.has_contracts? %>
+                <% dashboard.contracts.each do |contract| %>
+                    <li class="caregivers-changer header">
+                        <%= link_to contract_path(contract.id) do %>
+                            <i class="profile"></i>
+                            <div class="wrapper">
+                                <span>
+                                    <span class="name"><%= contract.patient_name %></span>
+                                    <span class="address"><%= contract.city %>, <%= contract.state %> (<%= contract.zipcode %>)</span>
+                                </span>
+                            </div>
+                        <% end %>
+            <!--             <div class="changer-list">
+                            <a href="#">My Journal</a>
+                            <a href="#">All patients</a>
+                            <a href="#">
+                                Tom S
+                                <span>Orlando, FI (32217)</span>
+                            </a>
+                            <a href="#">
+                                Marie T
+                                <span>Orlando, FI (32217)</span>
+                            </a>
+                            <a href="#">
+                                Jen S
+                                <span>Orlando, FI (32217)</span>
+                            </a>
+                        </div> -->
+                    </li>
+
+                    <ul class="">
+                        <li>
+                            <%= link_to contract_journals_path(contract.id),
+                                class: (current == 'journals' && params[:contract_id].to_s == contract.id.to_s) ? 'act': '' do %>
+                                    <i class="journal"></i><span>Edit Journal</span>
+                                    <% if (current == 'journals' && params[:contract_id].to_s == contract.id.to_s) %>
+                                        <%= content_tag(:i, '', class: 'act-arrow') %>
+                                    <% end %>
+                                <% end %>
+                        </li>
+
+                        <li>
+                            <%= link_to contract_contacts_path(contract.id),
+                                class: (current == 'contacts' && params[:contract_id].to_s == contract.id.to_s) ? 'act': '' do %>
+                                <i class="contacts"></i><span><%= current_user.caregiver? ? 'View Contacts' : 'Add Contacts' %></span>
+
+                                <% if (current == 'contacts' && params[:contract_id].to_s == contract.id.to_s) %>
+                                    <%= content_tag(:i, '', class: 'act-arrow') %>
+                                <% end %>
+                            <% end %>
+                        </li>
+
+    <!--                     <li>
+                            <%= link_to contract_todos_path(contract.id) do %>
+                                <i class="todos"></i><span>To-do's</span>
+                            <% end %>
+                        </li> -->
+                    </ul>
+                <% end %>
+            <% end %>
+
+            <% if current_user.caregiver? %>
+
+            <% elsif current_user.family? %>
+                <li>
+                    <%= link_to near_path(current_user.current_contract.zipcode),
+                        class: current == 'offer' ? 'act': '' do %>
+                            <i class="jobs"></i><span>Search Caregivers</span>
+                            <% if current == 'offer' %>
+                                <%= content_tag(:i, '', class: 'act-arrow') %>
+                            <% end %>
+                        <% end %>
+                </li>
+            <% end %>
+
+            <li>
+                <%= link_to payments_path,
+                    class: current == 'payment' ? 'act': '' do %>
+                        <i class="payments"></i><span>Payment Center</span>
+                        <% if current == 'payment' %>
+                            <%= content_tag(:i, '', class: 'act-arrow') %>
+                        <% end %>
+                    <% end %>
+            </li>
+        </ul>
+    </div>
+</nav>

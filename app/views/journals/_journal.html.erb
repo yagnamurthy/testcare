@@ -1,0 +1,14 @@
+<div class="msg">
+    <div class="desc">
+        <p>
+            <%= journal.body %>
+        </p>
+        <%= avatar_tag journal.user, :thumb, class: 'small-avatar' %>
+    </div>
+    <div class="bar">
+        <span class="author"><%= journal.user.full_name %></span>
+        <span class="date"><%= journal.entry_date.strftime("%m/%d/%Y") %></span>
+        <!-- <a href="#" class="action"><i class="actions comment"></i>Comment</a> -->
+        <!-- <a href="#" class="action"><i class="actions edit"></i>Edit</a> -->
+    </div>
+</div>

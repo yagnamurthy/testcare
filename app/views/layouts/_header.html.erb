@@ -1,0 +1,124 @@
+<header class="main">
+    <% benchmark 'header' do %>
+    <div class="row">
+        <h1><a href="/"><%= image_tag "mainLogo.png", alt: "Carespotter | Find a Caregiver" %></a></h1>
+        <div class="menu-switch mobile-show">
+            <% if current_user %>
+               <span id="header-avatar"><%= image_tag(current_user.avatar.url(:thumb)) %><%= image_tag 'v2/arr-user.png', id: 'message-caret'%></span>
+                <% if current_user.mailbox.inbox(unread: true).count > 0 %>
+                    <span id = "warning-icon"><%= image_tag "v2/warning-icon.png" %></span>
+                <% end %>
+            <% end %>
+        </div>
+        <% if !current_user %>
+            <%= link_to_modal "Log in", new_user_session_path, class: 'mobile-show' %>
+        <% end %>
+        <% if current_user && current_user.caregiver? %>
+            <nav>
+                <ul><span class="mobile-show">&nbsp;Main Navigation</span>
+                  <li class="mobile-hide">
+                        <%= link_to 'My Profile', dashboard_path %>
+                  </li>
+                  <li class="mobile-show">
+                      <%= link_to image_tag("v2/user.png") + 'My Profile', dashboard_path, class: "mobile-nav"  %>
+                  </li>
+                    <li class="mobile-hide">
+                      <% if current_user.new_jobs > 0 %>
+                          <span><%= pluralize(current_user.new_jobs, "New " 'Job') %></span>
+                      <% end %>
+                      <%= link_to 'Search Jobs', contracts_path%>
+                    </li>
+                    <li class="mobile-show">
+                      <% if current_user.new_jobs > 0 %>
+                        <span><%= pluralize(current_user.new_jobs, "New " 'Job') %></span>
+                      <% end %>
+                        <%= link_to image_tag("v2/search-80px.png") + 'Search Jobs', contracts_path, class: "mobile-nav search"  %>
+                    </li>
+                    <li class="mobile-hide">
+                        <% if current_user.mailbox.conversations(:unread => true).not_trash(current_user).count(:id) > 0 %>
+                          <span>&nbsp;<%= current_user.mailbox.conversations(:unread => true).not_trash(current_user).count(:id) %> New</span>
+                        <% end %>
+                        <%= link_to 'Messages', inbox_mailbox_index_path(), class: 'mobile-hide'%>
+                    </li>
+                    <li class="mobile-show">
+                        <% if current_user.mailbox.conversations(:unread => true).not_trash(current_user).count(:id) > 0 %>
+                          <span>&nbsp;<%= current_user.mailbox.conversations(:unread => true).not_trash(current_user).count(:id) %> New</span>
+                        <% end %>
+                        <%= link_to image_tag("v2/envelope.png") + ' Messages', inbox_mailbox_index_path(), class: "mobile-nav" %>
+                    </li>
+                    <span class="mobile-show">&nbsp;Account Settings</span>
+                    <li id="user-menu" class="mobile-hide">
+                        <%= image_tag(current_user.avatar.url(:thumb)) %>
+                        <a href="#">Account</a>
+                        <%= render partial: 'layouts/dropdown_menu' %>
+                    </li>
+                    <li class="mobile-show">
+                      <%= render partial: 'layouts/dropdown_menu' %>
+                    </li>
+                </ul>
+            </nav>
+        <% elsif current_user && current_user.family? %>
+            <nav>
+              <ul><span class="mobile-show">&nbsp;Main Navigation</span>
+                <% if current_user.job && current_user.job.zipcode %>
+                  <li class="mobile-hide">
+                    <%= link_to 'Search Caregivers', near_path(zipcode: current_user.job.zipcode) %>
+                  </li>
+                  <li class="mobile-show">
+                    <%= link_to image_tag("v2/search-80px.png") + 'Search Caregivers', near_path(zipcode: current_user.job.zipcode), class: "mobile-nav search"  %>
+                  </li>
+                <% end %>
+                <li>
+                  <%= link_to 'Manage Job', family_job_path %>
+                </li>
+                <li class="mobile-hide">
+                  <% if current_user.mailbox.conversations(:unread => true).not_trash(current_user).count(:id, :distinct => true) > 0 %>
+                    <span>&nbsp;<%= current_user.mailbox.conversations(:unread => true).not_trash(current_user).count(:id, :distinct => true) %> New</span>
+                  <% end %>
+                  <%= link_to 'Messages', inbox_mailbox_index_path() %>
+                </li>
+                <li class="mobile-show">
+                    <% if current_user.mailbox.conversations(:unread => true).not_trash(current_user).count(:id, :distinct => true) > 0 %>
+                      <span>&nbsp;<%= current_user.mailbox.conversations(:unread => true).not_trash(current_user).count(:id, :distinct => true) %> New</span>
+                    <% end %>
+                    <%= link_to image_tag("v2/envelope.png") + ' Messages', inbox_mailbox_index_path(), class: "mobile-nav" %>
+                </li>
+                <span class="mobile-show">&nbsp;Account Settings</span>
+                <li id="user-menu" class="mobile-hide">
+                    <%= image_tag(current_user.avatar.url(:thumb)) %>
+                    <a href="#">Account</a>
+                    <%= render partial: 'layouts/dropdown_menu' %>
+                </li>
+                <li class="mobile-show">
+                  <%= render partial: 'layouts/dropdown_menu' %>
+                </li>
+              </ul>
+            </nav>
+        <% else %>
+            <nav>
+                <ul>
+                    <li><%= link_to 'How it Works', web_how_it_works_path %></li>
+                    <% if current_user %>
+                        <li><%= link_to "Find Care Jobs", contracts_path %></li>
+                    <% else %>
+                        <li><%= link_to "Find Care Jobs", web_become_a_caregiver_path %></li>
+                    <% end %>
+                    <span class="mobile-show">&nbsp;Account Settings</span>
+                    <% if current_user %>
+                        <li id="user-menu">
+                            <a href="#">Account</a>
+                            <%= render partial: 'layouts/dropdown_menu' %>
+                        </li>
+                    <% else %>
+                        <li><%= link_to "Sign Up",  web_sign_up_path, class: 'sign-up' %></li>
+                        <li><%= link_to_modal "Log in", new_user_session_path, class: 'mobile-hide login-btn' %></li>
+                    <% end %>
+                </ul>
+            </nav>
+        <% end %>
+        <% if !current_user %>
+            <div class="questions-info">Questions? 407-792-4697</div>
+        <% end %>
+    </div>
+    <% end %>
+</header>

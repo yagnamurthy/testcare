@@ -1,0 +1,4 @@
+<div class="navigation-column">
+	<%= link_to 'Inbox', inbox_mailbox_index_path, class: "#{selected == 'inbox' ? 'active' : ''}" %>
+	<%= link_to 'Trash', sentbox_mailbox_index_path, class: "#{selected == 'sentbox' ? 'active' : ''}" %>
+</div>

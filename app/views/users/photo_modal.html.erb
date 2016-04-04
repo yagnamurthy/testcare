@@ -1,0 +1,44 @@
+<div id="photo-modal">
+	<header>
+		Add portait
+	</header>
+
+	<div class="body no-padding jc-demo-box" id="add-photo-modal">
+
+		<form action="#" method="post" class="myform">
+
+			<div class="mcolumn two-third border-right">
+				<img id="target">
+
+				<div class="row after-crop">
+					<p class="no-padding">To make adjustments to how your photo is cropped, you can drag and resize the highlighted square above. When you're happy with your photo, click the "save photo" button.</p>
+					<p><a id='upload-another' href="#" class="red">Upload a different photo ></a></p>
+				</div>
+			</div>
+
+			<div class="mcolumn one-third">
+				<h4>Your profile portrait</h4>
+				
+				<div id="preview-pane">
+	      			<div id="avatar-preview" class="preview-container photo">
+	        			<img src="" class="jcrop-preview" alt="Preview" />
+	      			</div>
+	    		</div>
+
+		        <div class="action">
+		        	<input type="submit" class="btn main" id="save-photo" ref="modal:close" value="Save photo">
+		        	<span class="cancel">or <a id="cancel-photo" href="#" ref="modal:close">Cancel</a></span>
+		        </div>
+
+		        <p>
+		        	Must be an actual picture of you. Logos, clip art, group pictures and digitally altered images not allowed.
+		        </p>
+			</div>
+
+			<div class="hidden">
+				<img id="original">
+			</div>	
+
+		</form>	
+	</div>
+</div>

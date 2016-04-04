@@ -1,0 +1,63 @@
+ <% meta(title: "10 Best Local, Professional Caregivers in #{@region.city}, #{@region.state} - CareSpotter", description: "CareSpotter helps you find the best local senior caregivers in your community for care tasks, big and small.")
+ %>
+
+<div class="row">
+    <div class="seo-caregiver-page">
+        <div id="seo-sidebox-left">
+            <h1><%= @region.city %> Senior Caregivers</h1>
+            <p>CareSpotter helps you find top rated, local professional senior caregivers in <%= @region.city %>, <%= @region.state %> for help with care tasks, part time, full time or live in caregiving.</p>
+
+            <li>All <%= @region.city %> Senior Caregiver are screened and background checked, and insured and bonded when hired through CareSpotter.</li>
+            <li>Browse by experience, pay rate, language, or location to find the perfect senior caregiver for your loved one.</li>
+            <li>Contact caregivers directly quickly and easily or post your Care Job to have senior caregivers contact you and apply.</li>
+        </div>
+        <div id="seo-sidebox-right">
+            <h2><%= @count %> <%= @region.city %> Senior Caregivers</h2>
+
+            <li>Average Pay Rate: <%= formatted_hourly_rate @averages.hourly_rate %></li>
+            <li>Average Years Experience: <%= @averages.work_experience %></li>
+            <li>Average Age: <%= @averages.age %></li>
+            <li>Sign up for free</li>
+        </div>
+        <% if @region.state == "Florida" || @region.state == "FL" || @region.state = "fl" %>
+        <div id="search-options">
+            <h6> Search Orlando for caregivers.  CareSpotter will hlep you find caregivers in Orlando, Florida.</h6>
+            <p>Here are some nearby cities with caregivers that may be closer to you: 
+                <%= link_to "Clermont Senior Caregivers", state_and_city_near_path(state: "Florida", city: "Clermont") %>, 
+                <%= link_to "Oviedo Senior Caregivers", state_and_city_near_path(state: "Florida", city: "Oviedo") %>,
+                <%= link_to "Ocoee Senior Caregivers", state_and_city_near_path(state: "Florida", city: "Ocoee") %>,
+                <%= link_to "Kissimmee Senior Caregivers", state_and_city_near_path(state: "Florida", city: "Kissimmee") %>, 
+                <%= link_to "Winter Garden Senior Caregivers", state_and_city_near_path(state: "Florida", city: "Winter Garden") %>, 
+                <%= link_to "Maitland Senior Caregivers", state_and_city_near_path(state: "Florida", city: "Maitland") %>,
+                <%= link_to "Winter Park Caregivers", state_and_city_near_path(state: "Florida", city: "Winter Park") %>
+            </p>
+        </div>
+        <div id="seo-signup-box">
+            <h2>Connect with the best Caregivers in Orlando today!</h2>
+            <%= button_to "Get Started", new_user_registration_path, class: 'btn main', id: "seo-signup-button" %>
+        </div>
+        <div class="caregivers-list">
+            <% benchmark 'caregivers-list' do %>
+                <div id="caregivers">
+                    <% @caregivers.each do |caregiver| %>
+                        <%= render :partial => 'city_state_user', :locals => { user: caregiver } %>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+<div id="city-info">
+    <% if @region.city == "Orlando" %>
+
+    <p>Orlando, nicknamed The City Beautiful, is a dream for many baby boomers who enjoy the warmer winter season and many recreation options. Since 1965, when Walt Disney began to transform this former agricultural area into the 5th largest city in Florida, Orlando has seen steady growth in population. To go with the amazing tourism spots like Disney, Universal Orlando Resort, Sea World, Epcot and Islands of Adventure - the city is packed with active adult and 55+ communities.
+    </p>
+    <p>
+    From warm winters, to a vibrant art community, world class golf courses, to promixity to world famous beaches and an abundance of lakes and rivers for fishing, Orlando, Florida has many activities for the active senior. CareSpotter helps many local seniors age in place by providing Orlando Senior Caregiver resources. Our caregivers are experienced, professional, and kind and available for every budget and care task, big and small, from shopping or help paying bills to full time and live in caregivers.
+    </p>
+    <p>
+    We can all use a hand, and CareSpotter's caregivers help Orlando seniors continue to live independently in the comfort of their own homes.
+    </p>
+     <% end %>
+    <% end %>
+</div>

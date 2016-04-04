@@ -1,0 +1,180 @@
+.seo-page {
+	ul {
+		list-style-position: inside;
+	}
+	.descr {
+		width: calc(100% - 350px);
+		float: left;
+		padding-top: 27px;
+	}
+	.statistics {
+		width: 320px;
+		float: right;
+		background: $color-gray-light;
+		padding: 30px 20px 20px;
+		color: $color-gray-strong;
+		font-size: 18px;
+		h2 {
+			color: $color-blue-strong;
+			font-size: 28px;
+		}
+		a {
+			color: $color-gray-strong;
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.nearby {
+		margin-top: 10px;
+	}
+
+	.claim {
+		margin: 10px 0 0;
+		background: $color-blue-middle;
+		padding: 20px;
+		overflow: hidden;
+		border-radius: 10px;
+		h3 {
+			float: left;
+			width: 70%;
+			font-size: 36px;
+			color: $color-white;
+			line-height: 1.1;
+		}
+		.btn {
+			width: 25%;
+			float: right;
+			margin-top: 10px;
+		}
+	}
+}
+.seo-caregiver-page {
+	#seo-sidebox-right {
+		width: 35%;
+		float:right;
+		background-color: $color-gray-light;
+		padding: 20px;
+		@include border-radius(4px);
+	h2 {
+		margin-top: 20px;
+		color: $color-blue-strong;
+		padding-bottom: 10px;
+		}
+	@include respond-to("mobile") {
+			float:none;
+      width: 100%;
+      margin: 10px 0px;
+      padding: 15px;
+      h2 {
+				margin-top: 0px;
+			}
+		}
+	}
+	#seo-sidebox-left {
+	  width: 60%;
+	  text-align: justify;
+		float: left;
+		h1 {
+			padding: 10px 0px;
+			margin-top: 20px;
+		}
+		p {
+			padding-bottom: 10px;
+		}
+		@include respond-to("mobile") {
+			float:none;
+      width: 90%;
+      margin: 20px;
+      padding-top: 250px;
+    h1 {
+    		text-align:left;
+    		margin: 0px;
+    	}
+		}
+	}
+	#seo-signup-box {
+		padding: 20px;
+		margin-top: 30px;
+		clear: both;
+		background-color: $color-blue-middle;
+		@include border-radius(4px);
+		h2 {
+			color: $color-white;
+			width: 50%;
+			padding-left: 30px;
+			@include respond-to("mobile") { 
+				width: 100%;
+				padding: 0px;
+				font-size: 30px;
+				text-align: center;
+			}
+		}
+		#seo-signup-button {
+			width: 200px;
+  		margin-top: -90px;
+			background-color: $color-white;
+			color: $color-blue-light;
+			border-bottom: 2px solid $color-blue-light;
+			float:right;
+			@include border-radius(4px);
+			@include respond-to("mobile") { 
+				margin: 10px 75px;
+			}
+		}
+		@include respond-to("mobile") { 
+			height: 200px;
+			padding: 10px;
+			position: absolute;
+			top: 20px;
+		}
+	}
+	#search-options {
+		clear: both;
+		padding-top:20px;
+		h6 {
+			color: $color-gray-strong;
+			font-weight: bold;
+		}
+		@include respond-to("mobile") { 
+			display:none;
+		}
+	}
+	@include respond-to("mobile") {
+		margin: 0px;
+	}
+	.caregivers-list {
+			@include respond-to("mobile") {
+			padding-top: 20px;
+		  .stats {
+		  	margin: -90px 0px 0px 15px;
+		  }
+		  .hourly-rate {
+		  	margin-top: -55px;
+		  }
+		}
+		@include respond-to("small-mobile") {
+		  .stats {
+		  	margin: -80px 0px 0px 10px;
+		  }
+		  .hourly-rate {
+		  	margin-top: -45px;
+		  }
+		}
+	}
+}
+#city-info {
+	padding: 50px 150px;
+	background-color: $color-gray-light;
+	margin-top:20px;
+	p {
+		padding: 10px 0px;
+		text-align:justify;
+	}
+@include respond-to("mobile") {
+	  padding: 10px 50px;
+	}	
+}
+

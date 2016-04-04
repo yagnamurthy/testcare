@@ -1,0 +1,163 @@
+.modal .user-register-page {
+	.tabs,
+	.reg-slider .back {
+		display: none;
+	}
+	.reg-slider {
+		min-height: 0;
+		padding-bottom: 20px;
+		border-radius: 10px;
+		form {
+			overflow: hidden;
+		}
+		.form-items {
+			height: auto;
+		}
+		.btn-save {
+			display: none;
+		}
+		.btn {
+			display: inline-block;
+			padding: 7px 40px;
+			float: right;
+			margin: 10px;
+		}
+	}
+	.reg-slider .form-item {
+		position: static;
+		width: auto;
+	}
+	.reg-slider .title {
+		padding-top: 0;
+		background: none !important;
+	}
+	.birthdate .year {
+		margin-right: 0;
+	}
+	.section-banner {
+		display: none;
+	}
+	.photo-content {
+		margin: 0;
+	}
+}
+
+.edit-btn {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    background: image-url('v2/icon-edit.png') center no-repeat, $color-blue-light;
+    float: left;
+    margin-right: 6px;
+    margin-left: -4px;
+    text-decoration: none;
+    @include transition(background 0.2s);
+    @include respond-to('desktop') {
+      &:hover {
+        background: image-url('v2/icon-edit.png') center no-repeat, darken($color-blue-light, 5%);
+      }
+    }
+    @include respond-to('mobile') {
+      margin-right: 0;
+    }
+}
+
+.user-page.edit-mode {
+    .edit-btn {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 2px;
+        background: image-url('v2/icon-edit.png') center no-repeat, $color-blue-light;
+        float: left;
+        margin-right: 6px;
+        margin-left: -4px;
+        text-decoration: none;
+        @include transition(background 0.2s);
+        @include respond-to('desktop') {
+          &:hover {
+            background: image-url('v2/icon-edit.png') center no-repeat, darken($color-blue-light, 5%);
+          }
+        }
+        @include respond-to('mobile') {
+          margin-right: 0;
+        }
+    }
+
+    .edit-profile {
+    	.preview {
+    		display: inline;
+    	}
+    	.edit {
+    		display: none;
+    	}
+    }
+    .banner .row {
+    	position: relative;
+    }
+    .banner .edit-btn,
+    #user-schedule .edit-btn,
+    .avatar .edit-btn {
+    	display: inline-block;
+    	width: auto;
+    	padding: 0 14px 0 30px;
+    	color: $color-white;
+    	line-height: 24px;
+    	height: 24px;
+    	background: image-url('v2/icon-edit.png') 10px 5px no-repeat, $color-blue-light;
+    	@include respond-to('desktop') {
+        	&:hover {
+        		background: image-url('v2/icon-edit.png') 10px 5px no-repeat, darken($color-blue-light, 5%);
+        	}
+        }
+    }
+    .avatar .edit-btn {
+		position: absolute;
+		bottom: 13px;
+		left: 19px;
+	}
+    .banner .edit-btn {
+    	position: absolute;
+    	top: 200px;
+    	left: 10px;
+    	@include respond-to('mobile') {
+    		left: 50%;
+		    margin-left: -80px;
+		    position: absolute;
+		    top: 122px;
+    	}
+    }
+
+#background-button {
+  margin-left: 150px;
+
+}
+    .experience-item {}
+    #user-schedule {
+    	padding-top: 30px;
+    	.header {
+    		width: 100%;
+    		margin-top: 20px;
+    	}
+    	.edit-btn {
+	    	float: none;
+	    	margin-left: 2px;
+	    }
+	}
+	.content .simple-list {
+		h4 {
+			padding-top: 15px;
+			padding-left: 26px;
+		}
+		.wrapper {
+			padding-left: 4px;
+			width: 100%;
+			div {
+				float: left;
+				width: calc(100% - 30px);
+			}
+		}
+	}
+}
+

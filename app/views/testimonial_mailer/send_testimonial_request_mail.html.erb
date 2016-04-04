@@ -1,0 +1,10 @@
+<p><%= @caregiver.first_and_last_initial %> is requesting a reference on CareSpotter,</p>
+
+<p>CareSpotter is an online marketplace that helps families find the perfect caregiver. We also support excellent caregivers like <%= @caregiver.first_name %> as entrepreneurs. By leaving <%= @caregiver.first_name %> a reference, she will be able to market herself on the site more effectively and connect with potential clients.</p>
+
+<p>To leave <%= @caregiver.first_name %> a reference, please go to this link: <%= link_to 'View Profile', caregiver_url(@caregiver, rf: @caregiver.md5hash), target: '_blank' %>.</p>
+
+<p>If you have any questions about CareSpotter or this email, please contact CareSpotter at <a href="tel:407-792-4697" value="+14077924697" target="_blank">407-792-4697</a> or <a href='mailto:team@carespotter.com'>team@carespotter.com</a>. Thank you for your consideration, and have a great week!</p>
+
+<p>Team CareSpotter</p>
+<p>Helping families find the perfect caregiver.</p>

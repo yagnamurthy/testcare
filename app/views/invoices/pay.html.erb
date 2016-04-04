@@ -1,0 +1,69 @@
+<div class="container">
+	<div class="page-type-one-board">
+
+		<%= render partial: 'invoices/pay_invoice_process' %>
+
+		<div class="page-content">
+			<h2>Credit Card Information</h2>
+
+			<!-- JS form -->
+			<%= form_tag process_invoice_path(@invoice.id), method: 'post', class: 'myform', id: 'credit-card-form' do |f| %>
+				<section>
+					<h3>Invoice</h3>
+				</section>
+
+				<table>
+					<tr>
+						<th>Caregiver:</th>
+						<td>
+							<%= avatar_tag @invoice.sender, :medium, class: 'middle2-avatar' %>
+							<%= @invoice.sender.first_and_last_initial %>
+						</td>
+					</tr>
+					<tr>
+						<th>Hours Worked:</th>
+						<td><%= @invoice.hours %></td>
+					</tr>
+					<tr>
+						<th>Amount Requested:</th>
+						<td><%= @invoice.amount %></td>
+					</tr>
+				</table>
+
+				<label>Credit Card Number</label>
+				<input name='' id='cc-number'>
+
+				<label>Expiration Month</label>
+				<%= select_month(14, prompt: '', use_two_digit_numbers: true, id: 'cc-em') %>
+
+				<label>Expiration Year</label>
+				<%= select_year(1, prompt: '', start_year: 2013, end_year: 2030, id: 'cc-ey') %>
+
+				<label>Security Code</label>
+				<input name='' id='cc-csc'>
+
+				<input type='hidden' id='brand' name='credit_card[brand]'>
+				<input type='hidden' id='expiration_month' name='credit_card[expiration_month]'>
+				<input type='hidden' id='expiration_year' name='credit_card[expiration_year]'>
+				<input type='hidden' id='hash_value' name='credit_card[hash_value]'>
+				<input type='hidden' id='is_valid' name='credit_card[is_valid]'>
+				<input type='hidden' id='is_verified' name='credit_card[is_verified]'>
+				<input type='hidden' id='last_four' name='credit_card[last_four]'>
+				<input type='hidden' id='uri' name='credit_card[uri]'>
+
+
+
+				<section class="action">	
+					<button id='process_payment' class='btn main'>Process</button>				
+					<span class="cancel">or <a href="#">Cancel</a></span>
+
+					<div class="tip">
+						<span class="flag red">Tip</span>
+						<p>You will get a chance to review before sending this offer.</p>
+					</div>
+				</div>
+
+			<% end %>
+		</div>
+	</div>
+</div>

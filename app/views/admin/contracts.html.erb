@@ -1,0 +1,35 @@
+<% if notice %>
+	<div data-alert class="alert-box success radius">
+		<%= notice %>
+	</div>
+<% end %>
+
+<table>
+	<thead>
+		<tr>
+			<td>Owner</td>
+			<th>Headline</th>
+			<th>Description</th>
+			<th>Budget</th>
+			<th>Patient Name</th>
+			<th>Phone</th>
+			<th>Enable Control</th>
+            <th>Edit</th>
+			<th>Delete?</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<%= render partial: 'admin/contract', collection: @contracts %>
+	</tbody>
+</table>
+
+
+<%= paginate @contracts %>
+
+<p>
+  Download:
+  <%= link_to "CSV", contracts_path(format: "csv") %>
+</p>
+
+

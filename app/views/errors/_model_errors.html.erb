@@ -1,0 +1,11 @@
+<div id="error_explanation" class="alert-box alert">
+    <h5><%= pluralize(model.errors.count, "error") %> prohibited this <%= model.class.name %> from being saved:</h5>
+
+    <div>
+        <ul>
+            <% model.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+</div>

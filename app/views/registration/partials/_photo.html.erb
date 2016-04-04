@@ -1,0 +1,68 @@
+<div class="user-register-page container-large">
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "photos"} %>
+
+            <div class="reg-slider">
+                <%= form_tag photo_upload_path, method: :post do |f| %>
+
+                    <div class="form-item photo" id='fileupload' data-tab="photos">
+                        <label class="title">Add a Profile Photo</label>
+                        <div class="photo-content">
+                            <div class="info">
+                                <h4>Lets see your smile!</h4>
+                                <p>Caregivers with friendly, smiling photos are 7 times more likely to be hired than those without a smile. So please SMILE!</p>
+
+                                <%= file_field_tag :file, id: 'avatar-upload', class: "cloudinary-fileupload", data: { "cloudinary-field": "image_id"}  %>
+                            </div>
+
+                            <div class="thumbnail">
+                                <div class="ajax-indicator">
+                                    <%= image_tag('spinner.gif') %>
+                                </div>
+                                <% if current_user.avatar %>
+                                  <%= image_tag(current_user.avatar.url(:large)) %>
+                                <% else %>
+                                  <%= image_tag('v2/register/avatar-women.png') %>
+                                <% end %>
+                            </div>
+                        </div>
+                        <%= hidden_field_tag 'route', background_path %>
+                    </div>
+
+                    <div class="buttons">
+                        <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                        <%= submit_tag 'Save and Continue', class: 'btn-save' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('input[type=file]').unsigned_cloudinary_upload('ckpdccvn', {
+    cloud_name: 'carespotter'
+  }, {
+    multiple: true
+  }).bind('fileuploadstart', function() {
+    $('.photo .ajax-indicator').show();
+  })
+  .bind('cloudinarydone', function(response, data) {
+    $.ajax({
+      dataType: 'json',
+      method: 'POST',
+      url: '/photo/upload',
+      data: {
+        file: data.result
+      }
+    }).done(function(response){
+      $('.thumbnail').html('<img src="' + response.url + '">');
+      $('.photo .ajax-indicator').hide();
+      window.location.href = '/dashboard';
+    });
+  });
+});
+</script>

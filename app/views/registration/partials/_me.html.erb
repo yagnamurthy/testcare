@@ -1,0 +1,44 @@
+<div class="user-register-page container-large">
+
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "about"} %>
+
+            <div class="reg-slider">
+            <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+
+                <div class="form-item your-title single-question" data-tab="about">
+
+                    <label class="title">Write a Care Title for your profile.</label>
+                    <span class="subtitle">(How would you describe yourself as caregiver in one sentence?)</span>
+                    <span class="subsubtitle">(Answer must be 20-60 characters)</span>
+
+                    <div class="form-elements">
+                        <div class="min-max-characters" data-min="20" data-max="60">
+                            <%= f.text_field :headline,required: true, maxlength: '60' %>
+                            <div id="titleLength" class="length"><span id="titleCount">0</span> characters</div>
+                        </div>
+                        <p class="error-msg" style="display:none;">Profile title is required</p>
+                        <p class="tip">
+                            Samples of Good Answers<br/>
+                            •  Sweet and compassionate Caregiver<br/>
+                            •  I love caring for the elderly!<br/>
+                            •  Spanish speaking and organized caregiver<br/>
+                            •  Compassionate, great listener, love people<br/>
+                            •  Pro Chef turned caregiver - patient and kind!
+                        </p>
+                    </div>
+                    <%= hidden_field_tag 'route', question_1_path %>
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                    <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                    <%= f.submit 'Save', class: 'btn' %>
+                </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,816 @@
+.modal {
+	padding: 0;
+	width: auto;
+	z-index: 300 !important;
+	header {
+		font-family: museo-slab;
+		font-size: 26px;
+		color: $color-white;
+		padding: 20px 25px;
+		text-align: center;
+		background: $color-blue-strong;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+	input[type=text],
+	input[type=phone],
+	input[type=tel],
+	input[type=email],
+	input[type=password] {
+		border: 1px solid $color-blue-light;
+		border-radius: 8px;
+		font-size: 16px;
+		margin-top: 10px;
+		margin-bottom: 0;
+		padding: 8px 10px;
+		height: 38px;
+		&:focus {
+			box-shadow: 0 0 3px $color-gray-strong;
+			background: $color-white;
+		}
+	}
+	.error {
+		input[type=text],
+		input[type=tel],
+		input[type=email],
+		input[type=password] {
+			border: 1px solid red;
+		}
+		p {
+			color: red;
+		}
+	}
+	a.close-modal {
+		width: 48px;
+		height: 48px;
+		right: -25px;
+		top: -25px;
+		background: image-url("v2/modal-close.png") no-repeat;
+	}
+	@include respond-to('mobile') {
+		position: absolute !important;
+		header {
+			display: none;
+		}
+		a.close-modal {
+			right: 0;
+		}
+	}
+}
+.modal-text {
+	width: 600px;
+	p {
+		padding: 20px;
+	}
+	.buttons {
+		text-align: center;
+		overflow: hidden;
+		padding-bottom: 25px;
+		.btn {
+			padding: 10px 50px;
+			display: inline-block;
+		}
+	}
+	@include respond-to('mobile') {
+		width: 100%;
+	}
+}
+
+.jquery-modal {
+	z-index: 200 !important;
+}
+
+.modal-login {
+	width: 400px;
+	.body {
+		padding: 20px 50px 30px;
+	}
+	.facebook-btn {
+		display: block;
+		color: $color-white;
+		text-transform: uppercase;
+		text-decoration: none;
+		font-weight: bold;
+		padding: 10px 0 10px 10px;
+		text-align: center;
+		margin-bottom: 20px;
+		border-radius: 3px;
+		@include gradient(#5971a1, #344d94);
+		@include transition(background 0.2s);
+		&:hover {
+			@include gradient(darken(#5971a1, 10%), darken(#344d94, 10%));
+		}
+		img {
+			max-width: 10px;
+			position: relative;
+			top: -2px;
+			margin-right: 15px;
+		}
+	}
+	.or {
+		position: relative;
+		margin-bottom: 20px;
+		text-align: center;
+		.text {
+			position: relative;
+			z-index: 2;
+			color: $color-black;
+			padding: 0 15px;
+			margin: 0 auto;
+			text-transform: uppercase;
+			background: $color-white;
+			font-size: $font24;
+		}
+		&:after {
+			content: '';
+			width: 100%;
+			height: 1px;
+			background: $color-black;
+			position: absolute;
+			top: 10px;
+			left: 0;
+		}
+	}
+	.special {
+		margin-top: 10px;
+		text-align: center;
+	}
+	footer p {
+		font-size: 20px;
+		text-align: center;
+	}
+	@include respond-to('mobile') {
+		width: 100%;
+	}
+}
+
+.register-modal {
+	width: 960px;
+	max-width: 100%;
+	overflow: hidden;
+	border-radius: 0 0 8px 8px;
+	.right,
+	.left {
+		width: 50%;
+	}
+	.right {
+		padding: 20px 40px;
+	}
+	h4 {
+		text-align: center;
+		color: $color-blue-strong;
+		font-size: 24px;
+	}
+	.register-form {
+		width: 250px;
+		margin: 20px auto 0;
+		.btn {
+			margin: 10px 0;
+		}
+	}
+	.info {
+		font-size: 12px;
+		text-align: center;
+		padding: 5px 0;
+		a {
+			color: $color-gray-strong;
+		}
+	}
+	.for-member {
+		font-size: 18px;
+		font-weight: 500;
+		a {
+			color: $color-blue-light;
+		}
+	}
+	&.register-caregiver {
+		width: 870px;
+		border-radius: 8px;
+		.left {
+			width: 56%;
+			height: 300px;
+			position: relative;
+			.quote {
+				position: absolute;
+				top: 20px;
+				text-align: right;
+				right: 40px;
+				width: 75%;
+				z-index: 1;
+				opacity: 0;
+				@include transition(all 0.4s);
+				p:first-child {
+					color: #2B87AC;
+					font-size: 20px;
+					padding-bottom: 15px;
+				}
+				p {
+					line-height: 1.3;
+				}
+			}
+		}
+		.show-quote .quote {
+			right: 20px;
+			opacity: 1;
+		}
+		.right {
+			text-align: center;
+			width: 44%;
+			h4 {
+				color: $color-black;
+			}
+			.fb-register {
+				display: inline-block;
+				background: #49639E;
+				color: $color-white;
+			    font-size: 18px;
+			    font-weight: 600;
+			    line-height: 32px;
+			    margin: 10px 0 3px;
+			    padding: 6px 15px;
+			    text-decoration: none;
+			    border-radius: 5px;
+			    @include transition(background 0.3s);
+				i {
+					display: inline-block;
+					width: 27px;
+					margin-right: 14px;
+					padding-right: 14px;
+					border-right: 1px solid darken(#49639E, 10%);
+					img {
+						max-width: 100%;
+						position: relative;
+						top: -1px;
+					}
+				}
+				&:hover {
+					background: darken(#49639E, 5%);
+				}
+			}
+			> p {
+				font-size: 14px;
+			}
+		}
+
+		.or {
+			display: block;
+			margin: 10px 0;
+			text-transform: uppercase;
+			font-size: 18px;
+			position: relative;
+			&:before,
+			&:after {
+				content: '';
+				width: 40%;
+				height: 1px;
+				background: $color-black;
+				position: absolute;
+				left: 0;
+				top: 10px;
+			}
+			&:after {
+				left: auto;
+				right: 0;
+			}
+		}
+		@include respond-to('mobile') {
+			.left {
+				display: none;
+			}
+			.right {
+				width: 100%;
+			}
+		}
+	}
+	@include respond-to('mobile') {
+		h4 {
+			font-size: 0;
+			background: image-url("mainLogo.png") no-repeat;
+			background-position: center;
+			height: 50px;
+		}
+		.left {
+			display: none;
+		}
+		.right {
+			width: 100%;
+		}
+		.register-form {
+			width: 300px;
+			margin: 0 auto;
+		}
+	}
+}
+
+.welcome-caregiver {
+	width: 740px;
+	padding: 20px;
+	a.close-modal {
+		display: none;
+	}
+	h5 {
+		color: $color-blue-light;
+		font-size: 32px;
+		padding: 10px 0 20px;
+	}
+	p {
+		font-size: 16px;
+		padding-bottom: 10px;
+		color: $color-black;
+	}
+	ul {
+		list-style: none;
+		padding-bottom: 15px;
+	}
+	label {
+		color: $color-black;
+		font-size: 14px;
+		&:after {
+			top: 0;
+			border: 1px solid $color-blue-light;
+			border-radius: 2px;
+		}
+	}
+	.custom-checkbox {
+		margin-bottom: 5px;
+	}
+	li:nth-child(2n) .custom-checkbox {
+		margin-bottom: 10px;
+	}
+	.buttons {
+		float: right;
+		margin-right: 10px;
+	    margin-top: -30px;
+	    text-align: center;
+	    width: 202px;
+		a {
+			display: inline-block;
+		}
+		.btn-profile {
+			width: 210px;
+			height: 41px;
+			color: $color-white;
+			font-size: 18px;
+			line-height: 40px;
+			padding-bottom: 4px;
+			padding-left: 0;
+			padding-right: 15px;
+			text-align: center;
+			text-decoration: none;
+			font-weight: 600;
+			margin-bottom: 5px;
+			background: image-url('v2/register/buttons.png') 0px -82px no-repeat;
+			@include respond-to('desktop') {
+				&:hover {
+					background-position: 0px -41px;
+				}
+			}
+		}
+	}
+	@include respond-to('mobile') {
+		width: 97%;
+		h5 {
+			font-size: 22px;
+		}
+		p {
+			font-size: 14px;
+		}
+		.buttons {
+			margin: 20px auto 0;
+			float: none;
+		}
+	}
+}
+.welcome-family {
+	width: 700px;
+
+	a.close-modal {
+	display: none;
+	}
+		img {
+		float:left;
+		border-radius: 5px;
+		padding-right: 10px;
+		}
+		a.btn.btn-main {
+		float:right;
+		padding:10px;
+		margin:10px;
+		}
+		p, h4 {
+		padding: 10px;
+		}
+#message-modal{
+	width: 500px;
+
+	header {
+	  font-size: 24px;
+	  padding: 15px;
+	  text-align: center;
+	  background: #5FC0C4;
+	}
+	#message-modal-form {
+		width: 500px;
+	}
+	.btn-main {
+		margin:10px;
+	}
+	avatar {
+		width: 30px;
+		height: 30px;
+		border-radius: 3px;
+	}
+}
+}
+
+.sign-up {
+  .hero {
+    height: 500px;
+    background-image: image-url('v2/res/sign_up.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+	position: relative;
+	#box{
+		width: 300px;
+		height: 300px;
+		background-color: $color-white;
+		opacity: .8;
+		padding: 10px;
+		position: absolute;
+   	top: 75px;
+   	left: 160px;
+   	border-radius: 3px;
+   	display: inline;
+	}
+	h5, p {
+		color: $color-black;
+		font-family: "proxima-nova";
+		text-align: center;
+		padding:5px;
+		font-weight: bold;
+	}
+		.btn {
+		margin:7px;
+		height: 50px;
+		width: 250px;
+	}
+	hr {
+		margin:5px;
+	}
+
+
+	@include respond-to('mobile') {
+		position: initial;
+
+		#box{
+			width: 90%;
+	   	top: 50px;
+	   	left: 20px;
+	   	margin-top: 50px;
+   	}
+		img {
+			height: 370px;
+		}
+	}
+}
+.sign-up {
+	position: relative;
+		.sign-up-banner {
+				height: 500px;
+		    background-image: image-url('v2/res/home-slider.jpg');
+		    background-size: cover;
+		    background-position: center;
+		    @include respond-to('mobile') {
+					height: 400px;
+				}
+		}
+		.overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 70%;
+        height: 100%;
+        background: -moz-linear-gradient(left,  rgba(5,5,5,.8) 29%, rgba(10,10,10,0) 100%); /* FF3+ */
+        background: -webkit-gradient(linear, left top, right top, color-stop(29%,rgba(5,5,5,0.8)), color-stop(100%,rgba(10,10,10,0))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(left,  rgba(5,5,5,0.8) 29%,rgba(10,10,10,0) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(left,  rgba(5,5,5,0.8) 29%,rgba(10,10,10,0) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(left,  rgba(5,5,5,0.8) 29%,rgba(10,10,10,0) 100%); /* IE10+ */
+        background: linear-gradient(to right,  rgba(5,5,5,0.8) 29%,rgba(10,10,10,0) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99050505', endColorstr='#000a0a0a',GradientType=1 ); /* IE6-9 */
+    }
+		.family-sign-up-box {
+				position: absolute; 
+				top: 20px; 
+				width: 440px;
+				height: 460px;
+				background-color: $color-white;
+				padding: 15px 10px;
+				margin-left: auto;
+				border-radius: 3px;
+				display: inline;
+				.field {
+					width: 185px;
+					border-radius: 1px solid $color-black;
+					float: left;
+					margin: 0px 10px 0px 10px;
+					padding-bottom: 10px;
+					label {
+						font-weight: bold;
+						padding-bottom:3px;
+					}
+				}
+				#where-care, .btn  {
+					width: 390px;
+				}
+				.btn {
+				  margin: 10px;
+				  margin-bottom: 10px;
+				}
+				p {
+					font-size: .9em;
+				}
+			@include respond-to('mobile') {
+				top: 50px; 
+				width: 100%;
+				height: 350px;
+				padding-left: 20px;
+				h4 {
+					font-size: 1.2em;
+					margin: 10px 0px;
+					padding-left: 10px;
+					color: $color-gray-strong;
+				}
+				.field {
+					width: 300px;
+					padding:0px;
+					border-radius: 4px;
+					label {
+						display: none;
+					}
+				}
+				#where-care, .btn  {
+					width: 300px;
+				}
+				p {
+					 display:none;
+				}	
+			}
+			@include respond-to('small-mobile') { 
+				padding: 10px 0px 0px 25px;
+				.field, #where-care, .btn {
+					width:250px;
+				}
+				h4 {
+					font-size: 1em;
+				}
+			}
+		}
+	
+		.caregiver-sign-up-box {
+				position: absolute; 
+				top: 30px; 
+				width: 400px;
+				height: 460px;
+				background-color: $color-white;
+				padding: 0px 10px;
+				border-radius: 3px;
+				display: inline;
+				h4 {
+					background-color: $color-blue-light;
+					color: $color-white;
+					font-size: 1.2em;
+					margin: -10px;
+					padding: 10px;
+					text-align: center;
+  				border-radius: 5px;
+				}
+				.field {
+					margin:10px;
+					input {
+						border: 1px solid $color-blue-light;
+						border-radius: 5px; 
+					}
+				}
+				form {
+					margin: 20px 20px 0px 20px;
+				}
+				.btn.gray {
+				  margin: 15px;
+				  width: 300px;
+				}
+				.home-find-perfect {
+					display:none;
+				}
+			@include respond-to('mobile') {
+				top: 50px; 
+				left: 0; 
+				width: 100%;
+				height: 350px;
+				padding: 0px;
+				h4 {
+					background-color: $color-white;
+					color: $color-gray-strong;
+					padding: 10px 0px 0px 0px;
+					margin: 10px 0px 0px 0px;
+					text-align: center;
+				}
+				.field {
+					width: 300px;
+					padding:0px;
+					margin:0px;
+					border-radius: 4px;
+					label {
+						display: none;
+					}
+					input {
+						border-color: $color-gray-middle;
+						border-radius: 0px;
+					}
+				}
+				form {
+					margin: 10px 10px 10px 30px;
+				}
+				.btn.gray {
+					background-color: $color-blue-light;
+					color: $color-white;
+					margin: 15px 30px 0px 0px;
+					border-color: $color-blue-light;
+				}
+			@include respond-to('small-mobile') { 
+				padding: 0px 0px 0px 5px;
+				.field, .btn.gray {
+					width:250px;
+				}
+				h4 {
+					font-size: 1em;
+					margin: 0px;
+				}
+			}
+		}
+	}
+} 
+.payment {
+ 	height: 700px;
+  background-image: image-url('v2/res/payment_page.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative; 
+  padding-top: 50px;
+
+  #payment-box{
+  	width: 600px;
+    height: 260px;
+    background-color: $color-white;
+    opacity: 1;
+    padding:10px;
+    position: absolute;
+    top: 200px;
+    left: 200px;
+    border-radius: 3px;
+    display: inline;
+
+    h1, h2, h3, h6, p {
+      color: $color-black;
+      font-family: "proxima-nova";
+      text-align: center;
+      padding:8px;
+  	}	
+  	h6 {
+  		font-size: 1.2em;
+  	}
+  
+  	h1 {
+  		font-size: 80px;
+  		font-weight: bold;
+  		margin-top: 0px;
+  		padding-top: 0px;
+  	}
+  
+  	.info {
+  		float: left;
+  		height: 100%;
+  		width: 50%;
+  		font-size: 16px;
+   	}
+
+ 
+  	.btn {
+			height: 50px;
+			width: 250px;
+		}
+
+		span#membership {
+			border: 1px solid $color-gray-strong;
+			padding: 5px 15px;
+			border-radius: 3px;
+			margin-left: 50px;
+			font-size: 20px;
+		}
+		span#currency {
+			color: $color-gray-strong;
+			font-weight: normal;
+			font-size: 0.8em;
+		}
+
+  }
+
+  h2, h3 {
+    color: $color-white;
+    font-family: "proxima-nova";
+    text-align: center;
+    padding:10px;
+    font-weight: bold;
+  }
+
+  @include respond-to('mobile') {
+  	height: 800px;
+  	#payment-box{
+      position: absolute;
+      top: 270px;
+      left: 0px;
+      width: 300px;
+			height: 400px;
+     }
+    span#membership {
+    	display:none;
+		}
+		.btn {
+			float: right;
+		}
+	}
+ }
+.slick-slider {
+	h2 {
+		padding-top: 30px;
+		text-align: center;
+	}
+	@include respond-to('mobile') {
+			h2 { 
+				font-size: 1.2em;
+			}
+	}
+}
+
+.faqs {
+	background-color: $color-gray-light2;
+	padding: 100px 250px;
+	h3, h6, p {
+		font-weight: bold;
+		color: $color-black;
+	  font-family: "proxima-nova";
+	  padding-bottom: 10px;
+	  text-align: justify;
+	}
+	p {
+		font-weight: normal;
+	}
+}
+@include respond-to('mobile') {
+		.faqs {
+			padding: 50px 20px;
+		}
+	}
+.login-labels {
+		font-family: museo-slab;
+		color: $color-blue-strong;
+		padding-top: 10px;
+		font-size: 16px;
+	}
+.caregiver-faq {
+	background-color:$color-blue-light;
+	color: $color-white;
+	height: 460px;
+	position: relative;
+	h1 {
+		text-align: center;
+		color: $color-white;
+		margin: 20px;
+		font-family: "museo-slab";
+	}
+	h5 {
+		color: $color-white;
+		font-family: "museo-slab";
+		font-weight: bold;
+		margin: 30px 0px 10px;
+		font-family: "proxima-nova";
+	}
+	p {
+		text-align:justify;
+		font-size: .95em;
+		font-family: "proxima-nova";
+	}
+	.row {
+		margin: 20px, 50px;
+	}
+	@include respond-to('mobile') { 
+		height: 1000px;
+		.columns {
+		  padding: 5px 40px;
+		}
+		h5{
+			margin-top: 10px;
+		}
+	}
+}

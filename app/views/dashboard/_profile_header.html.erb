@@ -1,0 +1,94 @@
+<div class="avatar">
+    <%= avatar_tag current_user, :large %>
+    <%= link_to_modal photo_path, class: 'edit-btn' do %>
+      Edit <span class="mobile-hide">photo</span>
+    <% end %>
+</div>
+
+<div class="info">
+  <div class="headline scroll-hide">
+      <h3><%= current_user.first_and_last_initial %></h3>
+  </div>
+
+  <div class="user-summary">
+    <ul class="stats first columns large-6 small-6">
+
+      <li class="scroll-show">
+        <h3><%= current_user.first_and_last_initial %></h3>
+      </li>
+
+      <li class="age">
+        <strong>Age:</strong> <span><%= current_user.age %></span>
+        <%= link_to_modal '', birthdate_path, class: 'edit-btn' %>
+      </li>
+
+      <li class="city">
+        <strong><%= current_user.city %>, <%= current_user.state %></strong>
+        <%= link_to_modal '', zipcode_path, class: 'edit-btn' %>
+      </li>
+
+      <li class="experience scroll-hide">
+        <strong class="mobile-hide">Experience:</strong>
+        <strong class="mobile-show">Exp:</strong> <%= pluralize(current_user.total_experience, "year") %> 
+        <%= link_to_modal '', work_experience_path, class: 'edit-btn' %>
+      </li>
+    </ul>
+
+    <ul class="stats second columns large-6 small-6">
+
+      <li class="experience scroll-show">
+        <span class="mobile-hide"><strong>Experience:</strong><%= pluralize(current_user.total_experience, "year") %></span>
+        <span class="mobile-show"><strong>Exp:</strong> <%= pluralize(current_user.total_experience, "year") %> </span>
+        <%= link_to_modal '', work_experience_path, class: 'edit-btn' %>
+      </li>
+
+      <li class="language scroll-mobile-hide">
+        <strong>Speaks:</strong> 
+        <% if current_user.languages.length > 0 %>
+          English, <%= current_user.languages.map { |language| language.name }.join(', ') %>
+        <% else %>
+          English
+        <% end %>
+        <%= link_to_modal '', language_path, class: 'edit-btn' %>
+      </li>
+
+      <li class="availability scroll-mobile-hide">
+        <strong>Availability:</strong>
+        <span><%= current_user.availability ? User::Availability.label(current_user.availability) : 'Full Time' %></span>
+        <%= link_to_modal '', availability_path, class: 'edit-btn' %>
+      </li>
+
+      <li class="live-in-rate scroll-hide">
+        <div class="mobile-hide">
+          <strong>Live-In Rate:</strong>
+          <span class="value"><%= number_to_currency(current_user.live_in_rate, :precision => 0) %></span>
+          <span class="hour">/day</span>
+          <%= link_to_modal '', live_in_path, class: 'edit-btn' %>
+        </div>
+        <div class="mobile-show">
+          Rate: <%= number_to_currency(current_user.hourly_rate, :precision => 0) %>/hr
+          <%= link_to_modal '', hourly_rate_path, class: 'edit-btn' %>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="profile-buttons">
+    <div class="rate">
+      <strong><%= number_to_currency(current_user.hourly_rate, :precision => 0) %></strong>/hr
+      <%= link_to_modal '', hourly_rate_path, class: 'edit-btn' %>
+      <div class="help-bubble mobile-hide">?<span>Caregiver's hourly rate</span></div>
+    </div>
+    <% if current_user && current_user.family? %>
+        <%= link_to_modal 'Contact Me', new_user_message_path(user), class: 'btn main' %>
+    <% elsif current_user %>
+      <a href='#' class='btn main edit-profile'>
+        <span class="preview">Preview <span class="mobile-hide">Profile</span></span>
+        <span class="edit">Edit <span class="mobile-hide">Profile</span></span>
+      </a>
+    <% else %>
+      <%= link_to 'Contact Me', new_user_registration_path, class: 'btn main' %>
+    <% end %>
+</div>

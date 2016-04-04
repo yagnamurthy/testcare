@@ -1,0 +1,47 @@
+
+<div class="user-register-page container-large show-section-banner">
+
+    <div class="section-banner">
+        <div class="descr">
+            <h3>Hi <%= current_user.first_name %>, nice to meet you!</h3>
+            <p><u>CareSpotter is not an agency.</u> We help families find local, professional caregivers for private pay care jobs. CareSpotter lets you set your own rates and choose which families you want to work with. Let's get started and create your personal profile to get you matched with families.</p>
+        </div>
+        <a href="#" class="btn-save blue">Let's Get Started</a>
+        <div class="overlay"></div>
+        <div class="back-image"></div>
+    </div>
+
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "basic"} %>
+
+            <div class="reg-slider">
+                <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+                    <div class="form-items">
+                        <div class="form-item gender current" data-tab="basic">
+                            <%= f.label 'I am a', :class=>"title" %>
+                            <div class="form-elements">
+                                <div class="custom-checkbox female">
+                                    <%= f.radio_button :gender, User::FEMALE[:value], id: 'female-radio', class: 'styled' %>
+                                    <%= f.label "#{User::FEMALE[:label]} Caregiver", for: 'female-radio' %>
+                                </div>
+                                <div class="custom-checkbox male">
+                                    <%= f.radio_button :gender, User::MALE[:value], id: 'male-radio', class: 'styled' %>
+                                    <%= f.label "#{User::MALE[:label]} Caregiver", for: 'male-radio' %>
+                                </div>
+                            </div>
+                            <p class="error-msg" style="display:none;">Your gender is required</p>
+                            <%= hidden_field_tag 'route', birthdate_path %>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                        <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                        <%= f.submit 'Save', class: 'btn' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

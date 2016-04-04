@@ -1,0 +1,14 @@
+<div class='edit-profile-modal'>
+  <div id='edit-profile-modal-image'>
+    <%= image_tag 'advisor.png' %>
+    </div>
+
+  <div id="edit-profile-modal-text">
+    <h4>Hi, <%= current_user.first_name %>!</h4>
+    <p>To edit your profile click on any of the symbols that look like this <span class="edit-btn" id='edit-btn-image'></span>.</p>
+
+    <div class="buttons">
+      <a href="#close-modal" rel="modal:close" class="btn main btn-profile" id='edit-profile-modal-button'>Edit Profile</a>
+    </div>
+  </div>
+</div>

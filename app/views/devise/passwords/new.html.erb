@@ -1,0 +1,22 @@
+<div class="forgot-password">
+  <div class="row">
+    <div class="large-6 large-offset-3 small-8 small-offset-1 columns">
+      <h3>Forgot Your Password?</h3>
+        <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, id: 'login', class: 'myform' }) do |f| %>
+
+          <div id='forgot-password-block'>
+          </div>
+
+          <div class="field">
+        		<%= f.email_field :email, autofocus: true, placeholder: 'What\'s your email address? ' %>
+          </div>
+          <div class="action">
+            <%= f.submit "Reset Password", class: 'btn main', id: 'forgot-password-button' %>
+          </div>
+        <% end %>
+        <p>Change your mind? <%= link_to_modal "Sign in", new_user_session_path %>
+    </div>
+  </div>
+</div>
+
+

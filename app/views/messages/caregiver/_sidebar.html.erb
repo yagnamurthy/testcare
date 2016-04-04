@@ -1,0 +1,5 @@
+<div class="navigation-column">
+    <%= link_to "Inbox (#{current_user.mailbox.conversations(:unread => true).not_trash(current_user).count(:id)})", inbox_mailbox_index_path, class: "#{selected == 'inbox' ? 'active' : ''}" %>
+    <%= link_to "Trash (#{current_user.mailbox.trash.count(:id)})", trash_mailbox_index_path, class: "#{selected == 'trash' ? 'active' : ''}" %>
+    <%= link_to 'Cover Letter', edit_cover_letter_path(current_user.cover_letter), class: "#{selected == 'cover-letter' ? 'active new-message' : 'new-message'}" %>
+</div>

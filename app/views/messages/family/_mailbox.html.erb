@@ -1,0 +1,132 @@
+
+<div class="mailbox-page caregiver-messages">
+  <header>
+    <div class="messages-list">
+      <% collection.each do |conversation| %>
+        <%= link_to mailbox_path(conversation.id), data: { conversation_id: conversation.id }, class: "#{conversation.is_read?(current_user) ? '' : 'new'} conversation" do %>
+            <%= avatar_tag(conversation.participants.find { |p| p != current_user }, :thumb, class: 'small-avatar') %>
+          <h5>
+            <% if conversation.messages.length == 1 %>
+              <%= conversation.last_sender.first_name %>
+            <% else %>
+              <%= conversation.participants.map {|u| u.first_name }.join(', ') %>
+            <% end %>
+            (<%= conversation.count_messages %>)
+          </h5>
+          <h4>Message from <%= conversation.last_sender.first_name %>!</h4>
+          <div class="trash">Trash</div>
+          <span><%= conversation.last_message.created_at.to_time.strftime('%b %e') %></span>
+        <% end %>
+      <% end %>
+
+    <%= paginate collection %>
+
+    <% collection.each do |conversation| %>
+      <div id='<%= "conversation-messages-#{conversation.id}" %>' class="thread-messages" style="display: none;">
+        <h3><%= conversation.subject %></h3>
+        <ul>
+          <% if conversation.messages.length > 2 %>
+            <li class="previous"><a href="#" class="reveal-conversation" data-conversation-id="<%= conversation.id %>">View Previous Messages (<%= conversation.messages.length - 1 %>)</a></li>
+          <% end %>
+
+          <% conversation.messages.each_with_index do |message, index| %>
+          <li>
+            <div class='message-box message <%= conversation.messages.length == index + 1 ? "" : "hide" %>'>
+              <div class="header">
+                <% if message.sender.caregiver? %>
+                  <%= image_tag(message.sender.avatar.url(:thumb)) %>
+                <% end %>
+
+                <div class="col first">
+                  <% if message.sender.caregiver? %>
+                    <%= link_to message.sender.first_and_last_initial, caregiver_path(message.sender) %>
+                  <% else %>
+                    <%= message.sender.first_and_last_initial %>
+                  <% end %>
+                  <br/>
+                  <% if message.sender.caregiver? %>
+                    <strong>Age:</strong> <%= message.sender.age %>
+                  <% end %>
+                </div>
+                <div class="col second">
+                  <strong>Phone: </strong><%= message.sender.phone %><br/>
+                  <% if message.sender.caregiver? %>
+                    <strong>Experience: </strong><%= pluralize(message.sender.total_experience, 'Years', 'Year') %>
+                  <% end %>
+                </div>
+                <div class="col last">
+                  <% if message.sender.caregiver? %>
+                    <p><strong>Hourly Rate:</strong></p>
+                    <p class="price">$<%= message.sender.hourly_rate %>/hr</p>
+                  <% end %>
+                </div>
+              </div>
+              <div class="content">
+                <p><%= message.body %></p>
+                <div class="actions">
+                  <%= message.sender.first_name %><br/>
+                  <% if message.sender.caregiver? %>
+                      <% if message.sender.RN? %>
+                        Registered Nurse<br/>
+                      <% elsif  message.sender.LVN? %>
+                        Licensed Vocational Nurse<br/>
+                      <% elsif  message.sender.CNA? %>
+                        Certified Nursing Assistant<br/>
+                       <% else %>  
+                        Professional Caregiver<br/>
+                       <% end %>
+                    <%= link_to 'View Profile in New Window', caregiver_path(message.sender), target: '_blank' %>
+                      <br/>
+                    <!-- <a href="#">Request a Background Check</a> -->
+                  <% end %>
+                </div>
+                <%= link_to '#', class: 'btn reply-button', data: { message_id: message.id } do %>
+                  <%= image_tag('v2/icon-reply.png') %>Reply
+                <% end %>
+              </div>
+            </div>
+
+            <div id="message-reply-<%= message.id %>" class="message-box reply hide">
+              <%= simple_form_for(Mailboxer::Message.new, url: messages_path(user_id: participant_id(conversation), conversation_id: conversation.id)) do |f| %>
+
+                <div class="header">To: <%= participant_name(conversation) %></div>
+
+                <div class="content">
+                  <%= f.input :body, as: :text, label: false %>
+                  <%= f.submit 'Send', class: 'btn main'  %>
+                </div>
+
+              <% end %>
+            </div>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </header>
+</div>
+
+<script>
+
+$('.reply-button').on('click', function(evt) {
+  evt.preventDefault();
+
+  var id = $(evt.target).data('messageId');
+
+  $("#message-reply-" + id).removeClass('hide');
+});
+
+$('.reveal-conversation').on('click', function(evt) {
+  evt.preventDefault();
+
+  var id = $(evt.target).data('conversation-id');
+  var message_boxes = $("#conversation-messages-" + id + ' .message');
+
+  $.each(message_boxes, function(i, el) {
+    $(el).removeClass('hide');
+  });
+
+  $(evt.target).closest('.previous').remove()
+});
+
+</script>

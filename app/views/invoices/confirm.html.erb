@@ -1,0 +1,70 @@
+<div class="container">
+	<div class="page-type-one-board">
+
+		<%= render partial: 'invoices/pay_invoice_process' %>
+
+		<div class="page-content">
+			<h2>Credit Card Information</h2>
+
+			<!-- JS form -->
+			<%= form_tag submit_invoice_path(@invoice.id, cc_id: params[:cc_id]), method: 'post', class: 'myform' do |f| %>
+				<section>
+					<h3>Invoice</h3>
+				</section>
+
+				<table>
+					<tr>
+						<th>Caregiver:</th>
+						<td>
+							<%= avatar_tag @invoice.sender, :medium, class: 'middle2-avatar' %>
+							<%= @invoice.sender.first_and_last_initial %>
+						</td>
+					</tr>
+					<tr>
+						<th>Hours Worked:</th>
+						<td><%= @invoice.hours %></td>
+					</tr>
+					<tr>
+						<th>Amount Requested:</th>
+						<td><%= @invoice.amount %></td>
+					</tr>
+				</table>
+
+
+				<table>
+					<tr>
+						<th>Brand</th>
+						<td>
+							<%= @credit_card.brand %>
+						</td>
+					</tr>
+					<tr>
+						<th>Expiration Date</th>
+						<td>
+							<%= @credit_card.expiration_month %>/<%= @credit_card.expiration_year %>
+						</td>
+					</tr>
+					<tr>
+						<th>Number</th>
+						<td>
+							xxxx-xxxx-xxxx-<%= @credit_card.last_four %>
+						</td>
+					</tr>
+				</table>
+
+
+
+				<section class="action">	
+					<%= submit_tag 'Submit', class: 'btn main' %>
+					<span class="cancel">or <a href="#">Cancel</a></span>
+
+					<div class="tip">
+						<span class="flag red">Tip</span>
+						<p>This will pay the caregiver $<%= @invoice.amount %>.</p>
+					</div>
+				</div>
+
+			<% end %>
+		</div>
+	</div>
+</div>

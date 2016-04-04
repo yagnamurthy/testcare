@@ -1,0 +1,53 @@
+    <nav class="user-navigator">
+        <div class="sidebar-scrolling">
+          <ul>
+            <li>
+                <%= link_to basics_path, 
+                    class: current_step == 'basics' ? 'act': step_finished(steps_left, 5),
+                    disabled: current_user.completed_profile? ? false : true do %>
+
+                        <i class="basic"></i><span>Basics</span>
+                        <% if current_step == 'basics' %>
+                            <%= content_tag(:i, '', class: 'act-arrow') %>
+                        <% end %>
+                <% end %>
+            </li>
+            <li>
+                <%= link_to about_you_path, 
+                    class: current_step == 'about' ? 'act': step_finished(steps_left, 4),
+                    disabled: current_user.completed_profile? ? false : true do %>
+                        
+                        <i class="about"></i><span>About You</span>
+                            <% if current_step == 'about' %>
+                                <%= content_tag(:i, '', class: 'act-arrow') %>
+                        <% end %>
+                <% end %>
+            </li>
+            <li>
+                <%= link_to availability_and_services_path, 
+                    class: current_step == 'availability_and_services' ? 'act': step_finished(steps_left, 3),
+                    disabled: current_user.completed_profile? ? false : true do %>
+
+                        <i class="services"></i><span>Services<br/> &amp; Availability</span>
+                        <% if current_step == 'availability_and_services' %>
+                            <%= content_tag(:i, '', class: 'act-arrow') %>
+                        <% end %>
+                <% end %>
+            </li>
+            <li>
+                <%= link_to education_and_experience_path, 
+                    class: current_step == 'education_and_experience' ? 'act': step_finished(steps_left, 2),
+                    disabled: current_user.completed_profile? ? false : true do %>
+                        <i class="experience"></i><span>Education<br/> &amp; Experience</span>
+                        <% if current_step == 'education_and_experience' %>
+                            <%= content_tag(:i, '', class: 'act-arrow') %>
+                        <% end %>
+                <% end %>
+            </li>
+          </ul>
+
+          <div class="steps-info">
+            <span><%= steps_left %> steps</span> left to register
+          </div>
+      </div>
+    </nav>

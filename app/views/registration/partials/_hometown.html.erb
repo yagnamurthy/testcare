@@ -1,0 +1,59 @@
+<div class="user-register-page container-large show-section-banner">
+
+  <div class="section-banner">
+      <div class="descr">
+          <%= render partial: 'registration/tabs', locals: {active: "about"} %>
+          <h3>Awesome <%= current_user.first_name %>, you're almost done!</h3>
+          <p>Now's the most important section, let's learn a little about your personally to help you really connect with the perfect client.</p>
+      </div>
+      <a href="#" class="btn-save blue">Let's Go!</a>
+      <div class="overlay"></div>
+      <div class="back-image"></div>
+  </div>
+
+  <script type="text/javascript">
+      $(window).load(function() {
+          setTimeout($('.section-banner').addClass('show-bg'), 1500);
+      });
+  </script>
+
+
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "about"} %>
+
+            <div class="reg-slider">
+                <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+
+                    <div class="form-item hometown" data-tab="about">
+
+                        <label class="title">What is your hometown or the city and state where you grew up?</label>
+                        <span class="subtitle">(If you grew up overseas, you can put your city and country)</span>
+
+                        <div class="form-elements">
+                            <%= f.hidden_field :hometown %>
+                            <%= f.text_field :hometown, id: 'autocomplete', autocomplete: 'off' %>
+                            <p class="error-msg" style="display:none;">Hometown is required</p>
+                            <p class="tip">
+                                CareSpotter Tip<br/>
+                                Connecting with a family is often about a cultural connection, and your home town is one way Carespotter does that.<br/><br/>
+                                Hometown examples:<br/>
+                                •  Lima, Peru<br/>
+                                •  Trenton, New Jersey<br/>
+                                •  Gainesville, Florida<br/>
+                            </p>
+                        </div>
+                        <%= hidden_field_tag 'route', about_skills_path %>
+                    </div>
+
+                    <div class="buttons">
+                        <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                        <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                        <%= f.submit 'Save', class: 'btn' %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

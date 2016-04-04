@@ -1,0 +1,37 @@
+<p>Hello <%= @caregiver.first_name %>!</p>
+ 
+<p>There is a new job posting within 30 miles of <%= @caregiver.zipcode %>, <%= @caregiver.city %></p>
+
+<p><b>To apply to this care job, please click here: <%= link_to contract_url(@contract), contract_url(@contract) %>.</b> You must be logged in to apply, and can search for other care jobs directly.</p>
+
+<b><u>Job Description</u></b>
+<p><%= @contract.headline %></p>
+ 
+<b>Job Details</b>
+<p><%= @contract.description %>
+
+<% if @contract.services.length > 0 || @contract.requirements.length > 0 %>
+ 
+	<p>The care coordinator for this job is looking for the following services and requirements for their loved one:</p>
+	<ul>
+		<% @contract.services.each do |service| %>
+			<li><strong><%= service.name %></strong></li>
+		<% end %>
+
+		<% @contract.requirements.each do |requirements| %>
+			<li><strong><%= requirements.name %></strong></li>
+		<% end %>
+	</ul>
+
+<% end %>
+ 
+<p><b>The budget for this care job is around <%= number_to_currency @contract.required_rate %>.</b></p>
+ 
+<p>To apply to this care job, please click on the following link: <%= link_to contract_url(@contract), contract_url(@contract) %>. You must be logged in to apply, and can search for other care jobs directly.</p>
+
+<p>And thank you for being a caregiver on CareSpotter, we appreciate all that you do! If you have any questions, just reply to this email. Thank you again, and keep on keeping on!</p>
+ 
+<p>Sincerely,</p>
+ 
+<p>The CareSpotter Team<br>
+<a href='https://www.facebook.com/carespotter' target='_blank'>Like us on Facebook here!</a></p>

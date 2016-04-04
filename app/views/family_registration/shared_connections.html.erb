@@ -1,0 +1,21 @@
+<div class="user-edit-page container-large">
+    <div class="row">
+
+
+        <div class="content">
+            <div class="row">
+                <%= form_for current_user, url: update_family_registration_path, method: 'patch' do |f| %>
+
+                    <header>
+                        <h2>Payment</h2>
+                    </header>
+
+
+                    <%= f.submit 'Complete Job Posting', class: 'btn main' %>
+
+                <% end %>
+
+            </div>
+        </div>
+    </div>
+</div>

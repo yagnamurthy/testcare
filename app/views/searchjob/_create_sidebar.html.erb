@@ -1,0 +1,22 @@
+<nav class="user-navigator">
+    <div class="sidebar-scrolling">
+        <ul>
+            <li>
+                <%= link_to family_job_path, class: current_step == 'create_job' ? 'act': '' do %>
+                    <i class="createjob"></i><span>Create Job</span>
+                    <% if current_step == 'create_job' %>
+                        <%= content_tag(:i, '', class: 'act-arrow') %>
+                    <% end %>
+                <% end %>
+            </li>
+            <li>
+                <%= link_to family_shared_connections_path, class: current_step == 'shared_connections' ? 'act': '' do %>
+                    <i class="sharedconnections"></i><span>Shared Connections</span>
+                    <% if current_step == 'shared_connections' %>
+                        <%= content_tag(:i, '', class: 'act-arrow') %>
+                    <% end %>
+                <% end %>
+            </li>
+        </ul>
+    </div>
+</nav>

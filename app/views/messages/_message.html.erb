@@ -1,0 +1,37 @@
+<% if type == 'from' %>
+    <%= link_to mailbox_path(conversation.id) do %>
+        <%= avatar_tag(conversation.last_sender, :thumb, class: 'small-avatar') %>
+        <span class="heads">
+            <span class="user">
+                <%= conversation.last_sender.first_and_last_initial %> (<%= conversation.count_messages %>)
+                <% if message.is_unread? %>
+                    <span class="flag new">new</span>
+                <% end %>
+            </span>
+
+            <span class="dates"><%= message.created_at.to_time.strftime('%B %e, %Y') %></span>
+        </span>
+        <span class="cont">
+            <span class="title"><%= truncate(conversation.subject, length: 40) %></span>
+            <p><%= truncate(message.notification.body, length: 100) %></p>
+        </span>
+    <% end %>
+<% elsif type == 'to' %>
+    <%= link_to mailbox_path(conversation.id) do %>
+        <%= avatar_tag(message.receiver, :thumb, class: 'small-avatar') %>
+        <span class="heads">
+            <span class="user">
+                <%= message.receiver.first_and_last_initial %> (<%= conversation.count_messages %>)
+                <% if message.is_unread? %>
+                    <span class="flag new">new</span>
+                <% end %>
+            </span>
+
+            <span class="dates"><%= message.created_at.to_time.strftime('%B %e, %Y') %></span>
+        </span>
+        <span class="cont">
+            <span class="title"><%= truncate(conversation.subject, length: 40) %></span>
+            <p><%= truncate(message.notification.body, length: 100) %></p>
+        </span>
+    <% end %>
+<% end %>

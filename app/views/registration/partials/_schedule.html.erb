@@ -1,0 +1,61 @@
+<div class="user-register-page container-large">
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "skills"} %>
+
+            <div class="reg-slider">
+            <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+                <div class="form-item schedule" data-tab="skills">
+                    <%= f.label 'When are you available to work?' , :class=>"title" %>
+                    <span class="subtitle">(Don't worry, you can always change your schedule depending on your availability)</span>
+                    <div class="legend">
+                        <span class="available">Available</span>
+                        <span class="unavailable">Unavailable</span>
+                    </div>
+                    <div class="form-elements">
+                        <%= f.fields_for :schedule do |schedule_form | %>
+                           <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <% Schedule::DAY.each do |day_key, value| %>
+                                            <th class="bv">
+                                                <%= value[0..1] %>
+                                            </th>
+                                        <% end %>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% Schedule::TIME.each do |time_key, time_value| %>
+                                        <tr>
+                                            <th class="bv">
+                                                <%= time_value %>
+                                            </th>
+                                            <% Schedule::DAY.each do |day_key, day_value| %>
+                                                <td>
+                                                    <div class="custom-checkbox">
+                                                        <%= schedule_form.check_box "#{day_value}_#{time_value}".parameterize.underscore.downcase.to_sym, class: 'styled' %>
+                                                        <%= f.label " ", for: "#caregiver_schedule_attributes_#{day_value}_#{time_value}".parameterize.underscore.downcase.to_sym %>
+                                                    </div>
+                                                </td>
+                                            <% end %>
+                                        </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        <% end %>
+                    </div>
+                    <%= hidden_field_tag 'route', credentials_path %>
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                    <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                    <%= f.submit 'Save', class: 'btn' %>
+                </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

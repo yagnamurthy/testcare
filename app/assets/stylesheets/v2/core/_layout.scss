@@ -1,0 +1,131 @@
+.clear:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+.clear {
+    display: inline-block;
+}
+html[xmlns] .clear {
+    display: block;
+}
+* html .clear  {
+    height: 1%;
+}
+
+.row {
+    max-width: 960px;
+    &.full {
+        max-width: 100%;
+        width: 100%;
+    }
+    @include respond-to('mobile') {
+    	margin: 0;
+    }
+}
+
+.extended .row {
+	max-width: 960px;
+}
+
+.help-bubble {
+	position: absolute;
+	top: -5px;
+	right: -21px;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 12px;
+	font-size: 10px;
+	color: $color-white;
+	background: $color-blue-light;
+	cursor: pointer;
+	span {
+		display: inline-block;
+		position: absolute;
+		margin: -20px 0 0 -100px;
+		font-size: 13px;
+		background: lighten($color-blue-light, 50%);
+		color: $color-black;
+		padding: 20px 0;
+		width: 200px;
+		border: 1px solid $color-blue-light;
+		border-radius: 5px;
+		box-shadow: 0 0 20px rgba(0,0,0,0.5);
+		cursor: pointer;
+		opacity: 0;
+		visibility: hidden;
+		z-index: 10;
+		@include transition(all 0.2s);
+	}
+	&.active span {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+.paginator {
+	text-align: center;
+	margin-bottom: 50px;
+	ul {
+		display: inline-block;
+	}
+	li {
+		list-style: none;
+		float: left;
+		margin-left: 10px;
+		a {
+			text-decoration: none;
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			line-height: 20px;
+			color: $color-black;
+			text-align: center;
+			&:hover {
+				color: $color-blue-middle;
+			}
+		}
+		&.active a {
+			border-radius: 50%;
+			background: $color-blue-middle;
+			color: $color-white;
+		}
+	}
+	li.prev a,
+	li.next a {
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		position: relative;
+		top: 2px;
+		background: image-url("v2/pagination-arr-prev.png") center no-repeat;
+	}
+	li.next a {
+		background: image-url("v2/pagination-arr-next.png") center no-repeat;
+	}
+}
+
+.mobile-show {
+	display: none;
+	@include respond-to('mobile') {
+		display: block;
+	}
+}
+
+@include respond-to('mobile') {
+	.mobile-hide {
+		display: none;
+	}
+	[class*="block-grid-"] > li {
+		float: none !important;
+	}
+}
+
+.hide {
+  display: none !important;
+}

@@ -1,0 +1,9 @@
+<p><%= @user.first_name %> has made the following journal entry for <%= @contract.patient_name %>. To view this entry, go to this link: <%= link_to 'View Journal', contract_journals_url(@contract), target: '_blank' %>.</p>
+ 
+<strong>Journal Entry:</strong>
+<p><%= @journal.body %></p>
+ 
+<p>If you have any questions about CareSpotter or this email, please contact CareSpotter at <a href="tel:407-792-4697" value="+14077924697" target="_blank">407-792-4697</a> or <a href='mailto:team@carespotter.com'>team@carespotter.com</a>.</p>
+ 
+<p>CareSpotter Team</p>
+<p>Helping families find the perfect caregiver.</p>

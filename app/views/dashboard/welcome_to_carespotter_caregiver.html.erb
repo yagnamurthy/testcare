@@ -1,0 +1,47 @@
+<div class="welcome-caregiver">
+
+	<h5>Welcome to CareSpotter, <%= current_user.first_name %> Caregiver!</h5>
+
+	<p>Thank you for creating a profile on CareSpotter, we're excited that you're a part of our network!</p>
+	<p>CareSpotter is not an agency, we are a website that helps connect you directly with families and potential clients. Caregivers in the CareSpotter network earn up to 50% more than agencies and get to choose their own clients and hours.</p>
+	<p>Because you work independently, we need to trust that you to be professional at all times. Please read and click on the following statements to ensure you understand CareSpotter's Caregiver Pledge:</p>
+
+	<ul>
+		<li>
+			<div class="custom-checkbox">
+				<input type="checkbox" id="check1" checked />
+				<label for="check1">I pledge I will always show up for scheduled interviews or I will notify the Care Seeker by phone to reschedule if I am no longer able to attend for any reason.</label>
+			</div>
+		</li>
+		<li>
+			<div class="custom-checkbox">
+				<input type="checkbox" id="check2" checked />
+				<label for="check2">I understand and agree that CareSpotter does not employ, recommend, or endorse any caregivers.</label>
+			</div>
+		</li>
+		<li>
+			<div class="custom-checkbox">
+				<input type="checkbox" id="check3" checked />
+				<label for="check3">I am solely responsible for selecting a job and will comply with all laws in connection with any employment relationship I independently establish with a Care Seeker.</label>
+			</div>
+		</li>
+		<li>
+			<div class="custom-checkbox">
+				<input type="checkbox" id="check4" checked />
+				<label for="check4">I confirm that I have not had formal actions, complaints or claims made against me in the last 5 Years.</label>
+			</div>
+		</li>
+	</ul>
+
+	<p>Thank you</p>
+
+	<div class="copy">
+		<h4>Darren</h4>
+		<span>Darren Wendroff, Founder</span>
+	</div>
+
+	<div class="buttons">
+		<a href="#close-modal" rel="modal:close" class="btn-profile">Go To Profile</a>
+    <%= link_to 'Start Searching Jobs', contracts_path %>
+	</div>
+</div>

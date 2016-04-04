@@ -1,0 +1,40 @@
+<header>
+  Add Testimonial
+</header>
+
+<div class="body">
+  <%= simple_form_for Reference.new, url: caregiver_references_path(@caregiver) do |f| %>
+    <label>Dependability:</label>
+    <div class='rating-heart' data-id='dependability'></div>
+
+    <label>Compassion:</label>
+    <div class='rating-heart' data-id='compassion'></div>
+
+    <label>Communication Skills:</label>
+    <div class='rating-heart' data-id='communication-skills'></div>
+
+    <label>Technical Ability:</label>
+    <div class='rating-heart' data-id='technical-ability'></div>
+    <%= f.input :name, as: :string, required: true %>
+    <%= f.input :body, as: :text, required: true %>
+    <%= f.input :dependability, as: :hidden, input_html: { id: 'dependability' } %>
+    <%= f.input :compassion, as: :hidden, input_html: { id: 'compassion' } %>
+    <%= f.input :communication_skills, as: :hidden, input_html: { id: 'communication-skills' } %>
+    <%= f.input :technical_ability, as: :hidden, input_html: { id: 'technical-ability' } %>
+    <%= f.button :submit, 'Submit Testimonial' %>
+  <% end %>
+</div>
+
+<script>
+  $('.rating-heart').raty({
+    starOn: 'icon-heart-small.png',
+    starOff: 'icon-empty-heart-small.png',
+    path: '/assets/v2',
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    click: function(value){
+      $('#' + $(this).data('id')).val(value);
+    }
+  });
+</script>

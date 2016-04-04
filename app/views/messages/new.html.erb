@@ -1,0 +1,9 @@
+<div>
+	<% if params[:offer] %>
+		<%= render partial: 'messages/new_offer' %>
+	<% elsif params[:invite] %>
+		<%= render partial: 'messages/new_invite' %>
+	<% else %>
+		<%= render partial: 'messages/new_message', locals: { caregiver: @caregiver, return_url: @return_url } %>
+	<% end %>
+</div>

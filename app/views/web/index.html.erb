@@ -1,0 +1,163 @@
+<div class="page-wrapper">
+    <section class="home-slider">
+
+        <div class="banner">
+            <img src="<%= asset_path('v2/res/home-slider.jpg') %>">
+        </div>
+        <div class="overlay"></div>
+        <div class="desc">
+            <div class="row">
+                <div class="columns large-6 small-12">
+                    <h2>Find a Great Local,<br>Private Caregiver</h2>
+                    <p>Carespotter helps you find safe, professional, caregivers in your neighborhood to help with care tasks, big and small.</p>
+                    <% if !current_user %>
+                        <%= button_to "Find a Caregiver", get_started_path, :method => :get, class: 'btn btn-main', id: 'lets-get-started'  %>
+                        <%= link_to 'Apply to Care Jobs', web_become_a_caregiver_path, class: 'apply-caregiver' %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="mobile slider-btns">
+        <%= link_to 'Find a Caregiver Today',  get_started_path, class: 'btn btn-main' %>
+        <%= link_to 'Apply for Care Jobs', web_become_a_caregiver_path, class: 'btn darker' %>
+    </section>
+
+    <section class="home-awards">
+        <div class="row">
+            <div class="columns large-12">
+                <ul class="medium-block-grid-5">
+                    <li class="florida"><a href="http://www.orlandosentinel.com/business/brinkmann-on-business/os-carespotter-program-tackles-caregiving-impact-at-work-20141114-post.html" target="_blank"></a></li>
+                    <li class="aarp"><a></a></li>
+                    <li class="journal"><a href="http://www.bizjournals.com/orlando/blog/2013/08/carespotter-to-turn-orlando-home.html?page=all" target="_blank"></a></li>
+                    <li class="cbs"><a href="http://www.myfoxorlando.com/story/26671507/orlando-company-helps-families-find-care-givers-for-sick-parents" target="_blank"></a></li>
+                    <li class="healthbox"><a href="http://www.bizjournals.com/orlando/news/2013/10/23/orlando-firm-takes-top-honors-at.html?page=all" target="_blank"></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-features">
+        <div class="row text-center">
+            <h2 class="blue">Find the Perfect Caregiver</h2>
+            <h3 class="gray">Find, local, professional caregivers quickly and safely</h3>
+            <ul class="medium-block-grid-1 large-block-grid-3">
+                <li>
+                    <i class="project-feature search-locally"></i>
+                    <h4>Search locally</h4>
+                    <p>Use more than 150 search criteria to find a local screened and background checked caregiver.</p>
+                </li>
+                <li>
+                    <i class="project-feature post-care-tasks"></i>
+                    <h4>Post care tasks</h4>
+                    <p>Tell us what your care needs are, big or small, and have caregivers send you a quote for services</p>
+                </li>
+                <li>
+                    <i class="project-feature rest-assured"></i>
+                    <h4>Rest assured</h4>
+                    <p>All caregivers are insured and bonded, and you can securely pay your caregiver online when.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="home-helps-with">
+        <div class="row">
+            <h2 class="white">CareSpotter Helps with...</h2>
+            <div class="columns large-5 small-12">
+                <ul class="tick">
+                    <li>Driving to appointments</li>
+                    <li>Grocery shopping and errands</li>
+                    <li>Doing a periodic check-in</li>
+                    <li>Safeguarding your home for falls</li>
+                    <li>Paying monthly bills</li>
+                </ul>
+            </div>
+            <div class="columns large-5 small-12 end">
+                <ul class="tick">
+                    <li>Cooking daily meals</li>
+                    <li>Houskeeping and daily tasks</li>
+                    <li>Dressing, bathing, and hygiene</li>
+                    <li>Exercising with loved one</li>
+                    <li>Companionship</li>
+                </ul>
+                <p class="more">And more!</p>
+            </div>
+            <img src="<%= asset_path('v2/res/home-helps-with.png') %>" class="pict">
+        </div>
+    </section>
+
+    <section class="home-more-consistent">
+        <div class="row">
+            <div class="columns large-4 small-12">
+                <h2 class="red">Need something more consistent?</h2>
+            </div>
+            <div class="columns large-7 small-12">
+                <p>CareSpotter can also help you find a live-in caregiver to stay with your loved one for overnight care jobs. Live-in caregivers will have their rates posted directly on their profiles, and you can search direclty for live-in caregivers.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-features">
+        <div class="row text-center">
+            <h2>Why Use CareSpotter?</h2>
+            <ul class="medium-block-grid-1 large-block-grid-3">
+                <li>
+                    <i class="project-feature help-caring"></i>
+                    <h4>Help caring for a loved one</h4>
+                    <p>Our experienced caregivers range from visiting nurses to home care professionals and live in caregivers</p>
+                </li>
+                <li>
+                    <i class="project-feature safety-first"></i>
+                    <h4>Safety first</h4>
+                    <p>We thoroughly screen, interview and background check all caregivers before they are approved.</p>
+                </li>
+                <li>
+                    <i class="project-feature saves-you-time"></i>
+                    <h4>Saves you time</h4>
+                    <p>Instantly find caregivers by zip code, angoage, experience, hobies, and more!</p>
+                </li>
+                <li>
+                    <i class="project-feature saves-you-money"></i>
+                    <h4>Saves you money</h4>
+                    <p>Hiring a caregiver direct saves up to 50% versus agency fees, plus your caregiver makes 30 to 40% more.</p>
+                </li>
+                <li>
+                    <i class="project-feature easy-communication"></i>
+                    <h4>Easy communication</h4>
+                    <p>Our secure, online care management portal keeps out family members up to date on your loves one's status.</p>
+                </li>
+                <li>
+                    <i class="project-feature cash-free-payments"></i>
+                    <h4>Cash-free payments</h4>
+                    <p>Pay securely online only when each care task is complete, and you're happy with the service.</p>
+                </li>
+            </ul>
+        </div>
+        <div class="row text-center buttons">
+            <a href="#" class="btn">Find A Caregiver Now!</a>
+        </div>
+    </section>
+
+    <section class="home-quality">
+        <div class="row full" data-equalizer>
+            <div class="columns large-3 small-12 pict text-center" data-equalizer-watch>
+                <img src="<%= asset_path('v2/res/home-quality.png') %>">
+                <span>Money Back<br>Guarantee</span>
+            </div>
+            <div class="columns large-offset-1 large-7 small-12 end" data-equalizer-watch>
+                <h2 class="red">Only the best caregivers</h2>
+                <ul class="tick">
+                    <li>Caregiver screening includes a national and country background check and we interview for technical ability, professionalism and compassion before we approve a caregiver</li>
+                    <li>CareSpotter only accepts experienced, exceptional caregivers, and they must have worked in a hospital, assisted living facility, homecare agency or directly with seniors to be featured on the site</li>
+                    <li>CareSpotter provides a 100% money back guarantee on all care tasks, and each caregiver carries a half million dollar insurance and bonding when hired through the site</li>
+                </ul>
+                <a href="#" class="more">Find the perfect Caregiver</a>
+            </div>
+        </div>
+    </section>
+
+    <%= render partial: 'web/references' %>
+</div>

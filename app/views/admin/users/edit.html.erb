@@ -1,0 +1,112 @@
+<div class='container'>
+<%= form_for @user, url: admin_user_path, method: 'PATCH' do |f| %>
+
+  <h1>User: <%= @user.id %></h1>
+  <h2><%= @user.email %></h2>
+
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+
+  <br>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+
+  <br>
+
+  <div class="form-item">
+      <%= f.label :zipcode, 'Where do they live?', :class => 'general required' %>
+      <div class="form-elements">
+          <%= f.text_field :zipcode, :class => 'middleWidth' %>
+          <p class="desc">5 digit zip code</p>
+      </div>
+  </div>
+
+  <br>
+  <div class="form-item">
+      <%= f.label 'Gender:', :class=>"general required" %>
+      <div class="form-elements radio-list one-col">
+          <div class="elm">
+              <%= f.radio_button :gender, User::FEMALE[:value], id: 'female-radio', class: 'styled' %>
+              <%= f.label User::FEMALE[:label], for: 'female-radio' %>
+          </div>
+          <div class="elm">
+              <%= f.radio_button :gender, User::MALE[:value], id: 'male-radio', class: 'styled' %>
+              <%= f.label User::MALE[:label], for: 'male-radio' %>
+          </div>
+      </div>
+  </div>
+
+  <br>
+
+  <%= f.label :bio, 'Tell families about yourself:', :class=>"general required" %>
+  <div class="form-elements">
+      <%= f.text_area :bio, class: 'count-words' %>
+
+      <span class="words-left">50 words left</span>  
+      <span id="bio-counter" class="flag green float-r hidden">OK</span>   
+  </div>
+
+  <br>
+
+  <%= f.label :headline, 'Write a "Care Title" introducing yourself to families:', :class=>"general required"  %>
+  <div class="form-elements">
+      <%= f.text_field :headline, max_length: 50, required: true, placeholder: 'example: Compassionate, Spanish speaking caregiver', class: 'count-characters' %>
+
+      <span class="characters-left">50 characters left</span>    
+      <span class="flag green float-r hidden">OK</span> 
+  </div>  
+
+  <br>
+
+  <%= f.label :work_experience %>
+  <%= f.text_field :work_experience %>
+
+  <br>
+
+  <div class="form-item">
+      <%= f.label :phone, 'What is the best number to reach you?', :class => 'general required' %>
+      <div class="form-elements">
+          <%= f.text_field :phone, :class => 'middleWidth' %>
+          <p class="desc">555-555-5555</p>
+      </div>
+  </div>
+
+  <br>
+
+  <div class="form-item">
+      <%= f.label :date_of_birth, 'When were they born', :class=>"general required" %>
+      <div class="form-elements birth">
+          <div class="elm">
+              <div class="select-box">
+                  <%= select_month f.object.date_of_birth_month.to_i, field_name: "date_of_birth_month", prompt: 'Month' %>
+              </div>
+              <p>Month</p>
+          </div>
+          <div class="elm">
+              <div class="select-box">
+                  <%= select_day f.object.date_of_birth_day.to_i, field_name: "date_of_birth_day", prompt: 'Day' %>
+              </div>
+              <p>Day</p>
+          </div>
+          <div class="elm">
+              <div class="select-box">
+                  <%= select_year f.object.date_of_birth_year.to_i, start_year: 1940, end_year: Date.current.year - 18, field_name: "date_of_birth_year", prompt: 'Year' %>
+              </div>
+              <p>Year</p>
+          </div>
+      </div>
+  </div>
+
+  <% @user.experiences.each do |experience| %>
+    <%= link_to experience.employer, edit_admin_experience_path(experience), target: '_blank' %>
+  <% end %>
+
+  <% @user.schools.each do |school| %>
+    <%= link_to school.name, edit_admin_school_path(school), target: '_blank' %>
+  <% end %>
+
+  <%= f.submit %>
+
+<% end %>
+</div>

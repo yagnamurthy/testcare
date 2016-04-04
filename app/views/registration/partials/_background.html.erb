@@ -1,0 +1,36 @@
+<div class="user-register-page container-large">
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "photos"} %>
+
+            <div class="reg-slider">
+            <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+
+                <div class="form-items">
+                    <div class="form-item background" data-tab="photos" data-last="true">
+                        <label class="title">Select a Profile Background Photo</label>
+
+                        <div class="form-elements">
+                            <% Caregiver::BACKGROUNDS.each_with_index do |background, i| %>
+                                <div class="custom-checkbox">
+                                    <input type="radio" name="caregiver[background]" id="b<%= i %>" value="<%= background %>" />
+                                    <label for="b<%= i %>"><%= image_tag('backgrounds/small_' + background) %></label>
+                                </div>
+                            <% end %>
+                        </div>
+                        <p class="error-msg" style="display:none;">A background is required</p>
+                        <%= hidden_field_tag 'route', dashboard_path(congrats: true) %>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                    <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                    <%= f.submit 'Save', class: 'btn' %>
+                </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

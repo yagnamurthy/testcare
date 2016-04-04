@@ -1,0 +1,65 @@
+/** base colors **/
+$color-white: #FFF;
+$color-black: #414042;
+$color-gray-light: #F1F2F2;
+$color-gray-light2: #D1D3D4;
+$color-gray-middle: #BCBEC0;
+$color-gray-strong2: #A7A9AC;
+$color-gray-strong: #808285;
+$color-blue-light: #33A5DE;
+$color-blue-middle: #2B8AAF;
+$color-blue-strong: #216A87;
+$color-red-light: #D46568;
+$color-red-strong: #D30900;
+$color-green-light: #8DC63F;
+$color-green-strong: #009933;
+$color-purple: #7F3F98;
+$color-obscure-gray: #333;
+
+$color-border-gray: #DEDEDE;
+
+/** text colors **/
+$color-text-black: $color-black;
+$color-text-gray: $color-gray-strong;   /* default text color */
+$color-text-gray2: $color-gray-strong2;
+$color-text-red: $color-red-light;
+$color-text-red-strong: $color-red-strong;
+$color-text-blue: $color-blue-strong;
+$color-text-blue-light: $color-blue-light;  /* for inline links hover */
+$color-text-white: $color-white;
+
+/** font sizes **/
+$fontBase: 16px;
+$font36: em(36px, $fontBase);
+$font36lh: em(42px, 36px);
+$font32: em(32px, $fontBase);
+$font32lh: em(38px, 32px);
+$font25: em(25px, $fontBase);
+$font24: em(24px, $fontBase);
+$font24lh: em(32px, 24px);
+$font23: em(23px, $fontBase);
+$font21: em(21px, $fontBase);
+$font18: em(18px, $fontBase);
+$font18lh: em(24px, 18px);
+$font16: em(16px, $fontBase);
+$font16lh: em(22px, 16px);
+$font14: em(14px, $fontBase);
+
+/** fonts **/
+$font-heading: 'museo-slab';
+$font-regular: 'proxima-nova';
+
+@mixin fontRegular() {
+    font-family: $font-regular;
+    font-weight: 400;
+}
+
+@mixin fontSemiBold() {
+    font-family: $font-regular;
+    font-weight: 600;
+}
+
+@mixin fontHeading() {
+    font-family: $font-heading;
+    font-weight: 700;
+}

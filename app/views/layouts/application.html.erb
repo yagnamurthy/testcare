@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <!-- Set the viewport width to device width for mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta name="google-site-verification" content="_f8-7hrXbHSCCEkbZG3LW8nTYJIgxATUU_l6lPLKFZc" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <script src="//use.typekit.net/tjd7nay.js"></script>
+        <script>try{Typekit.load();}catch(e){}</script>
+
+        <%= canonical_tag %>
+        <%= csrf_meta_tags %>
+       
+
+        <!-- Begin Inspectlet Embed Code -->
+
+        <% if Rails.env.production? %>
+
+            <script type="text/javascript" id="inspectletjs">
+
+                     window.__insp = window.__insp || [];
+
+                     __insp.push(['wid', 734603436]);
+
+                     (function() {
+
+                             function __ldinsp(){var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); }
+
+                             if (window.attachEvent){
+
+                                      window.attachEvent('onload', __ldinsp);
+
+                             }else{
+
+                                      window.addEventListener('load', __ldinsp, false);
+
+                             }
+
+                     })();
+
+            </script>
+
+            <!-- End Inspectlet Embed Code -->
+
+            <!-- start Mixpanel --><script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+            for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+            mixpanel.init("a55fb4e93a51f546cf1be40c71e0f374");</script><!-- end Mixpanel -->
+
+        <% end %>
+
+    </head>
+
+    <body id="<%= uniq_page_id controller %>" class="<%= extended_class controller %>">
+
+        <script type="text/javascript">
+            var WRInitTime=(new Date()).getTime();
+        </script>
+
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.3.8/slick.css"/>
+
+        <%= stylesheet_link_tag "v2/application" %>
+
+        <%= javascript_include_tag "application", "rails.validations" %>
+
+        <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.3.8/slick.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('.slick-slider').slick();
+            });
+        </script>
+        <%= render "layouts/unsupported_browser" %>
+        <%= render "layouts/facebook" %>
+        <%= render 'layouts/olark' %>
+        <%= render 'layouts/googleapis' %>
+
+        <%= render 'layouts/header' %>
+        <%= yield %>
+        <%= render 'layouts/footer' %>
+
+        <%= render 'layouts/clicktale' %>
+    </body>
+<script type="text/javascript">
+  var _cio = _cio || [];
+  (function() {
+    var a,b,c;a=function(f){return function(){_cio.push([f].
+    concat(Array.prototype.slice.call(arguments,0)))}};b=["load","identify",
+    "sidentify","track","page","cookie"];for(c=0;c<b.length;c++){_cio[b[c]]=a(b[c])};
+    var t = document.createElement('script'),
+        s = document.getElementsByTagName('script')[0];
+    t.async = true;
+    t.id    = 'cio-tracker';
+    t.setAttribute('data-site-id', '0eee70362a24e15cd669');
+    t.src = 'https://assets.customer.io/assets/track.js';
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+<script type="text/javascript">
+  <% if current_user %>
+    _cio.identify({
+      // Required attributes
+      id: '<%= "#{current_user.type}_#{current_user.id}" %>',           // Unique id for the currently signed in user in your application.
+      email: '<%= "#{current_user.email}" %>', // Email of the currently signed in user.
+      created_at: '<%= "#{current_user.created_at.to_time.to_i}" %>',   // Timestamp in your system that represents when
+                                // the user first signed up. You'll want to send it
+                                // as seconds since the epoch.
+
+      // Optional (these are examples. You can name attributes what you wish)
+
+      first_name: '<%= "#{current_user.first_name}" %>',       // Add any attributes you'd like to use in the email subject or body.
+      plan_name: 'free'      // To use the example segments, set this to 'free' or 'premium'.
+    });
+  <% end %>
+</script>
+
+
+<% if Rails.env.production? %>
+  <script>
+      (function(f,b){
+          var c;
+          f.hj=f.hj||function(){(f.hj.q=f.hj.q||[]).push(arguments)};
+          f._hjSettings={hjid:15153, hjsv:3};
+          c=b.createElement("script");c.async=1;
+          c.src="//static.hotjar.com/c/hotjar-15153.js?sv=3";
+          b.getElementsByTagName("head")[0].appendChild(c);
+      })(window,document);
+  </script>
+<% end %>
+</html>

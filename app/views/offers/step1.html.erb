@@ -1,0 +1,134 @@
+<div class="container">
+	<div class="page-type-one-board">
+
+		<%= render partial: 'searchjob/hireprogress' %>
+
+		<div class="page-content">
+			<h2>Offer details</h2>
+
+			<%= form_for @offer, url: caregiver_offer_confirm_path(@caregiver.id, @offer.id), method: 'post', html: { class: 'myform' } do |f| %>
+
+				<section>
+					<h3>Parties</h3>
+
+					<table>
+						<tr>
+							<th>Caregiver:</th>
+							<td>
+								<%= avatar_tag @caregiver, :medium, class: 'middle2-avatar' %>
+								<%= @caregiver.first_and_last_initial %>
+							</td>
+						</tr>
+						<tr>
+							<th>Client:</th>
+							<td><%= current_user.full_name %></td>
+						</tr>
+						<tr>
+							<th>Care Job:</th>
+							<td>
+								<strong><%= current_user.current_contract.headline %></strong> <span class="little nosize">(#<%= current_user.current_contract.id %>)</span>
+								<div class="elm single-checkbox">
+									<%= f.check_box :close_job, class: 'styled' %>
+									<label class="little">Close this job post if caregiver accepts this offer (You can always repost it later).</label>
+								</div>
+
+							</td>
+						</tr>
+					</table>
+				</section>
+				
+				<section>
+					<h3>Offer terms</h3>
+
+					<table>
+						<tr>
+							<th>Contract Type:</th>
+							<td>
+								<div class="elm single-radio">
+									<%= f.radio_button :contract_type, 1, id: 'hourly-contract-type', class: 'styled' %>
+	                                <%= f.label 'Hourly', for: 'hourly-contract-type' %>
+								</div>
+								<div class="elm single-radio">
+									<%= f.radio_button :contract_type, 2, id: 'livein-contract-type', class: 'styled' %>
+	                                <%= f.label 'live_in', for: 'livein-contract-type' %>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>Rate:</th>
+							<td>
+								<div class="hourly-rate-widget">
+									<div class="row first">
+										<div class="pull-left">
+											Caregiver hourly rate: 
+										</div>
+										<div class="pull-right with-select">
+											<span class="blue">$</span>
+											<%= f.text_field :rate %>
+											/hr
+										</div>
+									</div>
+									<div class="row">
+										<div class="pull-left">
+											+ 15% CareSpotter Service Fee: 
+										</div>
+										<div class="pull-right">
+											<span id='offer_percentage'>$-.--</span> /hr
+											<span data-tooltip class="has-tip tip-right" title="
+	                                            <strong>CareSpotter’s 15% Service Fee incudes:</strong>
+	                                            <ul class='with-tick'>
+	                                                <li>24/7 Access to Professional Care Manager and Care Coach</li>
+	                                                <li>Unlimited Access to Caregivers with Free</li> 
+	                                                <li>Background Screening</li>
+	                                                <li>$25,000 Bond Protection</li>
+	                                                <li>$1.000.000 Liability Insurance Protection</li>
+	                                                <li>CareSpotter’s Online Care Journal</li>
+	                                                <li>Easy Secure Online Payment System</li>
+	                                            </ul>
+	                                            ">
+	                                            <%= image_tag 'bg/question.png' %>
+										</div>
+
+									</div>
+									<div class="row last">
+										<div class="pull-left">
+											Total hourly fee:
+										</div>
+										<div class="pull-right">
+											<span id='offer_total' class="blue">$--.--</span> /hr
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								Message to Caregiver:<br/>
+								<span class="little">(optional)</span>
+							</th>
+							<td>
+								<%= f.fields_for :message do |message_form| %>
+									<%= message_form.text_area :body %>
+								<% end %>
+							</td>
+						</tr>
+					</table>
+				</section>
+
+				<section class="action">
+					<%= f.submit class: 'btn main', value: 'Continue' %>
+					<span class="cancel">or <a href="#">Cancel</a></span>
+
+					<div class="tip">
+						<span class="flag red">Tip</span>
+						<p>You will get a chance to review before sending this offer.</p>
+					</div>
+				</div>
+
+
+			<% end %>
+
+		</div>
+
+	</div>
+</div>

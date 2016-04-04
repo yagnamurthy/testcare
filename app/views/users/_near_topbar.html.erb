@@ -1,0 +1,136 @@
+ <%= f.hidden_field :zipcode, id: 'zipcode' %>
+
+<div class="row">
+
+    <div class="col-4 mobile-hide">
+        <div class="input-group clear">
+            <label>Gender:</label>
+            <div class="select-box">
+                <a href="#">choose</a>
+                <%= f.select(:gender, options_for_select(User::Gender.options_for_select.unshift(['Either', '0'])), {include_blank: 'Choose'}, id: 'gender') %>
+            </div>
+        </div>
+    </div>
+    <div class="col-4 mobile-hide">
+        <div class="input-group clear">
+            <label>Language:</label>
+            <div class="select-box">
+                <a href="#">choose</a>
+                <%= f.select(:language, options_from_collection_for_select(Language.all, 'code', 'name'), {include_blank: 'Choose'}, id: 'language') %>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4 mobile-hide">
+        <%= f.submit class: 'btn small filter-button', value: 'Refine My Search' %>
+        <!-- @todo: change label to "Available for live_in" and logic of this -->
+        <div class="custom-checkbox">
+            <%= f.check_box :live_in, class: 'styled', id: 'live_in-checkbox' %>
+            <%= f.label :live_in, 'Live in Caregivers Only', for: 'live_in-checkbox' %>
+        </div>
+    </div>
+</div>
+
+<div class='row'>
+  <div class='col-12'>
+    <a href="#" class="advanced-toggle toggle-btn" data-target="advanced-filter">+ Show Additional Search Options</a>
+
+    <div id="advanced-filter" class="toggle-container">
+        <div class="row">
+            <div class="col-4">
+                <div class="input-group clear">
+                    <label>&nbsp;&nbsp;Keyword:</label>
+                    <%=  f.text_field(:keywords, :placeholder => 'Hobbies, interests, etc.', id: 'keywords') %>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="input-group clear">
+                    <label id="experience">Experience with:</label>
+                    <div class="select-box">
+                        <a href="#">choose</a>
+
+                        <%= f.select(:health_services, options_from_collection_for_select(HealthService.all, 'id', 'name'), {include_blank: 'Choose'}, id: 'service') %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <h5>
+                <span class="arrow"></span>General
+            </h5>
+
+            <div id='general-section' class="toggle-section hidden">
+                <% Caregiver::GENERAL.each do |option| %>
+                    <div class="elm">
+                        <%= hidden_field_tag option[:key], nil %>
+                        <div class="custom-checkbox">
+                            <%= f.check_box option[:key], class: 'styled', id: "#{option[:key].to_s.parameterize}-checkbox", checked: false %>
+                            <%= f.label option[:value], class: 'inline padding-left', for: "#{option[:key].to_s.parameterize}-checkbox" %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+
+           <div class="col-3">
+            <h5>
+                <span class="arrow"></span>Home Support Services
+            </h5>
+
+            <div id='medical-conditions-section' class="toggle-section hidden">
+                <% GeneralService.all.each do |service| %>
+                    <div class="elm">
+                        <div class="custom-checkbox">
+                            <%= advanced_search_checkbox(service.name, service.id, false) %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <h5>
+                <span class="arrow"></span>Education &amp; Credentials
+            </h5>
+
+            <div id='credential-section' class="toggle-section hidden">
+                <% (Credential::TYPES + [{:key => :degree, :value => 'College Graduate'}]).each do |option| %>
+                    <div class="elm">
+                        <%= hidden_field_tag option[:key], nil %>
+                        <div class="custom-checkbox">
+                            <%= f.check_box option[:key], class: 'styled', id: "#{option[:key].to_s.parameterize}-checkbox", checked: false %>
+                            <%= f.label option[:value], class: 'inline padding-left', for: "#{option[:key].to_s.parameterize}-checkbox" %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+
+             <div class="input-group clear" style="display: none;">
+                <label>Rate:</label>
+                <div class="range-input">
+                    <div class="margin">
+                        <div id="price-slider" class="large-12 small-12"></div>
+                    </div>
+                    <div class="margin-bottom amount">
+                        <span id="min-amount">$1</span>
+                            <span> to </span>
+                        <span id="max-amount">$50</span>
+                    </div>
+                    <%= f.hidden_field :wage, { id: 'wage-field'} %>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $("a.advanced-toggle").click(function() {
+
+        if ($(this).text() == "+ Show Additional Search Options")
+           $(this).text("- Hide Additional Search Options")
+        else
+           $(this).text("+ Show Additional Search Options");
+});
+</script>

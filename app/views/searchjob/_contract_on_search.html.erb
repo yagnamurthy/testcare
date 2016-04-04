@@ -1,0 +1,72 @@
+<section class="super-main on-list">
+
+    <h4>
+        <%= contract_on_search.headline %>
+
+        <% if current_user.applied_for_contract? contract_on_search %>
+            <span class="applied-job">Applied<i></i></span>
+        <% else %>
+            <% if current_user.completed_profile? && current_user.indexable %>
+                <%= link_to_modal 'Apply', caregiver_offer_apply_to_job_path(current_user.id, contract_on_search.id, contract_id: contract_on_search.id), class: 'btn main apply-to-job' %>
+            <% else %>
+                <%= link_to_modal 'Apply', cannot_apply_modal_path, class: 'btn main' %>
+            <% end %>
+        <% end %>
+    </h4>
+
+    <table class="details">
+        <tr>
+            <td class="first-col">
+                <strong>Job posted on:</strong> <%= contract_on_search.created_at.strftime("%m/%d/%Y") %>
+            </td>
+        </tr>
+        <tr>
+            <td class="first-col">
+                <%= contract_on_search.schedule_to_label %>
+                <strong>Schedule:</strong> <%= contract_on_search.schedule_to_label %>
+            </td>
+            <td class="second-col">
+                <strong>Hourly rate:</strong><span class="blue strong">from $<%= contract_on_search.required_rate %></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="first-col" colspan="2">
+                <strong>Requirements:</strong>
+                <ul>
+                    <% if contract_on_search.has_services? %>
+                        <% contract_on_search.services.each do |service| %>
+                            <li><%= service.name %></li>
+                        <% end %>
+                    <% else %>
+                        <li>None</li>
+                    <% end %>
+                </ul>
+            </td>
+        </tr>
+         <tr>
+            <td class="first-col" colspan="2">
+                <strong>Need help with:</strong>
+                <ul>
+                    <% if contract_on_search.has_requirements? %>
+                        <% contract_on_search.requirements.each do |requirements| %>
+                            <li><%= requirements.name %></li>
+                        <% end %>
+                    <% else %>
+                        <li>None</li>
+                    <% end %>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <div class="information">
+        <p>
+            <%= contract_on_search.description %>
+
+            <% if current_user.applied_for_contract? contract_on_search %>
+                <%= link_to 'Read More', contract_path(current_user.offer_for_contract(contract_on_search).contract_id), class: 'read-more' %>
+            <% end %>
+        </p>
+    </div>
+
+</section>

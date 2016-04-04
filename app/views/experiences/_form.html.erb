@@ -1,0 +1,37 @@
+<div class="row">
+  <%= simple_form_for [current_user, @experience], html: { class: 'experience-form' } do |f| %>
+    <div class="large-12 columns">
+      <%= f.input :employer, as: :string, label: 'Employer', required: true %>
+    </div>
+
+    <div class="large-12 columns">
+      <%= f.input :position, as: :string, label: 'Position', required: true %>
+    </div>
+
+    <div class="large-12 columns">
+      <label>When were you employed:</label>
+      <div class="row">
+        <div class="large-6 columns">
+          <%= f.input :start_date_month, as: :select, collection: 1..12, label: 'Month Started', required: true, label: 'Start Month' %>
+        </div>
+        <div class="large-6 columns">
+          <%= f.input :start_date_year, as: :select, collection: 2015.downto(1940), label: 'Year Started', required: true, label: 'Start Year' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <%= f.input :finish_date_month, as: :select, collection: 1..12, label: 'Month Finished', required: true, label: 'Finish Month' %>
+        </div>
+        <div class="large-6 columns">
+          <%= f.input :finish_date_year, as: :select, collection: 2015.downto(1940), label: 'Year Finished', required: true, label: 'Finish Year' %>
+        </div>
+      </div>
+    </div>
+    <div class="large-12 columns">
+      <div class="action">
+        <%= f.submit 'Submit', class: 'btn main' %>
+      </div>
+    </div>
+  <% end %>
+</div>

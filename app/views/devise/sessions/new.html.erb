@@ -1,0 +1,53 @@
+<div class="modal-login">
+  <header>
+    Log In
+  </header>
+
+  <div class="body no-padding log-in-modal">
+    <%= form_for resource, :as => resource_name, :url => session_path(resource_name), html: { id: 'login', class: 'myform' } do |f| %>
+      <div class="field">
+        <%= f.label :email, class: 'login-labels' %>      
+        <%= f.email_field :email, autofocus: true, placeholder: 'Email Address' %>
+      </div>
+      <div class="field">
+        <%= f.label :password, class: 'login-labels'  %>
+        <%= f.password_field :password, placeholder: 'Password' %>
+      </div>
+      <div class="field special">
+        <%= link_to 'Click here if you forgot your password', new_user_password_path %>
+      </div>
+      <div class="action">
+        <%= f.submit "Login", class: 'btn gray' %>
+      </div>
+    <% end %>
+
+    <footer>
+      <p>Don’t have an account? <a href="#">Sign up</a></p>
+    </footer>
+  </div>
+</div>
+
+<script>
+
+var isEmail = function(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+
+var checkLoginFields = function() {
+  if(isEmail($('#user_email').val()) &&
+    $('#user_password').val().length > 5) {
+        $('#login input[type=submit]').addClass('green');
+    } else {
+        $('#login input[type=submit]').removeClass('green');
+    }
+}
+
+setTimeout(checkLoginFields(), 2000);
+
+$('#login input').keyup(function(){
+    checkLoginFields();
+});
+
+
+</script>

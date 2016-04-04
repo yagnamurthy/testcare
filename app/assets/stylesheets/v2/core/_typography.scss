@@ -1,0 +1,81 @@
+html {
+    font-size: $fontBase;
+}
+
+html, body {
+    @include fontRegular();
+    color: $color-text-gray;
+}
+
+body {
+    font-size: $font16;
+    line-height: $font16lh;
+}
+
+p, ul, ol, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+h1,h2,h3,h4,h5 {
+    font-family: $font-heading;
+    color: $color-text-black;
+    
+    &.red {
+        color: $color-text-red;
+    }
+    
+    &.blue {
+        color: $color-text-blue;
+    }
+    
+    &.gray {
+        color: $color-text-gray;
+    }
+    
+    &.white {
+        color: $color-text-white;
+    }
+}
+
+h2 { 
+    font-size: $font36;
+    line-height: $font36lh;   
+    letter-spacing: .0025em;
+}
+
+h3,h4 {
+    font-size: $font24;
+    line-height: $font24lh;
+}
+
+h5 {
+    font-size: $font18;
+    line-height: $font18lh;
+}
+
+h6 {
+    font-size: $font16;
+    line-height: $font16lh;
+}
+
+a {
+    color: $color-blue-middle;
+    text-decoration: underline;
+    
+    @include respond-to('desktop') {
+        &:hover { color: $color-text-blue-light; }
+    }
+}
+
+ul.tick {
+    list-style-image: image-url('v2/tick.png');
+    list-style-position: outside;
+    margin-left: 32px;
+    
+    li {
+        font-size: $font18;
+        line-height: $font18lh; 
+        padding-top: 5px;
+    }
+}

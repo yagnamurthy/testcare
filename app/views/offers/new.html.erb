@@ -1,0 +1,34 @@
+<div>
+	<header>
+		<%= @caregiver.first_name %>
+	</header>
+
+	<div class="body">
+
+		<div class="user">
+			<%= avatar_tag @caregiver, :medium, class: 'middle2-avatar' %>
+			<div class="info">
+				<h2><%= @caregiver.first_and_last_initial %></h2>
+				<p class="caregiver-hours"><i class="small-heart"></i><%= @caregiver.hours %> + carespotter hours   </p>
+			</div>
+		</div>
+
+		<%= form_for @offer, url: caregiver_offers_path(@caregiver.id), method: 'post', html: { id: 'message-request', class: 'myform' } do |f| %>
+			<div class="field">
+				<label>Job posting:</label>
+				<div class="select-box">
+					<%= f.select :contract_id, current_user.active_contract_options_for_select %>
+				</div>
+			</div>
+			<div class="field">
+				<label>Message:</label>
+				<%= f.fields_for @message do |message_form| %>	
+					<%= message_form.text_area :body, value: "Hello, I’d like to personally invite you to apply to my care job. Please review the job post and apply if you’re available. \n\nThank you, \n\n#{current_user.first_name}" %>
+				<% end %>
+			</div>
+			<div class="action">
+				<%= f.submit class: 'btn main', value: 'Send' %>
+			</div>
+		<% end %>
+	</div>
+</div>

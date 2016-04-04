@@ -1,0 +1,85 @@
+<div class="top-nav">
+    <div id='search-topbar' class="search-topbar">
+        <%= form_for SearchSidebar.new(params), as: 's', url: '/caregivers_search' do |f| %>
+            <%= render :partial => 'users/near_topbar', locals: { f: f } %>
+        <% end %>
+    </div>
+</div>
+
+<div class="row page <%= current_user && current_user.should_show_congrats_modal? ? 'open-congrats-modal' : '' %>">
+    <div class="caregivers-list">
+        <div class="results-bar">
+            <div class="clear">
+                <h3>
+                  <%= @caregivers.total_entries %> caregivers in <%= computed_location params[:zipcode] %>
+                </h3>
+
+                 <%= form_tag '/caregivers_search', method: 'POST' do %>
+                    <div class="input-group">
+                        <label>Sort by:</label>
+                        <div class="select-box">
+                            <a href="#">Distance</a>
+                            <%= select(:sort, nil, User::Sort::OPTIONS, selected: params[:sort])  %>
+                        </div>
+                        <%= hidden_field_tag :zipcode, params[:zipcode] %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="inline">
+              <a rel="modal:open" href="/no_caregiver" class="change-location">Change Location</a>
+            </div>
+        </div>
+
+        <div id="caregivers" data-caregiver-count="<%= @caregivers.length %>">
+            <% @caregivers.each_with_hit do |caregiver, hit| %>
+                <%= render :partial => 'user', :locals => { caregiver: caregiver.decorate, hit: hit, zipcode: params[:zipcode] } %>
+            <% end %>
+        </div>
+
+        <%= paginate @caregivers %>
+    </div>
+</div>
+
+<script>
+  var caregiver_search = $('[data-caregiver-count]');
+  var congrats_modal = $('open-congrats-modal');
+
+  var show_no_caregiver_modal = function() {
+    var no_caregiver_modal_dfd = $.ajax({
+        url: '/no_caregiver'
+    });
+
+    no_caregiver_modal_dfd.then(function (html) {
+      $(html).appendTo('body').modal()
+    });
+  }
+
+  var show_congrats_modal = function() {
+    var show_congrats_dfd = $.ajax({
+        url: '/dashboard/welcome_to_carespotter'
+    });
+
+    show_congrats_dfd.then(function (html) {
+      $(html).appendTo('body').modal()
+    });
+  }
+
+  if(congrats_modal.length > 0) {
+    show_congrats_modal();
+  }
+
+  if(congrats_modal.length == 0 && caregiver_search.data('caregiver-count') == 0) {
+    show_no_caregiver_modal();
+  }
+
+  $('#new_s').on('submit', function(evt) {
+    evt.preventDefault();
+
+    var urlQuerObject = $(this).serializeObject().s;
+    var urlQueryString = $.param({ s: $('#new_s').serializeObject().s });
+
+    window.location.href ='/caregivers/near/' + urlQuerObject.zipcode + '?' + urlQueryString;
+
+  });
+
+</script>

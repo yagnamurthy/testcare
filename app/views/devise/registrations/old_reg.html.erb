@@ -1,0 +1,126 @@
+<div class="page-wrapper">
+  <div class="body no-padding sign-up">
+    <div class='sign-up-banner'>
+      <div class="overlay"></div>
+      <div class="row">
+        <div class="family-sign-up-box">
+        <h4>Find a Caregiver in 60 Seconds!</h4>
+        <p>CareSpotter is the fastest, most affordable way to find local, professional in-home caregives for your loved one.</p>
+        <div class="register-form">
+        <% if resource.caregiver? %>
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :method => :post ) do |f| %>
+                <%= f.hidden_field :type, :value => 'Caregiver' %>
+
+                <div class="field">
+                    <%= f.label :first_name %>
+                    <%= f.text_field :first_name, placeholder: 'First Name' %>
+                </div>
+
+                <div class="field">
+                    <%= f.label :last_name %>
+                    <%= f.text_field :last_name, placeholder: 'Last Name' %>
+                </div>
+
+                <div class="field">
+                    <%= f.label "Email Address" %>
+                    <%= f.email_field :email, placeholder: 'Email', required: 'true' %>
+                </div>
+
+                <div class="field">
+                    <%= f.label "Create a Password" %>
+                    <%= f.password_field :password, placeholder: 'Create a Password', :pattern => ".{6,}", :required => 'true', :title => "6 characters minimum", validate: { presence: true } %>
+                </div>
+
+                <div class="action">
+                    <%= f.submit "Sign up", class: 'btn gray', value: "Let's Get Started!" %>
+                </div>
+
+            <% end %>
+        <% else %>
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :method => :post ) do |f| %>
+
+              <%= f.hidden_field :type, :value => params[:type] %>
+
+              <!-- new field! -->
+              <div class="field">
+                <%= f.label :first_name %>
+                <%= f.text_field :first_name, :placeholder => 'First Name', :autofocus => true %>
+              </div>
+
+              <div class="field">
+                <%= f.label :email %>
+                <%= f.email_field :email, :placeholder => 'Email' %>
+              </div>
+
+              <div class="field">
+                <%= f.label :phone %>
+                <%= f.phone_field :phone, :placeholder => 'Phone', validate: { presence: true } %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password %>
+                <%= f.password_field :password, :placeholder => 'Password', validate: { presence: true } %>
+              </div>
+
+              <div class="field" id="where-care">
+                <%= f.label 'Where is Care Needed?' %>
+                <%= f.text_field :city, :placeholder => 'e.g. Orlando' %>
+              </div>
+
+              <div class="action">
+                <%= f.submit "Find a Caregiver", class: 'btn gray' %>
+              </div>
+
+          <% end %>
+        <% end %>
+        </div>
+        <p>By clicking "Apply" you confirm that you accept the  <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+
+          <div class="for-member">
+              Already a Member?
+              <%= link_to_modal "Login Here", new_user_session_path %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render partial: 'web/references' %>
+</div>
+
+<script>
+
+// window.ClientSideValidations.forms['new_user'].validators['user[phone]'] = {
+//   presence: [
+//     { message: 'Phone Number is required' }
+//   ]
+// }
+
+
+$(document).ready(function(){
+
+  var checkFields = function() {
+    if($('#user_first_name').val().length > 0 &&
+      $('#user_email').val().length > 0 &&
+      $('#user_phone').val().length > 0 &&
+      $('#user_password').val().length > 5) {
+          $('#new_user input[type=submit]').addClass('green');
+      } else {
+          $('#new_user input[type=submit]').removeClass('green');
+      }
+  }
+
+  $('.field input').keyup(function(){
+      checkFields();
+  });
+
+  if ($(window).width() < 400 ) {
+    $("#user_city").attr("placeholder", 'Where is Care needed?');
+  }
+  else { $("user_city").attr("placeholder", 'e.g. Orlando')};
+
+});
+
+
+
+</script>
+

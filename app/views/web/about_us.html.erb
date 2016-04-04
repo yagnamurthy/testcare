@@ -1,0 +1,171 @@
+<div class="static-page">
+
+	<header>
+		<h2>About Us</h2>
+	</header>
+
+	<section class="main to-columns">
+
+		<div class="small-side-nav">
+			<div class="sidebar-scrolling">
+				<%= render partial: 'web/menu_about', locals: { act: '' } %>
+			</div>
+		</div>
+
+		<div class="main-col">
+
+			<section class="sub row">
+				<div class="columns large-12">
+					<h3 id="our-mission">CareSpotter’s Mission</h3>
+					<%= image_tag ('static/about-1.png'), class: 'photo left' %>
+
+					<p>As Rosalynn Carter said, "There are only four kinds of people in this world: Those who have been caregivers; Those who currently are caregivers; Those who will be caregivers; And those who will need caregivers."</p>
+
+					<p>CareSpotter's mission is to support all those who are, have been, will be and will need caregivers. For families, CareSpotter is dedicated to helping you find the best caregiver and feel secure in your choice. All CareSpotter caregivers must pass an intensive 5-step vetting process, and we're here to guide you through the unfamiliar caregiver hiring and management process. For professional caregivers, CareSpotter supports you locally, creating a community caregiver meetup group in each city we launch, and by providing monthly online training and conference calls.</p>
+ 
+					<p>Being a caregiver, whether professionally or for your own family is not easy, but it is the highest honor. And we are honored to support this part of life’s journey.</p>
+				</div>
+			</section>
+
+			<section class="sub row search with-border">
+				<div class="columns large-12">
+					<h3>Get Started Now</h3>
+					<%= render :partial => 'caregivers/search_form', locals: {request: request} %>
+				</div>
+			</section>
+
+			<section class="sub row with-border">
+				<div class="columns large-12">
+					<h3 id="our-story">Why we started CareSpotter</h3>
+				</div>
+				<div class="columns large-12">
+					<%= image_tag 'static/about-2.png', class: 'photo left' %>
+					<p>In 2012, I needed to find a caregiver for my dear mother who was battling cancer. The hospital case manager gave us a list of homecare agencies, but there were no ratings or testimonials, no way of knowing which were good and which to avoid. When I contacted the agency, I couldn't speak with the caregiver before they sent them to my mom's home. My mother was my hero, and at her most vulnerable, I didn't want to risk letting a stranger choose the wrong caregiver, so I left my job and took care of my mom full time. Families should have more power in this difficult situation.</p>
+ 
+					<p>Later I found out poorly caregivers were paid despite the tremendous need. Many caregivers make poverty wages, and more than 40 percent rely on government assistance. But being a caregiver is very hard, important work, and these critical professionals should have the opportunity to make a living wage. So I started CareSpotte r so families could choose their own caregiver, and professional caregivers could make a living wage while still being much less than agency fees.</p>
+ 
+					<p>I am proud to have been a caregiver, and CareSpotter is honored to work with families and caregivers. If you ever have any questions or thoughts, please reach out - we love to be a part of this amazing community.</p>
+				</div>
+			</section>
+
+			<section class="sub row">
+				<h3 id="why-carespotter" class="tc">Agencies vs. CareSpotter</h3>
+				<table class="agency-vs-cs">
+					<tbody>
+
+						<tr>
+							<td class="t1">
+								<%= image_tag 'static/vs/agencies.png' %>
+							</td>
+							<td class="nb"></td>
+							<td class="t2">
+								<%= image_tag 'static/vs/carespotter.png' %>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="t1">
+								<div class="desc">
+									<h4>Expensive</h4>
+									<p>Agencies charge up to $30 an hour and don't have affordable options for short term hires.</p>
+								</div>
+								<i class="vs i11"></i>
+							</td>
+							<td class="nb"><i class="vs s"></i></td>
+							<td class="t2">
+								<i class="vs i12"></i>
+								<div class="desc">
+									<h4>Affordable</h4>
+									<p>Families save 30 to 40% with CareSpotter and can hire short term caregivers easily.</p>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="t1">
+								<div class="desc">
+									<h4>High Turnover</h4>
+									<p>Poor wages lead to high caregiver turnover which is stressful for patients who lose their caregiver.</p>
+								</div>
+								<i class="vs i21"></i>
+							</td>
+							<td class="nb"><i class="vs s"></i></td>
+							<td class="t2">
+								<i class="vs i22"></i>
+								<div class="desc">
+									<h4>Low Turnover</h4>
+									<p>CareSpotter caregivers earn a living wage, lowering turnover and resulting in more engaged, dedicated caregivers.</p>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="t1">
+								<div class="desc">
+									<h4>Hit or Miss</h4>
+									<p>Families aren't able to choose their own caregiver, leaving good caregiver/patient match to chance.</p>
+								</div>
+								<i class="vs i31"></i>
+							</td>
+							<td class="nb"><i class="vs s"></i></td>
+							<td class="t2">
+								<i class="vs i32"></i>
+								<div class="desc">
+									<h4>Your Choice</h4>
+									<p>No one knows your loved one better than you, leading to the best caregiver match for your loved one.</p>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="t1">
+								<div class="desc">
+									<h4>Difficult for Caregivers</h4>
+									<p>Agencies pay very poorly and shuffle caregivers among different clients, hurting the patient/caregiver relationship.</p>
+								</div>
+								<i class="vs i41"></i>
+							</td>
+							<td class="nb"><i class="vs s"></i></td>
+							<td class="t2">
+								<i class="vs i42"></i>
+								<div class="desc">
+									<h4>High Caregiver Satisfaction</h4>
+									<p>CareSpotter empowers caregivers through structure and training, resulting in better services for families and patients.</p>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td class="t1">
+								<div class="desc">
+									<h4>Demoralizing</h4>
+									<p>Expensive fees and not being able to choose their own caregiver is tremendously stressful for families.</p>
+								</div>
+								<i class="vs i51"></i>
+							</td>
+							<td class="nb"><i class="vs s"></i></td>
+							<td class="t2">
+								<i class="vs i52"></i>
+								<div class="desc">
+									<h4>Empowering</h4>
+									<p>Finding the perfect caregiver empowers an entire family, knowing their loved one is properly supported and cared for.</p>
+								</div>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</section>
+
+			<section class="sub row search">
+				<div class="columns large-12">
+					<h3>Get Started Now</h3>
+					<%= render :partial => 'caregivers/search_form', locals: {request: request} %>
+				</div>
+			</section>
+
+		</div>
+
+	</section>
+
+</div>

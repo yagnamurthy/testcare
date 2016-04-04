@@ -1,0 +1,23 @@
+<script>
+  if(BrowserDetect.browser !== "Explorer" || (BrowserDetect.browser === 'Explorer' && BrowserDetect.version > 8)) {
+  	window.location = '/'
+  }
+</script>
+
+<div class="page unsupported-browser global-error">
+    <div class="wrapper">
+        <section>
+            <h1>Update Your Browser</h1>
+
+            <p>You’re using a version of Internet Explorer that isn’t supported by Carespotter.<br>To get a better experience, go to one of these sites and get the latest version of your preferred browser:</p>
+
+            <div id='browser-list'>
+            	<a href='https://www.google.com/intl/en/chrome/browser/'><%= image_tag 'chrome.png', width: 100 %></a>
+
+            	<a href='http://www.mozilla.org/en-US/firefox/new/'><%= image_tag 'firefox.png', width: 100 %></a>
+
+            	<a href='http://windows.microsoft.com/en-us/internet-explorer/download-ie'><%= image_tag 'ie.png', width: 100 %></a>
+            </div>
+        </section>
+    </div>
+</div>			

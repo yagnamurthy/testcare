@@ -1,0 +1,100 @@
+<div class="page-wrapper">
+  <div class="body edit-account">
+    <div class="row">
+      <div class="content main-cnt">
+        <h2>My Account</h2>
+        <%= render partial: 'dashboard/profile_column' %>
+        <div class="contacts-form my-account">
+          <h3>
+            Your Profile
+            <span class="r-msg">
+            	It’s important to keep this up to date
+            </span>
+          </h3>
+          <%= form_for current_user, url: user_path(current_user.id), as: :user do |f| %>
+            <div class="item-section">
+              <div class="item">
+                  <%= f.label :first_name %>
+                  <div class="element">
+                      <%= f.text_field :first_name %>
+                  </div>
+              </div>
+              <div class="item">
+                  <%= f.label :last_name %>
+                  <div class="element">
+                      <%= f.text_field :last_name %>
+                  </div>
+              </div>
+              <div class="item">
+                  <%= f.label :email %>
+                  <div class="element">
+                      <%= f.email_field :email, disabled: true %>
+                  </div>
+              </div>
+            </div>
+            <div class="item-section">
+              <div class="form-item photo-uploader custom-upload">
+              <div id="avatar-pane">
+                <div class="preview-container photo">
+                    <%= avatar_tag(current_user, :large, id: 'preview', class: 'jcrop-preview') %>
+                </div>
+              </div>
+              <div class="info">
+                <h4>Let’s see your smile!</h4>
+                <p>
+                  Caregivers with friendly, smiling photos are <span class="red">7 times more likely</span> to be hired than those without a smile. So please SMILE!
+                </p>
+                <div id='photo-upload-button' class="buttons">
+                  <%= file_field_tag(:file, id: 'upload-photo-msie') %>
+                  <a id='upload-photo' class="hidden"> Upload Photo</a>
+                </div>
+              </div>
+                <p>
+                  By uploading a photo, you certify that you have the right to distribute this photo and that it does not violate the User Agreement.
+                </p>
+              </div>
+            </div>
+            <div class="item-section">
+              <div class="item multi-elements" id="change-passwd">
+                <label>Change password</label>
+                <div class="element with-bg">
+                  <%= f.password_field :current_password %>
+                  <p class="desc">Old Password</p>
+                  <%= f.password_field :password %>
+                  <p class="desc">New Password</p>
+                  <%= f.password_field :password_confirmation %>
+                  <p class="desc">New Password Confirmation</p>
+                </div>
+              </div>
+            </div>
+            <div class="item-section">
+              <div class="item">
+                <%= f.label :zipcode, 'Zip Code' %>
+                <div class="element">
+                    <%= f.text_field :zipcode, maxlength: 5 %>
+                </div>
+              </div>
+            </div>
+            <div class="item-section">
+              <div class="item">
+                <%= f.label :phone %>
+                <div class="element">
+                  <%= f.telephone_field :phone %>
+                </div>
+              </div>
+            </div>
+            <div class="form-buttons">
+              <div class="wrapper">
+                <%= f.submit 'Save Changes', class: 'btn main' %>
+              </div>
+            </div>
+          <% end %>
+          <%= form_tag('/photo/upload', remote: true, multipart: true, id: 'upload-photo-form', class: 'hidden') do %>
+            <%= file_field_tag(:file, id: 'avatar-upload') %>
+            <%= text_field_tag(:user_id, current_user.id) %>
+            <%= submit_tag("upload", id: 'upload-button') %>
+          <%end%>
+      </div>
+    </div>
+  </div>
+</div>

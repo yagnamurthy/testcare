@@ -1,0 +1,33 @@
+<div class="user-register-page container-large">
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "skills"} %>
+
+            <div class="reg-slider">
+            <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+
+                <div class="form-item hourly-rate" data-tab="skills">
+                    <%= f.label :hourly_rate, 'What is your hourly rate for services?', :class=>"title" %>
+                    <div class="form-elements">
+                        <div class="rate">
+                            <span>$</span>
+                            <%= f.number_field :hourly_rate %>
+                            /hr
+                        </div>
+                        <p class="error-msg" style="display:none;">Hourly rate for services is required</p>
+                        <p class="tip">This is just your general rate, you can always negotiate a rate with families directly depending on the care job and responsibilities.</p>
+                    </div>
+                    <%= hidden_field_tag 'route', live_in_path %>
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                    <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                    <%= f.submit 'Save', class: 'btn' %>
+                </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

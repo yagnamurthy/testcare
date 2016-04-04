@@ -1,0 +1,40 @@
+<div class="user-register-page container-large">
+    <div class="content">
+        <div class="row">
+
+            <%= render partial: 'registration/tabs', locals: {active: "basic"} %>
+
+            <div class="reg-slider">
+            <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' }, validate: true do |f| %>
+
+                <div class="form-item smoke" data-tab="basic">
+                    <%= f.label :smokes, 'Do you smoke?', :class=>"title" %>
+
+                    <div class="form-elements one-col">
+                      <div class="custom-checkbox-container">
+                        <div class="custom-checkbox">
+                            <%= f.radio_button :smokes, User::Smokes::NO[:value], id: "#{User::Smokes::NO[:label].parameterize}-smoke",class: 'styled' %><%= f.label "#{User::Smokes::NO[:label]}", for: "#{User::Smokes::NO[:label].parameterize}-smoke", validate: { presence: true } %>
+                        </div>
+                        <div class="custom-checkbox">
+                            <%= f.radio_button :smokes, User::Smokes::NOTATWORK[:value], id: "#{User::Smokes::NOTATWORK[:label].parameterize}-smoke", class: 'styled' %><%= f.label "#{User::Smokes::NOTATWORK[:label]}", for: "#{User::Smokes::NOTATWORK[:label].parameterize}-smoke", validate: { presence: true } %>
+                        </div>
+                        <div class="custom-checkbox">
+                            <%= f.radio_button :smokes, User::Smokes::YES[:value], id: "#{User::Smokes::YES[:label].parameterize}-smoke", class: 'styled' %><%= f.label "#{User::Smokes::YES[:label]}", for: "#{User::Smokes::YES[:label].parameterize}-smoke", validate: { presence: true } %>
+                        </div>
+                      </div>
+                      <!--<p class="error-msg" style="display:none;">Smoking status is required</label>-->
+                    </div>
+
+                    <%= hidden_field_tag 'route', allergies_path %>
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="back">< Go Back <span>to Previous Question</span></a>
+                    <%= f.submit 'Save and Continue', class: 'btn-save' %>
+                    <%= f.submit 'Save', class: 'btn' %>
+                </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

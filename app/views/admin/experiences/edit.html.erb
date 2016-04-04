@@ -1,0 +1,66 @@
+<div class='container'>
+<%= form_for @experience, url: admin_experience_path, method: 'PATCH' do |f| %>
+    <div class="item">
+        <%= f.label :employer, 'Employer:', :class => 'general' %>
+        <div class="form-elements">
+            <%= f.text_field :employer %>
+        </div>
+    </div>
+
+    <div class="item">
+        <%= f.label :position, 'Position/Title:', :class => 'general' %>
+        <div class="form-elements">
+            <%= f.text_field :position %>
+        </div>
+    </div>
+
+
+    <div class="item">
+        <div class="row form-elements date">
+            <div class="columns large-6 small-6">
+                <%= f.label :start_date, 'Start Date:', :class => 'general' %>
+
+                <div class="form-elements">
+                    <div class="select-box">
+                        <%= f.select :start_date_month, options_for_select(Experience.months, f.object.start_date_month), {:include_blank => true}, {class: 'start-date-month'} %>
+                    </div>
+                    <div class="select-box">
+                        <%= f.select :start_date_year, options_for_select(Experience.years_since_1960,f.object.start_date_year), {:include_blank => true}, {class: 'start-date-year'} %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="columns large-6 small-6">
+                <%= f.label :finsih_date, 'Finish Date:', :class => 'general' %>
+
+                <div class="form-elements">
+                    <div class="select-box">
+                        <%= f.select :finish_date_month, options_for_select(Experience.months, f.object.finish_date_month), {:include_blank => true}, {class: 'finish-date-month'} %>
+                    </div>
+                    <div class="select-box">
+                        <%= f.select :finish_date_year, options_for_select(Experience.years_since_1960,f.object.finish_date_year), {:include_blank => true}, {class: 'finish-date-year'} %>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+
+    <div class="item">
+        <label class="general"></label>
+        <div class="form-elements checkbox-list one-col">
+        <%= f.check_box :current, class: 'styled current-checkbox' %> 
+        <%= f.label :current, 'I currently work here' %>
+        </div>
+    </div>
+
+    <div class="item">
+        <%= f.label :description, 'Job Description:', :class => 'general' %>
+        <div class="form-elements">
+            <%= f.text_area :description %>
+        </div>
+    </div>
+
+  <%= f.submit %>
+
+<% end %>
+</div>

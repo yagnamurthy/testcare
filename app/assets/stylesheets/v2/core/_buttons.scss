@@ -1,0 +1,113 @@
+button, .btn {
+    @include fontRegular();
+    font-size: $font18;
+    line-height: $font18lh;
+    color: $color-text-white;
+    text-decoration: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    position: relative;
+
+    @include border-radius(4px);
+
+    border: none;
+    background-color: $color-blue-light;
+    border-bottom: 2px solid $color-blue-strong;
+
+    @include transition((background 0.2s, border 0.2s, color 0.2s));
+     &:focus {
+        color: $color-text-white;
+    }
+    @include respond-to('desktop') {
+        &:hover, &:focus {
+            color: $color-text-white;
+            background-color: darken($color-blue-light, 10%);
+        }
+    }
+
+    &.darker {
+        background-color: darken($color-blue-light, 10%);
+        @include respond-to('desktop') {
+            &:hover, &:focus {
+                background-color: darken($color-blue-light, 15%);
+            }
+        }
+    }
+
+    &.red {
+        background-color: $color-red-light;
+        border-bottom-color: $color-red-strong;
+        @include respond-to('desktop') {
+            &:hover, &:focus {
+                background-color: $color-red-strong;
+                border-bottom-color: $color-red-light;
+            }
+        }
+    }
+
+    &.gray {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        margin: 10px 0 20px;
+        font-size: 18px;
+        background: #CED0D1;
+        border-bottom-color: #A4A6A9;
+        border-radius: 8px;
+        @include respond-to('desktop') {
+            &:hover, &:focus {
+                background: darken(#CED0D1, 5%);
+            }
+        }
+        &.green {
+            background: #89c33e;
+            border-bottom-color: darken(#89c33e, 15%);
+            @include respond-to('desktop') {
+                &:hover, &:focus {
+                    background: darken(#89c33e, 5%);
+                }
+            }
+        }
+    }
+
+    &.white {
+        background: #fff;
+        border-bottom-color: darken(#fff, 25%);
+        font-size: 24px;
+        color: #33A5DE;
+        @include respond-to('desktop') {
+            &:hover, &:focus {
+                background: darken(#fff, 5%);
+            }
+        }
+    }
+
+    &.small {
+        font-size: 15px;
+        padding: 5px 70px;
+    }
+
+    &.medium {
+        padding: 10px 55px;
+    }
+
+    img {
+        position: absolute;
+        left: 27px;
+        top: 11px;
+    }
+
+    &.flat {
+        padding: 5px 20px;
+        border-radius: 7px;
+        border-bottom: 0;
+    }
+}
+#enable {
+    background: #8DC63F;
+    border-bottom: 2px solid #009933;
+}
+#disable {
+    background: #D46568;
+    border-bottom: 2px solid #D30900;
+}

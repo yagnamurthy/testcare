@@ -1,0 +1,168 @@
+<section>
+	<h1>When Do You Need Care?</h1>
+	<div class="form-item when-need">
+		<h3>Schedule Type</h3>
+		<div class="content">
+			<div class="custom-checkbox">
+                <%= f.radio_button :schedule_type, Contract::SCHEDULE_TYPE[0][:value], id: 'schedule1' %>
+				<label for="schedule1"><%= Contract::SCHEDULE_TYPE[0][:label] %></label>
+			</div>
+			<div class="custom-checkbox">
+                <%= f.radio_button :schedule_type, Contract::SCHEDULE_TYPE[1][:value], id: 'schedule2' %>
+                <label for="schedule2"><%= Contract::SCHEDULE_TYPE[1][:label] %></label>
+				<span>(ex: twice a week)</span>
+			</div>
+		</div>
+	</div>
+	<div class="form-item">
+		<h3>Do you need a caregiver ASAP?</h3>
+		<div class="content">
+			<div class="custom-checkbox">
+                <%= f.radio_button :schedule_need, Contract::SCHEDULE_NEED[0][:value], id: 'asap1' %>
+                <label for="asap1"><%= Contract::SCHEDULE_NEED[0][:label] %></label>
+			</div>
+			<div class="custom-checkbox">
+                <%= f.radio_button :schedule_need, Contract::SCHEDULE_NEED[1][:value], id: 'asap2' %>
+                <label for="asap2"><%= Contract::SCHEDULE_NEED[1][:label] %></label>
+			</div>
+		</div>
+	</div>
+	<div class="form-item">
+		<h3>How many hours a week do you estimate you'll need caregiving?</h3>
+		<div class="content">
+			<div class="select-box">
+				<a href="#">Select time</a>
+                <%= f.select :hours_needed, options_for_select(Contract.hour_options, f.object.hours_needed), {include_blank: true} %>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<h1>Contact Details</h1>
+	<div class="form-item location">
+			<h3>Zipcode</h3>
+			<div class="content">
+					<%= f.text_field :zipcode %>
+			</div>
+	</div>
+	<div class="form-item phone">
+			<h3>Phone Number</h3>
+			<div class="content">
+					<%= f.text_field :phone, :placeholder => '(555) 222 4444' %>
+					<div class="help-box">Please put the best number to reach you so our Care Coaches can follow up to complete your job posting and answer any questions you have.</div>
+			</div>
+	</div>
+</section>
+
+<section>
+	<h1>What Type of Care Do You Need?</h1>
+	<div class="form-item type-of-care clearfix">
+		<h3>Describe Your Care Needs and Budget</h3>
+		<div class="content">
+      <div class="radio-groups">
+        <% Contract::CARE_TYPE.each do |r| %>
+          <div class="group clearfix">
+            <div class="custom-checkbox">
+              <%= f.radio_button :care_type, r[:value], id: r[:label].gsub(' ', '-'), class: 'styled' %>
+              <%= f.label :care_type, r[:label], for: r[:label].gsub(' ', '-') %>
+              <!-- <div class="help-bubble">?<span>Explanation</span></div> -->
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+			<div class="payment-section">
+        <%= f.label :required_rate, 'Payment rate $' %>
+				<%= f.text_field :required_rate, id: 'required-rate' %>
+				<span>per</span>
+        <br class="show-for-small-only">
+				<div class="select-box">
+					<a href="#">Hour</a>
+					<%= f.select :hourly_type, options_for_select(['Hour', 'Day'], f.object.hourly_type), {include_blank: true} %>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<h1>Describe Your Care Needs</h1>
+	<div class="form-item">
+		<h3>Care Job Title</h3>
+		<div class="content min-max-characters" data-min="0">
+      		<%= f.text_field :headline, placeholder: 'For example: “Daughter needs caregiver for 85 year-old mother”.' %>
+		</div>
+	</div>
+	<div class="form-item">
+		<h3>Short description of your care needs</h3>
+		<div class="content min-max-characters" data-min="100">
+      <%= f.text_area :description, placeholder: "ex: We are seeking a Spanish speaking caregiver for my 85-year old grandmother who has Alheimer's. She will need to be changed, fed, dressed and will need mobility assistance. You should be a CNA and sweet and patient.", class: 'count-words' %>
+			<div class="char-number">
+				<span class="num">0</span>
+				<span class="instruction">Min 100 characters</span>
+			</div>
+		</div>
+	</div>
+	<div class="form-item responsibilities">
+		<h3>What are the caregiver's responsibilities</h3>
+		<div class="content">
+
+        <% Service.general.to_a.each_with_index do |general, index| %>
+          <% if index % 11 == 0 %>
+            <div class="col-4">
+          <% end %>
+	            <div class="custom-checkbox">
+	                <%= check_box_tag "contract[service_ids][]", general.id, @job.service_ids.include?(general.id), id: "contract_services_#{general.id}", class: 'styled' %>
+	                <%= label_tag "contract[service_ids][]", general.name, for: "contract_services_#{general.id}" %>
+	            </div>
+          <% if index % 11 == 10 %>
+            </div>
+          <% end %>
+        <% end %>
+      	</div>
+    </div>
+
+	<div class="form-item requirements">
+		<h3>Job Requirements</h3>
+		<div class="content">
+      <% Requirement.all.each_with_index do |requirement, index| %>
+          <% if index % 4 == 0 %>
+              <div class="col-4">
+          <% end %>
+          <div class="custom-checkbox">
+              <%= check_box_tag "contract[requirement_ids][]", requirement.id, @job.requirement_ids.include?(requirement.id), id: "contract_requirements_#{requirement.id}" %>
+
+              <%= label_tag "contract[requirement_ids][]", requirement.name, for: "contract_requirements_#{requirement.id}" %>
+          </div>
+
+          <% if index % 4 == 3 %>
+              </div>
+          <% end %>
+      <% end %>
+		</div>
+	</div>
+</section>
+
+<script>
+$(document).ready(function(){
+
+    // $('.additional-questions > a').click(function(){
+    //     $(this).parent().addClass('show-form');
+    //     return false;
+    // });
+
+    // $('.type-of-care input[type=checkbox]').change(function(){
+    //     if($(this).is(':checked')) {
+    //         $(this).closest('.group').addClass('checked');
+    //     } else {
+    //         $(this).closest('.group').removeClass('checked');
+    //     }
+    // });
+
+    //return false when logo is clicked
+    $('#family_registration-job header.main h1 a').click(function(){
+        return false;
+    });
+});
+</script>

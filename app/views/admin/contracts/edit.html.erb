@@ -1,0 +1,147 @@
+<div class='container'>
+  <%= form_for @job, url: admin_contract_path, method: 'PATCH' do |f| %>
+
+    <div class="form-item">
+
+        <div class="form-item">
+            <%= f.label :patient_name, 'What is the name of the loved one who will be recieving care?', :class => 'general required' %>
+            <div class="form-elements">
+                <%= f.text_field :patient_name, :class => 'middleWidth' %>
+            </div>
+        </div>
+
+        <%= f.label 'Please describe your care job:', class: 'general required' %>
+        <div class="form-element">
+            <%= f.text_field :headline, placeholder: 'For example: “Daughter needs caregiver for 85 year-old mother”.' %>
+            <span class="flag green float-r hidden">OK</span>
+        </div>
+    </div>
+
+    <div class="form-item">
+
+        <%= f.label 'How many hours a week will you need caregiver?', class: 'general required' %>
+        <div class="form-elements">
+            <div class="select-box w140">
+                <%= f.select :hours_needed, options_for_select(Contract.hour_options, f.object.hours_needed), {include_blank: true} %>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-item">
+        <%= f.label :zipcode, 'In what zipcode is this job located?', :class => 'general required' %>
+        <div class="form-elements">
+            <%= f.text_field :zipcode, :class => 'middleWidth' %>
+            <p class="desc">Only 5 digits</p>
+        </div>
+    </div>
+
+    <div class="form-item">
+        <%= f.label :phone, 'What is your primary phone number?', :class => 'general required' %>
+        <div class="form-elements">
+            <%= f.text_field :phone, :class => 'middleWidth' %>
+        </div>
+    </div>
+
+    <div class="form-item">
+        <label class="general required">What is the job type?</label>
+        <div class="form-elements radio-list one-col">
+            <div class="elm">
+                <%= f.radio_button :job_type, Contract::HOURLY[:value], id: 'job_type_hourly', class: 'styled' %>
+                <%= f.label Contract::HOURLY[:label], for: 'job_type_hourly' %>
+            </div>
+            <div class="elm">
+                <%= f.radio_button :job_type, Contract::LIVEIN[:value], id: 'job_type_livein', class: 'styled' %>
+                <%= f.label Contract::LIVEIN[:label], for: 'job_type_livein' %>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-item" style="width:100%;">
+        <label class="general">What are your care needs?</label>
+        <div class="form-elements checkbox-list two-col">
+
+            <% Service.general.to_a.each do |general| %>
+                <div class="elm">
+                    <%= check_box_tag "contract[service_ids][]", general.id, @job.service_ids.include?(general.id), id: "contract_services_#{general.id}", class: 'styled' %>
+
+                    <%= label_tag "contract[service_ids][]", general.name, for: "contract_services_#{general.id}" %>
+                </div>
+                <br>
+            <% end %>
+
+        </div>
+    </div>
+
+    <div class="form-item">
+        <label class="general">Job requirements:</label>
+        <div class="form-elements checkbox-list two-col">
+
+            <% Requirement.all.each do |requirement| %>
+                <div class="elm">
+                    <%= check_box_tag "contract[requirement_ids][]", requirement.id, @job.requirement_ids.include?(requirement.id), id: "contract_requirements_#{requirement.id}", class: 'styled' %>
+
+                    <%= label_tag "contract[requirement_ids][]", requirement.name, for: "contract_requirements_#{requirement.id}" %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="form-item">
+        <%= f.label 'Do you have additional job details?', class: 'general required' %>
+        <div class="form-elements">
+            <%= f.text_area :description, placeholder: 'For Example: I am 37 years old with 10 years of caregiving experience i am planning on getting my CNA sometime soon. I am very dedicated to my clients and their well-being. I am dependable if you needed me for something last minute mse than.', class: 'count-words' %>
+            <span id="bio-counter" class="flag green float-r hidden">OK</span>
+        </div>
+    </div>
+
+    <div class="form-item" style="width:100%;clear:both;">
+        <label class="general required">What is your budget?</label>
+        <div class="form-elements">
+            <div class="hourly-rate hourly-rate-widget">
+                <div class="row first">
+                    <div class="pull-left">Caregiver hourly rate: </div>
+                    <div class="pull-right with-select">
+                        <span class="blue">$</span>
+                        <%= f.text_field :required_rate, id: 'required-rate' %>
+                        /hr
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="pull-left">
+                        + 15% CareSpotter Service Fee:
+                    </div>
+                    <div class="pull-right">
+                        <span id="carespotter-percentage-calculation">$--.--</span> /hr
+                        <span data-tooltip class="has-tip tip-right" title="
+                            <strong>CareSpotter’s 15% Service Fee incudes:</strong>
+                            <ul class='with-tick'>
+                                <li>24/7 Access to Professional Care Manager and Care Coach</li>
+                                <li>Unlimited Access to Caregivers with Free</li>
+                                <li>Background Screening</li>
+                                <li>$25,000 Bond Protection</li>
+                                <li>$1.000.000 Liability Insurance Protection</li>
+                                <li>CareSpotter’s Online Care Journal</li>
+                                <li>Easy Secure Online Payment System</li>
+                            </ul>
+                            ">
+                            <%= image_tag 'bg/question.png' %>
+                        </span>
+                    </div>
+                </div>
+                <div class="row last">
+                    <div class="pull-left">
+                        Fee charged to familiy:
+                    </div>
+                    <div class="pull-right">
+                        <span id='carespotter-total-rate' class="blue">$--.--</span> /hr
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%= f.submit %>
+  <% end %>
+</div>

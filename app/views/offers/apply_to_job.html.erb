@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="body apply-for-job">
+  	<h2>Apply For Care Job</h2>
+  	<div class="form">
+  		<h3><%= @contract.headline %></h3>
+        <p><%= truncate(@contract.description, length: 170) %>
+        <%= link_to 'Read More', contract_path(@contract), class: 'read-more' %>
+        </p>
+      <h3>Contact Family</h3>
+  		<%= simple_form_for(@offer, url: caregiver_offers_path(current_user.id), class: 'myform' ) do |f| %>
+  			<div class='field'>
+  				<%= f.input :body, label: false, input_html: { id: 'cover-letter', value: "Hello, my name is #{current_user.first_name}, and I have more than #{current_user.total_experience} years working as a professional caregiver. I’d like to apply to your care job. Thank you for your consideration, hope to hear back! \n\nYours truly, \n\n#{current_user.first_name}" }, as: :text %>
+          <% unless current_user.cover_letter.body.nil? %>
+            <a href="#" id='use-my-cover-letter' data-cover-letter="<%= current_user.cover_letter.body %>"><h4>+ Use my Cover Letter</h4></a>
+          <% end %>
+        </div>
+        <h4>Rate Per Hour</h4>
+  			<div class="field hourly-rate">
+  				<%= f.input :rate, as: :integer, placeholder: '$', label: false %>
+  			</div>
+
+
+         <%= f.input :contract_id, as: :hidden, input_html: { value: params[:contract_id] } %>
+
+  			<%= f.submit 'Apply', class: 'btn' %>
+  		<% end %>
+  	</div>
+
+  	<div class="tips">
+  		<h5>Tips</h5>
+  		<div class="tip">
+  			<h6>Offer your condolences</h6>
+  			<p>Let the family know you understand they're in a tough situation, or if you've been through it as well. It shows you care, and will help you make an immediate connection.</p>
+  		</div>
+  		<div class="tip">
+  			<h6>Sell, sell, sell your experience</h6>
+  			<p>Let the family know why you're the perfect caregiver for this care job. Talk about how past clients loved you, and your skills, techniques and experience with their specific care needs.</p>
+  		</div>
+  		<div class="tip">
+  			<h6>Layout the next steps</h6>
+  			<p>Let the family know your availability and offer to setup a phone interview or care evaluation. If you are comfortable, send your phone number, so they can contact you directly.</p>
+  		</div>
+
+  	</div>
+  </div>
+</div>
+<script>
+  $('#use-my-cover-letter').on('click', function(evt) {
+    var cover_letter = $('#use-my-cover-letter').data('cover-letter');
+    $('#cover-letter').val(cover_letter);
+  });
+</script>

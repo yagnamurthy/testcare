@@ -1,0 +1,31 @@
+<div class="user-register-page container-large">
+  <div class="content">
+    <div class="row">
+      <%= render partial: 'registration/tabs', locals: {active: "basic"} %>
+    <div class="reg-slider">
+      <%= form_for current_user, url: update_caregiver_registration_path, method: 'patch', html: { autocomplete: 'off' } do |f| %>
+        <div class="form-items">
+          <div class="form-item availability" data-tab="availability">
+            <%= f.label :availability, "What's your availability?" , :class=>"title" %>
+              <div class="form-elements">
+                <div class="custom-checkbox">
+                  <%= f.radio_button :availability, User::Availability::PARTTIME[:value], id: "#{User::Availability::PARTTIME[:label].parameterize}", class: 'styled' %><%= f.label "#{User::Availability::PARTTIME[:label]}", for: "#{User::Availability::PARTTIME[:label].parameterize}" %>
+                </div>
+                <div class="custom-checkbox">
+                  <%= f.radio_button :availability, User::Availability::FULLTIME[:value], id: "#{User::Availability::FULLTIME[:label].parameterize}", class: 'styled' %><%= f.label "#{User::Availability::FULLTIME[:label]}", for: "#{User::Availability::FULLTIME[:label].parameterize}" %>
+                </div>
+                <div class="custom-checkbox">
+                  <%= f.radio_button :availability, User::Availability::OCCASIONAL[:value], id: "#{User::Availability::OCCASIONAL[:label].parameterize}", class: 'styled' %><%= f.label "#{User::Availability::OCCASIONAL[:label]}", for: "#{User::Availability::OCCASIONAL[:label].parameterize}" %>
+                </div>
+                 <div class="buttons">
+                  <%= f.submit 'Save', class: 'btn' %>
+                </div>
+                 <% end %>
+              </div>
+          </div>  
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,17 @@
+<% if show_read_message_hidden_link?(mailbox_message_counter, total_message_count) %>
+    <a href="#" class="expand-button"><span><%= total_message_count - 2 %> messages</span></a>
+<% end %>
+
+<div class="item <%= mailbox_message_collapse_item(mailbox_message_counter, total_message_count)%>">
+    <div class="info">
+        <%= avatar_image_link_to_profile mailbox_message.sender, :thumb, 'small-avatar' %>
+        <div class="user-headline">
+            <%= name_link_to_profile mailbox_message.sender %>
+            <span class="date"><%= mailbox_message.created_at.strftime("%B %d %Y") %></span>
+        </div>
+    </div>
+
+    <div class="msg">
+        <p><%= mailbox_message.body %></p>
+    </div>
+</div>

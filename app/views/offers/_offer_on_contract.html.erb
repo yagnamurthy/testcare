@@ -1,0 +1,26 @@
+<div class="item">
+    <%= link_to caregiver_path(offer_on_contract.caregiver.id) do %>
+        <%= avatar_tag offer_on_contract.caregiver, :medium, class: 'middle2-avatar' %>
+    <% end %>
+
+    <div class="info">
+        <div class="headline">
+<!--             <div class="actions">
+                <a href="#" class="base-action accept"></a>
+                <a href="#" class="base-action delete"></a>
+            </div> -->
+            <p class='username'><%= offer_on_contract.contract.patient_name %></p>
+            <p class="promo">"<%= offer_on_contract.contract.headline %>"</p>
+            <table>
+                <tr>
+                    <td><strong>Rate:</strong> <span class="blue">$<%= offer_on_contract.rate %></span>/hr</td>
+                    <td><strong>Hours Needed:</strong> <span class="blue"><%= offer_on_contract.contract.hours_needed %></span></td>
+                </tr>
+            </table>
+            <div class="desc simple">
+                <p><%= offer_on_contract.contract.description %></p>
+                <%= link_to 'Read More', contract_path(offer_on_contract.contract.id), class: 'read-more' %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+  <div class="dashboard-page container-large">
+    <div class="row">
+
+        <div class="content main-cnt">
+            <div class="row">
+                <% if current_user.caregiver? %>
+                    <%= render partial: 'messages/caregiver/sidebar', locals: { selected: 'inbox' } %>
+
+                    <%= render partial: 'messages/caregiver/mailbox', locals: { type: 'to', collection: current_user.mailbox.conversations.not_trash(current_user).page(params[:page] || 1).per(5) }  %>
+                <% else %>
+                    <%= render partial: 'messages/family/sidebar', locals: { selected: 'inbox' } %>
+
+                    <%= render partial: 'messages/family/mailbox', locals: { type: 'to', collection: current_user.mailbox.conversations.not_trash(current_user).page(params[:page] || 1).per(5) }  %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

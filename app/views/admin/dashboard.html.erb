@@ -1,0 +1,42 @@
+<div class="container">
+   <div class="row">
+    <div class="span6">
+     <h3>Most Recent Caregivers</h3>
+      <ul>
+        <% @recent_caregivers.each do |caregiver| %>
+          <li><%= link_to caregiver.first_and_last_initial, caregiver %></li>
+        <% end %>
+      </ul>
+
+     <%= link_to "View all Caregivers", admin_caregivers_path %>
+     <%= link_to "View Pending Caregivers", admin_caregivers_path(f: true) %>
+    </div>
+
+
+    <div class="span6">
+     <h3>Most Recent Jobs</h3>
+     
+     <ul>
+      <% @recent_jobs.each do |job| %>
+        <li><%= link_to job.headline, job %>(<%= job.offers.count %>)</li>
+      <% end %>
+     </ul>
+
+     <%= link_to "View all Contracts", admin_contracts_path %>
+
+    </div>
+
+    <div class="span6">
+     <h3>Most Recent Families</h3>
+     
+     <ul>
+      <% @recent_families.each do |family| %>
+        <li><%= family.first_name %></li>
+      <% end %>
+     </ul>
+
+     <%= link_to "View all Families", admin_families_path %>
+
+    </div>
+   </div>
+  </div>

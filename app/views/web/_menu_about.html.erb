@@ -1,0 +1,6 @@
+<ul id="about-menu">
+    <li><%= link_to 'Our Mission', web_about_us_path + "#our-mission" %></li>
+    <li><%= link_to 'Our Story', web_about_us_path + "#our-story" %></li>
+    <li><%= link_to 'Why Carespotter?', web_about_us_path + "#why-carespotter" %></li>
+    <li><%= link_to 'The Team', web_team_path, class: act == 'team' ? 'act' : ''%></li>
+</ul>

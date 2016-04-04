@@ -1,0 +1,42 @@
+<tr>
+	<td>
+		<% if !caregiver.contacted %>
+			<%= button_to 'Yes', admin_contacted_caregiver_path(id: caregiver.id), class: 'btn main' %>
+		<% else %>
+			Yes
+		<% end %>
+	</td>
+	<td><%= caregiver.id %></td>
+	<td><%= caregiver.full_name %></td>
+	<td><%= caregiver.email %></td>
+	<td><%= number_to_phone caregiver.phone, area_code: true %></td>
+	<td><%= link_to 'Profile', caregiver_path(caregiver.id) %></td>
+	<td><%= caregiver.references_count %></td>
+	<td><%= caregiver.work_experience %></td>
+	<td><%= caregiver.hourly_rate %></td>
+	<td><%= caregiver.has_avatar? %></td>
+	<td><%= caregiver.facebook_id %></td>
+	<td>
+		<% if caregiver.facebook_id %>
+			<%= content_tag(:a, href: "http://facebook.com/#{caregiver.facebook_id}") do %>
+				Facebook Profile
+			<% end %>
+		<% end %>
+	</td>
+	<td><%= caregiver.completed_profile? %></td>
+	<td>
+		<% if caregiver.completed_profile? %>
+			<% if caregiver.indexable %>
+				<%= button_to 'Disable', admin_remove_path(id: caregiver.id, model: 'Caregiver'), class: 'btn main', id: 'disable' %>
+			<% else %>
+				<%= button_to 'Enable', admin_add_path(id: caregiver.id, model: 'Caregiver'), class: 'btn main', id: 'enable' %>
+			<% end %>
+		<% else %>
+			<p>Incomplete Profile</p>
+		<% end %>
+
+	</td>
+	<td><%= caregiver.created_at.strftime("%b. %d %Y") %></td>
+	<td><%= link_to "Edit Caregiver", edit_admin_user_path(caregiver) %>
+</tr>
+
